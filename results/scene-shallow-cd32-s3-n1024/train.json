@@ -1,0 +1,32 @@
+{
+  "config": {
+    "task": "scene",
+    "model": "shallow",
+    "rule": "cd32",
+    "seed": 3,
+    "families": 1024,
+    "epochs": 80,
+    "batch": 128,
+    "lr": 0.003,
+    "tag": ""
+  },
+  "name": "scene-shallow-cd32-s3-n1024",
+  "time": "2026-11-26T13:43:49+00:00",
+  "hardware": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "torch": "2.15.0+cu132",
+    "cuda": "13.2",
+    "python": "3.12.13",
+    "commit": "730d9c8025517db1a6db5073fb49a6485ed106ce"
+  },
+  "trainable": 7713,
+  "parameters": 7713,
+  "best_epoch": 43,
+  "val_accuracy": 0.50390625,
+  "train_examples": 2048,
+  "val_examples": 512,
+  "seconds": 7.601360599986947,
+  "training_examples_per_second": 21554.03599722415,
+  "peak_gpu_bytes": 39115776
+}
