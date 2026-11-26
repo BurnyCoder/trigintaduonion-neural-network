@@ -1,9 +1,9 @@
 {
   "planned": 99,
   "completed_training": 66,
-  "completed_evaluation": 33,
-  "checked_splits": 99,
-  "recounted_decisions": 202752,
+  "completed_evaluation": 66,
+  "checked_splits": 198,
+  "recounted_decisions": 405504,
   "distinct_label_streams": 27,
   "full_epoch_journals_verified": 66,
   "latest_registered_scene_fit": "2026-11-26T13:54:01+00:00",
