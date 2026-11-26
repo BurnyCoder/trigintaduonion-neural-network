@@ -12,16 +12,16 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | scene / frozen / cd32 / 1024 families | 0 | 2113 | pending | — |
 | scene / onehop / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / random / cd32 / 1024 families | 2 | 3801 | 50.34% | 36.69% to 63.99% |
-| scene / random / random / 1024 families | 1 | 3801 | 89.99% | — |
+| scene / random / random / 1024 families | 2 | 3801 | 90.26% | 86.85% to 93.67% |
 | scene / real / cd32 / 1024 families | 0 | 11737 | pending | — |
 | scene / shallow / cd32 / 1024 families | 0 | 7713 | pending | — |
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
 | --- | --- | --- | --- | --- | --- |
 | Matched canonical accuracy | 2 | 89.89% | 80.59% to 99.20% | 60.00% | pending |
-| Matched randomized accuracy | 1 | 89.99% | — | 60.00% | pending |
+| Matched randomized accuracy | 2 | 90.26% | 86.85% to 93.67% | 60.00% | pending |
 | Canonical minus randomized on canonical sensors | 2 | 39.55 pp | 35.21 pp to 43.89 pp | 1.00 pp | pending |
-| Randomized minus canonical on randomized sensors | 1 | 38.72 pp | — | 1.00 pp | pending |
+| Randomized minus canonical on randomized sensors | 2 | 39.28 pp | 32.15 pp to 46.42 pp | 1.00 pp | pending |
 | Canonical minus frozen | 0 | pending | — | 0.00 pp | pending |
 | Canonical minus validation-selected shallow control | 0 | pending | — | 0.00 pp | pending |
 | Canonical minus randomized on ciFAIR-10 | 0 | pending | — | 1.00 pp | pending |
@@ -33,7 +33,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | cd32 | cd32 | 2 | 89.89% | 83.35% | 89.53% | 88.79% | 50.00% | 93.68% |
 | cd32 | random | 2 | 50.98% | 24.46% | 51.44% | 50.32% | 50.00% | 93.73% |
 | random | cd32 | 2 | 50.34% | 23.73% | 50.37% | 49.17% | 50.00% | 93.68% |
-| random | random | 1 | 89.99% | 83.69% | 90.58% | 89.11% | 50.00% | 93.55% |
+| random | random | 2 | 90.26% | 84.08% | 90.26% | 89.40% | 50.00% | 93.73% |
 
 Each entry averages the saved world-level scores. Both mates counts families whose two opposite labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.
 
