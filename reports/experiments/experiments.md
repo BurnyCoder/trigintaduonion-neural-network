@@ -36,7 +36,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | [scene-frozen-cd32-s6-n1024](scene-frozen-cd32-s6-n1024/experiment.md) | 2113 | 54.49% | 51.03% | 11.82% | 50.83% | 49.90% |
 | [scene-frozen-cd32-s7-n1024](scene-frozen-cd32-s7-n1024/experiment.md) | 2113 | 53.52% | 50.49% | 15.82% | 48.73% | 51.32% |
 | [scene-onehop-cd32-s0-n1024](scene-onehop-cd32-s0-n1024/experiment.md) | 3801 | 50.00% | 50.00% | 0.00% | 50.00% | 50.00% |
-| [scene-onehop-cd32-s1-n1024](scene-onehop-cd32-s1-n1024/experiment.md) | 3801 | 50.00% | pending | pending | pending | pending |
+| [scene-onehop-cd32-s1-n1024](scene-onehop-cd32-s1-n1024/experiment.md) | 3801 | 50.00% | 50.00% | 0.00% | 50.00% | 50.00% |
 | [scene-onehop-cd32-s2-n1024](scene-onehop-cd32-s2-n1024/experiment.md) | 3801 | 50.00% | pending | pending | pending | pending |
 | [scene-onehop-cd32-s3-n1024](scene-onehop-cd32-s3-n1024/experiment.md) | 3801 | 50.00% | pending | pending | pending | pending |
 | [scene-onehop-cd32-s4-n1024](scene-onehop-cd32-s4-n1024/experiment.md) | 3801 | 50.00% | pending | pending | pending | pending |
