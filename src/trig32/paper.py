@@ -115,6 +115,8 @@ The pixel models apply a real input stem, three two-convolution residual stages 
     text+=plot("sample-size","Data-size sensitivity on the canonical sensor in seed zero. Training families are nested and the test set is fixed. With a fixed epoch and batch budget, larger samples also receive more optimizer steps.")
     text+=plot("learning","Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.")
     text+=plot("example","A fixed held-out family. Circles show object readings, square markers landmarks and stars beacons. Dashed paths show ground-truth selections.")
+    if data.get("media",{}).get("reading_swap"):
+        text+=r"\href{https://burnycoder.github.io/trigintaduonion-neural-network/figures/reading-swap.mp4}{Video of the reading exchange and both recorded predictions.}"+"\n"
     text+=plot("predictions","Same-type probabilities and binary controls on three fixed held-out families from the lowest available evaluated seed in the canonical sensor condition.")
     if data["audits"]:
         text+=r"\subsection*{Supplementary fixed-checkpoint interventions}"+"\n"

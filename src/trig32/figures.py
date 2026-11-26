@@ -125,6 +125,8 @@ def figures(data):
                 ax.legend(frameon=False,fontsize=8)
             save(fig,"learning")
     scene=next((r for r in finished if "examples" in r and r["config"]["seed"]==42),None)
+    from .movie import swap_video
+    swap_video(scene["examples"] if scene else None, FIG)
     if scene:
         f=scene["examples"]
         fig,axes=plt.subplots(1,2,figsize=(7,3.3),layout="constrained")
