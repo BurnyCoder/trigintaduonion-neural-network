@@ -1,5 +1,5 @@
 # Observations from scene-cd16-cd32-s2-n1024
 
-The validation-selected epoch was 40. Test predictions are pending release.
+The selected epoch was 40. Validation accuracy was 56.05% and test accuracy was 55.91%. Both mates were correct in 30.66% of families. The oracle scored 93.51%.
 
 A family contains the original scene and a counterfactual with reversed ground truth. Cross-model attribution requires the prespecified paired comparisons. [Aggregated contrasts](../../summary.md)

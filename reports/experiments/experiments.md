@@ -9,7 +9,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | [scene-budget-cd32-s2-n1024](scene-budget-cd32-s2-n1024/experiment.md) | 3961 | 53.32% | 49.32% | 19.73% | 50.49% | 49.66% |
 | [scene-cd16-cd32-s0-n1024](scene-cd16-cd32-s0-n1024/experiment.md) | 4057 | 63.67% | 63.53% | 41.70% | 62.99% | 63.96% |
 | [scene-cd16-cd32-s1-n1024](scene-cd16-cd32-s1-n1024/experiment.md) | 4057 | 66.41% | 66.26% | 44.34% | 65.67% | 66.31% |
-| [scene-cd16-cd32-s2-n1024](scene-cd16-cd32-s2-n1024/experiment.md) | 4057 | 56.05% | pending | pending | pending | pending |
+| [scene-cd16-cd32-s2-n1024](scene-cd16-cd32-s2-n1024/experiment.md) | 4057 | 56.05% | 55.91% | 30.66% | 56.98% | 54.93% |
 | [scene-cd32-cd32-s0-n1024](scene-cd32-cd32-s0-n1024/experiment.md) | 3801 | 91.99% | 90.62% | 84.96% | 90.14% | 89.36% |
 | [scene-cd32-cd32-s1-n1024](scene-cd32-cd32-s1-n1024/experiment.md) | 3801 | 90.43% | 89.16% | 81.74% | 88.92% | 88.23% |
 | [scene-cd32-cd32-s2-n1024](scene-cd32-cd32-s2-n1024/experiment.md) | 3801 | 91.21% | 91.06% | 85.35% | 89.65% | 89.45% |
