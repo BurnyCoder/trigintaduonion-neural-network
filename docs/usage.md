@@ -8,7 +8,7 @@ uv run --no-sync pytest -q
 uv run --no-sync trig32 dashboard
 ```
 
-Open the dashboard at <http://127.0.0.1:8765/>. In another terminal run the pilot or the registered matrix. A local `.env` can set `TRIG32_DATA` and `TRIG32_CHECKPOINTS` to absolute paths on a larger drive. Local defaults are `data/` and `checkpoints/`. Inference accepts PyTorch tensors through the model classes and JSON or an RGB image through the CLI.
+Open the dashboard at <http://127.0.0.1:18332/>. In another terminal run the pilot or the registered matrix. A local `.env` can set `TRIG32_DATA` and `TRIG32_CHECKPOINTS` to absolute paths on a larger drive. Local defaults are `data/` and `checkpoints/`. Inference accepts PyTorch tensors through the model classes and JSON or an RGB image through the CLI.
 
 ```sh
 uv run trig32 train --task scene --model cd32 --rule cd32 --seed 42

@@ -22,5 +22,9 @@ class Dashboard(SimpleHTTPRequestHandler):
 
 def serve(port):
     handler=partial(Dashboard,directory=str(ROOT/"docs"))
-    print(f"Live training dashboard at http://127.0.0.1:{port}/",flush=True)
-    ThreadingHTTPServer(("127.0.0.1",port),handler).serve_forever()
+    # Windows otherwise allows two HTTP servers to bind the same socket with SO_REUSEADDR.
+    class LocalServer(ThreadingHTTPServer):
+        allow_reuse_address=False
+    with LocalServer(("127.0.0.1",port),handler) as server:
+        print(f"Live training dashboard at http://127.0.0.1:{server.server_port}/",flush=True)
+        server.serve_forever()

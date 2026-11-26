@@ -37,7 +37,7 @@ uv run trig32 predict scene-cd32-cd32-s42-n1024 --input results/scene-cd32-cd32-
 uv run trig32 report
 ```
 
-In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://127.0.0.1:8765/>. The public explorer shows released results. Use `uv run trig32 matrix --stage all` for the whole study. [Installation, input schema, downloads and resumption](docs/usage.md) · [Experiment notebooks](reports/experiments/experiments.md) · [Research plan](reports/plan.md)
+In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://127.0.0.1:18332/>. The public explorer shows released results. Use `uv run trig32 matrix --stage all` for the whole study. [Installation, input schema, downloads and resumption](docs/usage.md) · [Experiment notebooks](reports/experiments/experiments.md) · [Research plan](reports/plan.md)
 
 ## Measured outcomes
 
