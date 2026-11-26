@@ -59,7 +59,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | [scene-random-random-s5-n1024](scene-random-random-s5-n1024/experiment.md) | 3801 | 92.38% | 90.58% | 84.67% | 90.43% | 89.60% |
 | [scene-random-random-s6-n1024](scene-random-random-s6-n1024/experiment.md) | 3801 | 91.21% | 90.48% | 84.38% | 91.55% | 89.84% |
 | [scene-random-random-s7-n1024](scene-random-random-s7-n1024/experiment.md) | 3801 | 92.19% | 89.70% | 82.13% | 89.79% | 90.04% |
-| [scene-real-cd32-s0-n1024](scene-real-cd32-s0-n1024/experiment.md) | 11737 | 56.64% | pending | pending | pending | pending |
+| [scene-real-cd32-s0-n1024](scene-real-cd32-s0-n1024/experiment.md) | 11737 | 56.64% | 50.44% | 23.34% | 49.46% | 50.83% |
 | [scene-real-cd32-s1-n1024](scene-real-cd32-s1-n1024/experiment.md) | 11737 | 53.32% | pending | pending | pending | pending |
 | [scene-real-cd32-s2-n1024](scene-real-cd32-s2-n1024/experiment.md) | 11737 | 53.91% | pending | pending | pending | pending |
 | [scene-shallow-cd32-s0-n1024](scene-shallow-cd32-s0-n1024/experiment.md) | 7713 | 50.39% | 50.00% | 0.10% | 50.00% | 50.00% |
