@@ -4,6 +4,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
+| scene / budget / cd32 / 1024 families | 0 | 3961 | pending | — |
 | scene / cd32 / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
 | scene / cd32 / random / 1024 families | 0 | 3801 | pending | — |
