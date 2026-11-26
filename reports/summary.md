@@ -6,7 +6,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | --- | --- | --- | --- | --- |
 | scene / budget / cd32 / 1024 families | 0 | 3961 | pending | — |
 | scene / cd16 / cd32 / 1024 families | 0 | 4057 | pending | — |
-| scene / cd32 / cd32 / 1024 families | 1 | 3801 | 90.62% | — |
+| scene / cd32 / cd32 / 1024 families | 2 | 3801 | 89.89% | 80.59% to 99.20% |
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
 | scene / cd32 / random / 1024 families | 1 | 3801 | 51.27% | — |
 | scene / frozen / cd32 / 1024 families | 0 | 2113 | pending | — |
@@ -18,7 +18,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
 | --- | --- | --- | --- | --- | --- |
-| Matched canonical accuracy | 1 | 90.62% | — | 60.00% | pending |
+| Matched canonical accuracy | 2 | 89.89% | 80.59% to 99.20% | 60.00% | pending |
 | Matched randomized accuracy | 1 | 89.99% | — | 60.00% | pending |
 | Canonical minus randomized on canonical sensors | 1 | 39.21 pp | — | 1.00 pp | pending |
 | Randomized minus canonical on randomized sensors | 1 | 38.72 pp | — | 1.00 pp | pending |
@@ -30,7 +30,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 
 | Learner | Sensor | Worlds | Test | Both mates | Unseen channels | Crowded | Constant | Known-filter oracle |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| cd32 | cd32 | 1 | 90.62% | 84.96% | 90.14% | 89.36% | 50.00% | 93.95% |
+| cd32 | cd32 | 2 | 89.89% | 83.35% | 89.53% | 88.79% | 50.00% | 93.68% |
 | cd32 | random | 1 | 51.27% | 24.90% | 50.98% | 50.10% | 50.00% | 93.55% |
 | random | cd32 | 1 | 51.42% | 23.14% | 51.81% | 48.68% | 50.00% | 93.95% |
 | random | random | 1 | 89.99% | 83.69% | 90.58% | 89.11% | 50.00% | 93.55% |
