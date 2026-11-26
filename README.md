@@ -48,6 +48,8 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 ## Measured outcomes
 
 <!-- metrics:start -->
+![Paired differences, seed-level points and 95% intervals](docs/figures/effects.png)
+
 ![Each dot is one test run and each black tick is the mean.](docs/figures/scores.png)
 
 ![Ground truth, analytic controls and model predictions on the same held-out pairs.](docs/figures/predictions.png)
@@ -63,7 +65,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | scene / cd32 / random / 1024 families | 0 | 3801 | pending | — |
 | scene / frozen / cd32 / 1024 families | 0 | 2113 | pending | — |
 | scene / onehop / cd32 / 1024 families | 0 | 3801 | pending | — |
-| scene / random / cd32 / 1024 families | 0 | 3801 | pending | — |
+| scene / random / cd32 / 1024 families | 1 | 3801 | 51.42% | — |
 | scene / random / random / 1024 families | 0 | 3801 | pending | — |
 | scene / real / cd32 / 1024 families | 0 | 11737 | pending | — |
 | scene / shallow / cd32 / 1024 families | 0 | 7713 | pending | — |
