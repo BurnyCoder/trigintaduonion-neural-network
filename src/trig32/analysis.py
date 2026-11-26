@@ -78,11 +78,17 @@ def collect():
         record["curve"]=[epochs[i] for i in sorted(epochs)]
         sample=path.with_name("test-examples.json")
         if sample.exists():
-            record["examples"]={k:v for k,v in read(sample).items() if k in ("beacon","land","pos","labels","predictions","scores","z","oracle")}
+            examples=read(sample)
+            if record["config"]["task"]=="scene":
+                record["examples"]={k:v for k,v in examples.items() if k in ("beacon","land","pos","labels","predictions","scores","z","oracle")}
+            else:
+                record["image_examples"]=examples
         runs.append(record)
     diagnostics=[row for p in sorted((RESULTS/"algebra").glob("seed-*.json")) for row in read(p)]
     audits=[read(p) for p in sorted((RESULTS/"audits").glob("*.json"))]
-    return dict(runs=runs,contrasts=contrasts(runs),algebra=diagnostics,audits=audits)
+    inputs=RESULTS/"data-audit.json"
+    return dict(runs=runs,contrasts=contrasts(runs),algebra=diagnostics,audits=audits,
+                benchmark_inputs=read(inputs) if inputs.exists() else None)
 
 
 def percent(x):

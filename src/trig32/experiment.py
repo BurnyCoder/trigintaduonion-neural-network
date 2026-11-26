@@ -245,6 +245,10 @@ def evaluate(name,device="auto"):
                            scores=rows["score"][:6].tolist(),predictions=rows["prediction"][:6].tolist(),
                            oracle=oracle[:6].long().cpu().tolist())
             write_json(out/f"{split}-examples.json",example)
+        elif split=="test":
+            from .vision import image_examples
+            example=image_examples(ds,rows,out/"test-gallery.png")
+            write_json(out/"test-examples.json",example)
         with gzip.open(out/f"{split}-predictions.csv.gz.tmp","wt",encoding="utf-8",newline="") as f:
             f.write("index,label,prediction,score\n")
             for i,(y,p,s) in enumerate(zip(rows["label"],rows["prediction"],rows["score"])):

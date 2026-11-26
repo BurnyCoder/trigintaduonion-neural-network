@@ -108,6 +108,15 @@ def documents(data):
                 rows.append([a["run"],name,percent(m["accuracy_against_original_labels"]),
                              m["changed_decisions"],f"{m['max_probability_change']:.3g}"])
         probe="\n\n## Supplementary fixed-checkpoint interventions\n\n"+table(rows,["Run","Input","Accuracy against original labels","Decisions changed","Max Δ probability"])
+        for a in audits:
+            if "float64_reference" in a:
+                m=a["float64_reference"]["isometry_and_reindexing"]
+                probe+=f"\n\nThe float64 symmetry reference for {a['run']} changed {m['changed_decisions']} decisions. Maximum absolute probability drift was {m['max_probability_change']:.3g}."
+    for r in runs:
+        if "image_examples" in r:
+            from .paths import RESULTS
+            dest=DOCS/"figures"/("gallery-"+r["config"]["task"]+".png")
+            shutil.copyfile(RESULTS/r["name"]/"test-gallery.png",dest)
     images=[]
     for key,desc in [("scores","Each dot is one test run and each black tick is the mean."),("example","A fixed pilot pair with the selected paths, ground truth and predicted probability."),("predictions","Ground truth, analytic controls and model predictions on the same held-out pairs."),("learning","Pilot training and validation trajectories.")]:
         if (DOCS/"figures"/(key+".png")).exists():
