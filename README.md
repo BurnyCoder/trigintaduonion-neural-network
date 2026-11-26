@@ -56,6 +56,8 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 
 ![Pilot training and validation trajectories.](docs/figures/learning.png)
 
+![Seed-zero accuracy on a fixed test set as the training-family count changes](docs/figures/sample-size.png)
+
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
 | scene / budget / cd32 / 1024 families | 3 | 3961 | 49.92% | 47.73% to 52.10% |
@@ -69,7 +71,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | scene / frozen / cd32 / 1024 families | 8 | 2113 | 50.56% | 50.10% to 51.01% |
 | scene / onehop / cd32 / 1024 families | 8 | 3801 | 50.00% | 50.00% to 50.00% |
 | scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
-| scene / random / cd32 / 256 families | 0 | 3801 | pending | — |
+| scene / random / cd32 / 256 families | 1 | 3801 | 51.12% | — |
 | scene / random / cd32 / 32768 families | 0 | 3801 | pending | — |
 | scene / random / cd32 / 4096 families | 0 | 3801 | pending | — |
 | scene / random / random / 1024 families | 8 | 3801 | 90.06% | 89.63% to 90.49% |

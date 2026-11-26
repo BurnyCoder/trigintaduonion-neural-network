@@ -52,7 +52,7 @@ scene / cd32 / random / 1024 families & 8 & 3801 & 50.49\% & 49.82\% to 51.15\%\
 scene / frozen / cd32 / 1024 families & 8 & 2113 & 50.56\% & 50.10\% to 51.01\%\\
 scene / onehop / cd32 / 1024 families & 8 & 3801 & 50.00\% & 50.00\% to 50.00\%\\
 scene / random / cd32 / 1024 families & 8 & 3801 & 50.45\% & 49.75\% to 51.14\%\\
-scene / random / cd32 / 256 families & 0 & 3801 & pending & ---\\
+scene / random / cd32 / 256 families & 1 & 3801 & 51.12\% & ---\\
 scene / random / cd32 / 32768 families & 0 & 3801 & pending & ---\\
 scene / random / cd32 / 4096 families & 0 & 3801 & pending & ---\\
 scene / random / random / 1024 families & 8 & 3801 & 90.06\% & 89.63\% to 90.49\%\\
@@ -92,6 +92,8 @@ On the 3 canonical worlds shared by the capacity baselines, mean test accuracy w
 \\{\small Dots represent held-out worlds, a vertical tick the mean, and a horizontal line the 95\% Student interval for groups with at least three worlds.}\end{center}
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/effects.png}
 \\{\small Paired differences by world and their mean and 95\% interval. Crosses mark the registered decision thresholds.}\end{center}
+\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/sample-size.png}
+\\{\small Data-size sensitivity on the canonical sensor in seed zero. Training families are nested and the test set is fixed. With a fixed epoch and batch budget, larger samples also receive more optimizer steps.}\end{center}
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/learning.png}
 \\{\small Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.}\end{center}
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/example.png}
