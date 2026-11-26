@@ -23,7 +23,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | [pixel-random-cd32-s0](pixel-random-cd32-s0/experiment.md) | 13034 | 78.50% | 78.11% | n/a | n/a | 77.12% |
 | [pixel-random-cd32-s1](pixel-random-cd32-s1/experiment.md) | 13034 | 79.02% | 79.52% | n/a | n/a | 78.50% |
 | [pixel-random-cd32-s2](pixel-random-cd32-s2/experiment.md) | 13034 | 79.32% | 79.74% | n/a | n/a | 78.69% |
-| [pixel-random-cd32-s3](pixel-random-cd32-s3/experiment.md) | 13034 | 78.18% | pending | n/a | n/a | pending |
+| [pixel-random-cd32-s3](pixel-random-cd32-s3/experiment.md) | 13034 | 78.18% | 79.04% | n/a | n/a | 78.03% |
 | [pixel-random-cd32-s4](pixel-random-cd32-s4/experiment.md) | 13034 | 78.76% | pending | n/a | n/a | pending |
 | [pixel-random-cd32-s5](pixel-random-cd32-s5/experiment.md) | 13034 | 78.72% | pending | n/a | n/a | pending |
 | [pixel-random-cd32-s6](pixel-random-cd32-s6/experiment.md) | 13034 | 79.02% | pending | n/a | n/a | pending |
