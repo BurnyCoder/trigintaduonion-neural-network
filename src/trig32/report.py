@@ -87,6 +87,55 @@ def primary_finding(data):
             f"sensor classified {estimate(randomized)} correctly.")
 
 
+def benchmark_rows(data):
+    """Keep original and corrected pixel accuracies distinct and group only like architectures."""
+    groups=defaultdict(list)
+    for r in data["runs"]:
+        task=r["config"]["task"]
+        if task in ("pixel","graph") and r["splits"]:
+            groups[(task,r["config"]["model"])].append(r)
+    rows=[]
+    for (task,model),worlds in sorted(groups.items()):
+        original=interval([r["splits"]["test"]["accuracy"] for r in worlds])
+        corrected=interval([r["splits"]["cifair"]["accuracy"] for r in worlds if "cifair" in r["splits"]])
+        ci=(f"{percent(corrected['lo'])} to {percent(corrected['hi'])}" if corrected["lo"] is not None else "—")
+        rows.append([task,model,len(worlds),worlds[0]["trainable"],percent(original["mean"]),
+                     percent(corrected["mean"]) if corrected["n"] else "—",ci])
+    return rows
+
+
+def additional_findings(data):
+    """Interpret the fixed depth, sensitivity and transfer outcomes only as their comparisons finish."""
+    paragraphs=[]
+    frozen,shallow,transfer=data["contrasts"][4:7]
+    if frozen["n"]==shallow["n"]==8:
+        outcome=("Both lower bounds exceeded zero." if frozen["lo"]>0 and shallow["lo"]>0 else
+                 "The registered multistage criterion did not clear both lower bounds.")
+        paragraphs.append(f"On canonical scenes the full network's paired accuracy difference was "
+                          f"{100*frozen['mean']:+.2f} points against the frozen encoder and "
+                          f"{100*shallow['mean']:+.2f} points against the validation-selected shallow control. "
+                          +outcome)
+    by_size={(r["config"]["families"],r["config"]["model"]):r["splits"]["test"]["accuracy"]
+             for r in data["runs"] if r["config"]["task"]=="scene" and r["config"]["rule"]=="cd32"
+             and r["config"]["seed"]==0 and "test" in r["splits"]}
+    sizes=sorted({c.families for c in planned_runs("sensitivity")})
+    if all((n,m) in by_size for n in sizes for m in ("cd32","random")):
+        first,last=sizes[0],sizes[-1]
+        paragraphs.append(f"In the single-world data-size study, increasing training from {first:,} to {last:,} "
+                          f"families changed canonical accuracy from {percent(by_size[first,'cd32'])} to "
+                          f"{percent(by_size[last,'cd32'])} and randomized accuracy from "
+                          f"{percent(by_size[first,'random'])} to {percent(by_size[last,'random'])}. "
+                          "The larger conditions also used more optimizer updates under the fixed epoch budget.")
+    if transfer["n"]==8:
+        decision={"above threshold":"The lower bound cleared the registered one-point transfer threshold.",
+                  "below threshold":"The upper bound rules out a one-point canonical advantage for this training recipe.",
+                  "inconclusive":"The interval includes the registered one-point transfer threshold."}[transfer["decision"]]
+        paragraphs.append(f"On the corrected natural-image test set, the paired difference for canonical minus "
+                          f"randomized sharing was {100*transfer['mean']:+.2f} points "
+                          f"(95% interval {100*transfer['lo']:+.2f} to {100*transfer['hi']:+.2f}). "+decision)
+    return paragraphs
+
+
 def headline(data):
     pilot=next((r for r in data["runs"] if r["config"]["seed"]==42 and r["splits"]),None)
     if not pilot:
@@ -145,6 +194,7 @@ def documents(data):
         matching=(f"The mean benefit of matching the sensor rule was {100*crosses[0]['mean']:.2f} percentage points "
                   f"on canonical sensors and {100*crosses[1]['mean']:.2f} points on randomized sensors. "+outcome)
     brief=primary_finding(data)+" "+matching
+    interpretations=additional_findings(data)
     scene_rows=scene_generalization(data)
     generalization=""
     if scene_rows:
@@ -153,6 +203,10 @@ def documents(data):
                                "Crowded","Constant","Known-filter oracle"])
             +"\n\nEach entry averages the saved world-level scores. Both mates counts families whose two opposite "
              "labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.")
+    benchmarks=benchmark_rows(data)
+    external=("\n\n## Independent image benchmarks\n\n"
+              +table(benchmarks,["Input","Learner","Seeds","Trainable","CIFAR-10","ciFAIR-10","ciFAIR 95% interval"])
+              if benchmarks else "")
     audits=[a for a in data["audits"] if "interventions" in a]
     probe=""
     if audits:
@@ -185,6 +239,8 @@ def documents(data):
     a,tail=text.split(marker,1)
     _,b=tail.split(end,1)
     top=brief
+    if data["contrasts"][-1]["n"]==8:
+        top+=" "+interpretations[-1]
     if (DOCS/"figures"/"example.png").exists():
         top+="\n\n![Held-out scene pair and learned same-type probabilities](docs/figures/example.png)"
     write(readme,a+marker+"\n"+top+"\n"+end+b)
@@ -195,7 +251,8 @@ def documents(data):
         images.append("![Seed-zero accuracy on a fixed test set as the training-family count changes](docs/figures/sample-size.png)")
     metrics_block(readme,"\n\n".join([*images,gtable] if groups else [brief]))
     metrics_block(DOCS/"model-card.md",brief+f" [All measured outcomes]({PAGES})")
-    write(REPORTS/"summary.md","# Results\n\n"+brief+"\n\n"+gtable+"\n\n"+dtable+generalization+probe+
+    text_results="\n\n".join([brief,*interpretations])
+    write(REPORTS/"summary.md","# Results\n\n"+text_results+"\n\n"+gtable+"\n\n"+dtable+generalization+external+probe+
           "\n\nScene intervals use a two-sided Student t across independent worlds. Each image seed evaluates the same images, so the image interval measures training variability conditional on that test set. Differences use percentage points. A single seed has no between-seed interval. The pilot is excluded from all confirmatory contrasts.\n\n[Raw manifests and predictions](../results/) · [Preregistration](preregistration.md) · [Explorer]("+PAGES+")")
     ex=REPORTS/"experiments"
     individual=[]
@@ -221,7 +278,7 @@ def documents(data):
     if algebra:
         write(ex/"algebra"/"experiment.md","# Algebra diagnostics\n\n"+atable+"\n\n[Raw world measurements](../../../results/algebra/)")
         write(ex/"algebra"/"learnings.md","# Algebra findings\n\n"+algebra_finding(data)+"\n\nThe multiplier and blind bilinear fits isolate coefficient estimation. The neural scene study additionally requires noisy sensor decoding, spatial selection and comparing two objects.\n\n[Measured errors](experiment.md)")
-    write(ex/"learnings.md","# Research observations\n\n"+brief+"\n\nThe independent scalar implementation supplies rendering ground truth. Reversing high-basis triples changes coordinate interaction signs while preserving routing, real dimension and the lower subalgebra. An exact multiplier fit tests implementation and identifiability. Generalization of the full scene classifier requires separate held-out predictions.\n\n[Prior methods](../state-of-the-art-review.md) · [Per-run outcomes](experiments.md)")
+    write(ex/"learnings.md","# Research observations\n\n"+text_results+"\n\nThe independent scalar implementation supplies rendering ground truth. Reversing high-basis triples changes coordinate interaction signs while preserving routing, real dimension and the lower subalgebra. An exact multiplier fit tests implementation and identifiability. Generalization of the full scene classifier requires separate held-out predictions.\n\n[Prior methods](../state-of-the-art-review.md) · [Per-run outcomes](experiments.md)")
     write_json(DOCS/"study.json",data)
     by_name={r["name"]:r for r in runs}
     schedule=[]
