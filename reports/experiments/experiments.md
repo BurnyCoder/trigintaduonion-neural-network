@@ -69,7 +69,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | [scene-shallow-cd32-s4-n1024](scene-shallow-cd32-s4-n1024/experiment.md) | 7713 | 50.20% | 50.00% | 0.20% | 49.90% | 50.05% |
 | [scene-shallow-cd32-s5-n1024](scene-shallow-cd32-s5-n1024/experiment.md) | 7713 | 50.39% | 49.95% | 0.10% | 49.95% | 49.90% |
 | [scene-shallow-cd32-s6-n1024](scene-shallow-cd32-s6-n1024/experiment.md) | 7713 | 50.20% | 50.00% | 0.00% | 50.05% | 50.05% |
-| [scene-shallow-cd32-s7-n1024](scene-shallow-cd32-s7-n1024/experiment.md) | 7713 | 50.20% | pending | pending | pending | pending |
+| [scene-shallow-cd32-s7-n1024](scene-shallow-cd32-s7-n1024/experiment.md) | 7713 | 50.20% | 49.80% | 0.10% | 50.05% | 49.95% |
 
 The scene objective is binary cross entropy. The pixel and superpixel objectives are ten-way cross entropy. Each optimizer follows a cosine schedule. The run matrix records the budgets and split choices. Both mates measures the fraction of scene families for which both binary decisions are correct. NMSE divides squared error by total target energy.
 
