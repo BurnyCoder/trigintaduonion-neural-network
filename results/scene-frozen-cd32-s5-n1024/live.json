@@ -1,0 +1,12 @@
+{
+  "time": "2026-11-26T13:32:02+00:00",
+  "run": "scene-frozen-cd32-s5-n1024",
+  "event": "epoch",
+  "epoch": 80,
+  "epochs": 80,
+  "train_loss": 0.6889693737030029,
+  "train_accuracy": 0.5400390625,
+  "val_loss": 0.6964519023895264,
+  "val_accuracy": 0.501953125,
+  "epoch_seconds": 0.17271989999971993
+}
