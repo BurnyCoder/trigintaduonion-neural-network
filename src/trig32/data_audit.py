@@ -47,6 +47,18 @@ def data_audit():
         if data["node_ptr"][-1]!=stats["nodes"] or data["edge_ptr"][-1]!=stats["edges"]:
             raise ValueError(f"unmatched graph pointers in {split}")
         graphs[split]=stats
+        if split=="test":
+            # Compare node colors to the original images in both coordinate conventions.
+            images,labels=pixel_arrays("test")
+            count=min(128,len(labels))
+            ptr=data["node_ptr"][:count+1]
+            row,col=np.rint(data["pos"][:ptr[-1]]*32).astype(int).clip(0,31).T
+            group=np.repeat(np.arange(count),np.diff(ptr))
+            rgb=images[:count].transpose(0,2,3,1)/255
+            observed=data["x"][:ptr[-1]]
+            stats["pixel_alignment"]={"images":count,"matching_labels":int((labels==data["y"]).sum()),
+                                      "row_column_mse":float(np.square(rgb[group,row,col]-observed).mean()),
+                                      "column_row_mse":float(np.square(rgb[group,col,row]-observed).mean())}
         log_event("data",event="graph_split_verified",split=split,**stats)
         del data
         gc.collect()
