@@ -21,6 +21,9 @@ def main():
     e=sub.add_parser("evaluate")
     e.add_argument("run")
     e.add_argument("--device",default="auto")
+    audit_parser=sub.add_parser("audit",help="verify saved predictions and probe a frozen checkpoint")
+    audit_parser.add_argument("run")
+    audit_parser.add_argument("--device",default="auto")
     p=sub.add_parser("predict")
     p.add_argument("run")
     p.add_argument("--input",type=Path,help="scene JSON or RGB image")
@@ -45,6 +48,9 @@ def main():
     elif args.cmd=="evaluate":
         from .experiment import evaluate
         print(json.dumps(evaluate(args.run,args.device)))
+    elif args.cmd=="audit":
+        from .audit import audit
+        print(json.dumps(audit(args.run,args.device)))
     elif args.cmd=="predict":
         predict(args)
     elif args.cmd=="algebra":

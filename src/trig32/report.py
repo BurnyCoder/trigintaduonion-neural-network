@@ -52,8 +52,13 @@ def grouped(data):
 
 
 def decision_rows(data):
-    return [[c["title"],c["n"],percent(c["mean"]),percent(c["lo"])+" to "+percent(c["hi"]) if c["n"]>1 else "—",
-             percent(c["threshold"]),c["decision"]] for c in data["contrasts"]]
+    rows=[]
+    for i,c in enumerate(data["contrasts"]):
+        def display(v):
+            return percent(v) if i<2 or v is None else f"{100*v:.2f} pp"
+        ci=display(c["lo"])+" to "+display(c["hi"]) if c["n"]>1 else "—"
+        rows.append([c["title"],c["n"],display(c["mean"]),ci,display(c["threshold"]),c["decision"]])
+    return rows
 
 
 def headline(data):
@@ -94,13 +99,22 @@ def documents(data):
         matching=("Both directional matching criteria passed." if all(c["decision"]=="above threshold" for c in crosses)
                   else "The registered crossover did not clear both thresholds.")
     brief=pilot+" "+matching
+    audits=[a for a in data["audits"] if "interventions" in a]
+    probe=""
+    if audits:
+        rows=[]
+        for a in audits:
+            for name,m in a["interventions"].items():
+                rows.append([a["run"],name,percent(m["accuracy_against_original_labels"]),
+                             m["changed_decisions"],f"{m['max_probability_change']:.3g}"])
+        probe="\n\n## Supplementary fixed-checkpoint interventions\n\n"+table(rows,["Run","Input","Accuracy against original labels","Decisions changed","Max Δ probability"])
     images=[]
-    for key,desc in [("scores","Each dot is one test run and each black tick is the mean."),("example","A fixed pilot pair with the selected paths, ground truth and predicted probability."),("learning","Pilot training and validation trajectories.")]:
+    for key,desc in [("scores","Each dot is one test run and each black tick is the mean."),("example","A fixed pilot pair with the selected paths, ground truth and predicted probability."),("predictions","Ground truth, analytic controls and model predictions on the same held-out pairs."),("learning","Pilot training and validation trajectories.")]:
         if (DOCS/"figures"/(key+".png")).exists():
             images.append(f"![{desc}](docs/figures/{key}.png)")
     metrics_block(ROOT/"README.md","\n\n".join([brief,*images]+([gtable] if groups else [])))
     metrics_block(DOCS/"model-card.md",brief+f" [All measured outcomes]({PAGES})")
-    write(REPORTS/"summary.md","# Results\n\n"+brief+"\n\n"+gtable+"\n\n"+dtable+
+    write(REPORTS/"summary.md","# Results\n\n"+brief+"\n\n"+gtable+"\n\n"+dtable+probe+
           "\n\nWorld differences are expressed as percentage points on a 0–100 scale. Intervals use a two-sided Student t across worlds. A single world has no between-world interval. Pilot and confirmatory worlds are reported separately.\n\n[Raw manifests and predictions](../results/) · [Preregistration](preregistration.md) · [Explorer]("+PAGES+")")
     ex=REPORTS/"experiments"
     individual=[]

@@ -11,7 +11,10 @@ class Dashboard(SimpleHTTPRequestHandler):
         if self.path.split("?",1)[0]!="/live.json":
             return super().do_GET()
         candidates=sorted(RESULTS.glob("*/live.json"),key=lambda p:p.stat().st_mtime,reverse=True)
-        body=candidates[0].read_bytes() if candidates else b"{}"
+        item=json.loads(candidates[0].read_bytes()) if candidates else {}
+        if candidates:
+            item["finished"]=candidates[0].with_name("train.json").exists()
+        body=json.dumps(item).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type","application/json")
         self.send_header("Cache-Control","no-store")

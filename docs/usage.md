@@ -22,6 +22,8 @@ The train command samples independent family streams, runs the optimizer, logs v
 
 ### Data interface
 
+For an independent fit in a clone that already contains released metrics, set `TRIG32_OUTPUT` and `TRIG32_CHECKPOINTS` to fresh directories in .env. The first directory holds the new results and logs. A published checkpoint can be fetched automatically by the prediction command when its manifest is present and the weights are absent. Run `uv run trig32 audit scene-cd32-cd32-s42-n1024` to recount every saved decision and measure the effect of spatial interventions on that fixed checkpoint.
+
 A scene has two beacon positions `beacon[2,2]`, landmark coordinates `land[L,2]`, object coordinates `pos[O,2]`, Gaussian excitation `x[O,32]`, channel indices `k[O]` from 0 to 31, and corresponding signed noisy measurements `z[O]`. The public classifier returns one real logit per scene. Sigmoid produces the probability of equal types. The model accepts a variable object or landmark count shared across a batch. Split membership, hidden types, the world filter and selected neighbors are never model inputs. A model trained in one synthetic world may need retraining for a new filter. The independent clean-label oracle uses the full filter and exact nearest paths.
 
 ### Comparison arms and optimization
