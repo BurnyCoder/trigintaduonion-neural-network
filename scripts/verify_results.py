@@ -11,6 +11,22 @@ from trig32.paths import LOGS,RESULTS,write_json
 from trig32.protocol import STAGES,runs
 
 
+def freeze_times(group, fits, evaluations):
+    """Verify that every comparison checkpoint predates the first opened held-out result."""
+    opened = [evaluations[name] for name in group if name in evaluations]
+    if not all(name in fits for name in group):
+        if opened:
+            raise ValueError(f"{group[0]} comparison opened before all checkpoints were frozen")
+        return None, None
+    latest = max(datetime.fromisoformat(fits[name]["time"]) for name in group)
+    if not opened:
+        return latest.isoformat(), None
+    first = min(datetime.fromisoformat(result["time"]) for result in opened)
+    if latest > first:
+        raise ValueError(f"{group[0]} comparison contains a fit after the first held-out evaluation")
+    return latest.isoformat(), first.isoformat()
+
+
 def verify():
     planned={c.name:c for stage in STAGES for c in runs(stage)}
     fits,evals,labels={},{},{}
@@ -57,20 +73,15 @@ def verify():
                 raise ValueError(f"{name}/{split} different labels in a paired comparison")
             splits+=1
             decisions+=len(y)
-    group=[c.name for g in ("primary","controls") for c in runs(g)]
-    opened=[evals[n] for n in group if n in evals]
-    last_fit=first_eval=None
-    if opened:
-        if not all(n in fits for n in group):
-            raise ValueError("the confirmatory analysis opened before its checkpoints were frozen")
-        last_fit=max(datetime.fromisoformat(fits[n]["time"]) for n in group)
-        first_eval=min(datetime.fromisoformat(e["time"]) for e in opened)
-        if last_fit>first_eval:
-            raise ValueError("the confirmatory evaluation chronology failed")
+    scenes=[c.name for g in ("primary","controls") for c in runs(g)]
+    images=[c.name for c in runs("images")]
+    scene_fit,scene_eval=freeze_times(scenes,fits,evals)
+    image_fit,image_eval=freeze_times(images,fits,evals)
     return {"planned":len(planned),"completed_training":len(fits),"completed_evaluation":len(evals),
             "checked_splits":splits,"recounted_decisions":decisions,"distinct_label_streams":len(labels),
-            "full_epoch_journals_verified":len(fits),"latest_registered_scene_fit":last_fit.isoformat() if last_fit else None,
-            "earliest_registered_scene_eval":first_eval.isoformat() if first_eval else None}
+            "full_epoch_journals_verified":len(fits),"latest_registered_scene_fit":scene_fit,
+            "earliest_registered_scene_eval":scene_eval,"latest_registered_external_fit":image_fit,
+            "earliest_registered_external_eval":image_eval}
 
 
 if __name__=="__main__":
