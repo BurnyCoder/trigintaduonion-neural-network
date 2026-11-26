@@ -256,6 +256,10 @@ def documents(data):
     top=overview
     if (DOCS/"figures"/"example.png").exists():
         top+="\n\n![Held-out scene pair and learned same-type probabilities](docs/figures/example.png)"
+    data["media"]={}
+    if (DOCS/"figures"/"reading-swap.mp4").exists():
+        data["media"]["reading_swap"]="figures/reading-swap.mp4"
+        top+="\n\n[Watch the two readings trade places in the first pilot pair](https://burnycoder.github.io/trigintaduonion-neural-network/figures/reading-swap.mp4)"
     write(readme,a+marker+"\n"+top+"\n"+end+b)
     images=[i for i in images if "figures/example.png" not in i]
     if (DOCS/"figures"/"effects.png").exists():

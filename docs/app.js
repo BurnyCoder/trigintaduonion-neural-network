@@ -81,6 +81,7 @@ async function live(){
 }
 async function start(){
   const response=await fetch("study.json",{cache:"no-cache"});if(!response.ok)throw Error("data unavailable");study=await response.json();
+  if(study.media?.reading_swap){el("swap-player").src=study.media.reading_swap;el("swap-player").poster="figures/reading-swap.png";el("swap-movie").hidden=false;}
   for(const [i,r] of study.contrasts.entries()){const fmt=i<2?pct:pp;cells(el("contrasts"),[r.title,r.n,fmt(r.mean),r.lo==null?"—":fmt(r.lo)+" to "+fmt(r.hi),r.decision]);}
   for(const [i,r] of study.runs.entries()){el("run").add(new Option(r.name,String(i)));}
   if(study.runs.length){const p=study.runs.findIndex(r=>r.config.seed===42);el("run").value=String(Math.max(0,p));show();}
