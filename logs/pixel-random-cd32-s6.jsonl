@@ -60,3 +60,5 @@
 {"time": "2026-11-26T19:03:47+00:00", "run": "pixel-random-cd32-s6", "event": "epoch", "epoch": 59, "epochs": 60, "train_loss": 0.6307059461805555, "train_accuracy": 0.7814222222222222, "val_loss": 0.61894912109375, "val_accuracy": 0.7902, "epoch_seconds": 15.693882600000506}
 {"time": "2026-11-26T19:04:03+00:00", "run": "pixel-random-cd32-s6", "event": "epoch", "epoch": 60, "epochs": 60, "train_loss": 0.6281182291666667, "train_accuracy": 0.7847333333333333, "val_loss": 0.619680126953125, "val_accuracy": 0.7886, "epoch_seconds": 16.14816669999709}
 {"time": "2026-11-26T19:04:03+00:00", "run": "pixel-random-cd32-s6", "event": "trained", "val_accuracy": 0.7902, "best_epoch": 59}
+{"time": "2026-11-26T21:40:01+00:00", "run": "pixel-random-cd32-s6", "event": "evaluated", "split": "test", "accuracy": 0.7864, "loss": 0.6185650390625, "examples": 10000}
+{"time": "2026-11-26T21:40:02+00:00", "run": "pixel-random-cd32-s6", "event": "evaluated", "split": "cifair", "accuracy": 0.7765, "loss": 0.64684921875, "examples": 10000}
