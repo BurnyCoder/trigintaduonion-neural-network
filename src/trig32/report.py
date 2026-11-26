@@ -57,6 +57,36 @@ def decision_rows(data):
     return rows
 
 
+def scene_generalization(data):
+    """Average each diagnostic over worlds with both the trained and the analytic predictions."""
+    groups=defaultdict(list)
+    for run in data["runs"]:
+        config=run["config"]
+        if (config["task"]=="scene" and config["families"]==1024 and config["seed"] in range(8)
+                and run["splits"]):
+            groups[(config["model"],config["rule"])].append(run["splits"])
+    columns=[("test","accuracy"),("test","both_correct"),("heldout","accuracy"),
+             ("crowded","accuracy"),("test","constant_accuracy"),("test","oracle_accuracy")]
+    rows=[]
+    for (model,rule),worlds in sorted(groups.items()):
+        means=[percent(sum(world[split][metric] for world in worlds)/len(worlds))
+               for split,metric in columns]
+        rows.append([model,rule,len(worlds),*means])
+    return rows
+
+
+def primary_finding(data):
+    """Distinguish a tested pilot from an eight-world estimate for each of the two matched arms."""
+    canonical,randomized=data["contrasts"][:2]
+    if min(canonical["n"],randomized["n"])<8:
+        return headline(data)
+    def estimate(arm):
+        return f"{percent(arm['mean'])} (95% interval {percent(arm['lo'])} to {percent(arm['hi'])})"
+    return (f"Across {canonical['n']} independent simulated worlds, a network matched to the canonical sensor "
+            f"classified {estimate(canonical)} of held-out scenes correctly. A network matched to the randomized "
+            f"sensor classified {estimate(randomized)} correctly.")
+
+
 def headline(data):
     pilot=next((r for r in data["runs"] if r["config"]["seed"]==42 and r["splits"]),None)
     if not pilot:
@@ -106,7 +136,6 @@ def documents(data):
     gtable=table(groups,["Task / learner / sensor","Tested worlds","Trainable","Mean test","95% interval"])
     dtable=table(decisions,["Registered endpoint","Worlds","Estimate","95% interval","Threshold","Decision"])
     atable=table(algebra,["Diagnostic","Teacher","Learner","Examples","Seeds","Mean NMSE","Correct basis products"])
-    pilot=headline(data)
     crosses=data["contrasts"][2:4]
     if any(c["decision"]=="pending" for c in crosses):
         matching="The registered crossover awaits complete paired worlds."
@@ -115,7 +144,15 @@ def documents(data):
                  else "The registered crossover did not clear both thresholds.")
         matching=(f"The mean benefit of matching the sensor rule was {100*crosses[0]['mean']:.2f} percentage points "
                   f"on canonical sensors and {100*crosses[1]['mean']:.2f} points on randomized sensors. "+outcome)
-    brief=pilot+" "+matching
+    brief=primary_finding(data)+" "+matching
+    scene_rows=scene_generalization(data)
+    generalization=""
+    if scene_rows:
+        generalization=("\n\n## Counterfactual families and distribution shifts\n\n"
+            +table(scene_rows,["Learner","Sensor","Worlds","Test","Both mates","Unseen channels",
+                               "Crowded","Constant","Known-filter oracle"])
+            +"\n\nEach entry averages the saved world-level scores. Both mates counts families whose two opposite "
+             "labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.")
     audits=[a for a in data["audits"] if "interventions" in a]
     probe=""
     if audits:
@@ -156,8 +193,8 @@ def documents(data):
         images.insert(0,"![Paired differences, seed-level points and 95% intervals](docs/figures/effects.png)")
     metrics_block(readme,"\n\n".join([*images,gtable] if groups else [brief]))
     metrics_block(DOCS/"model-card.md",brief+f" [All measured outcomes]({PAGES})")
-    write(REPORTS/"summary.md","# Results\n\n"+brief+"\n\n"+gtable+"\n\n"+dtable+probe+
-          "\n\nWorld differences are expressed as percentage points on a 0–100 scale. Intervals use a two-sided Student t across worlds. A single world has no between-world interval. Pilot and confirmatory worlds are reported separately.\n\n[Raw manifests and predictions](../results/) · [Preregistration](preregistration.md) · [Explorer]("+PAGES+")")
+    write(REPORTS/"summary.md","# Results\n\n"+brief+"\n\n"+gtable+"\n\n"+dtable+generalization+probe+
+          "\n\nScene intervals use a two-sided Student t across independent worlds. Each image seed evaluates the same images, so the image interval measures training variability conditional on that test set. Differences use percentage points. A single seed has no between-seed interval. The pilot is excluded from all confirmatory contrasts.\n\n[Raw manifests and predictions](../results/) · [Preregistration](preregistration.md) · [Explorer]("+PAGES+")")
     ex=REPORTS/"experiments"
     individual=[]
     for r in runs:
