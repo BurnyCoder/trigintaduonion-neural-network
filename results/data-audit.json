@@ -149,7 +149,13 @@
       "position_range": [
         0.0,
         0.96875
-      ]
+      ],
+      "pixel_alignment": {
+        "images": 128,
+        "matching_labels": 10000,
+        "row_column_mse": 0.0020778466323677883,
+        "column_row_mse": 0.07260900028512235
+      }
     }
   }
 }

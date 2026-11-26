@@ -1,0 +1,11 @@
+{
+  "planned": 99,
+  "completed_training": 17,
+  "completed_evaluation": 1,
+  "checked_splits": 3,
+  "recounted_decisions": 6144,
+  "distinct_label_streams": 3,
+  "full_epoch_journals_verified": 17,
+  "latest_registered_scene_fit": null,
+  "earliest_registered_scene_eval": null
+}
