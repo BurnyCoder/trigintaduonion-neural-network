@@ -8,6 +8,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
 | scene / cd32 / random / 1024 families | 0 | 3801 | pending | — |
 | scene / frozen / cd32 / 1024 families | 0 | 2113 | pending | — |
+| scene / onehop / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / random / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / random / random / 1024 families | 0 | 3801 | pending | — |
 
