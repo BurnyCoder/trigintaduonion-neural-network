@@ -830,7 +830,13 @@
       "seconds": 584.6260213000023,
       "training_examples_per_second": 4618.337025088536,
       "peak_gpu_bytes": 135758336,
-      "splits": {},
+      "splits": {
+        "test": {
+          "accuracy": 0.3455,
+          "loss": 1.783791796875,
+          "examples": 10000
+        }
+      },
       "curve": [
         {
           "time": "2026-11-26T15:08:06+00:00",
@@ -1552,7 +1558,45 @@
           "val_accuracy": 0.3448,
           "epoch_seconds": 8.96525240000119
         }
-      ]
+      ],
+      "image_examples": {
+        "class_names": [
+          "airplane",
+          "automobile",
+          "bird",
+          "cat",
+          "deer",
+          "dog",
+          "frog",
+          "horse",
+          "ship",
+          "truck"
+        ],
+        "prediction": [
+          0,
+          8,
+          8,
+          8,
+          4,
+          6
+        ],
+        "label": [
+          3,
+          8,
+          8,
+          0,
+          6,
+          6
+        ],
+        "score": [
+          0.22876176238059998,
+          0.4432383179664612,
+          0.3845849931240082,
+          0.43213939666748047,
+          0.5679060816764832,
+          0.41491085290908813
+        ]
+      }
     },
     {
       "config": {

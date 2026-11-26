@@ -44,7 +44,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 \begin{longtable}{p{.43\linewidth}rrrr}
 \hline Task / model / rule & Worlds & Params & Test & 95\% interval\\\hline\endhead\hline\endfoot
 graph / cd32 & 1 & 1694 & 34.80\% & ---\\
-graph / random & 0 & 1694 & pending & ---\\
+graph / random & 1 & 1694 & 34.55\% & ---\\
 pixel / budget & 0 & 13115 & pending & ---\\
 pixel / cd16 & 0 & 22570 & pending & ---\\
 pixel / cd32 & 0 & 13034 & pending & ---\\
@@ -97,6 +97,7 @@ Entries are mean percentages over evaluated confirmatory worlds. Both counts fam
 \begin{longtable}{llrrrrl}
 \hline Input & Learner & Seeds & Params & CIFAR-10 & ciFAIR-10 & ciFAIR 95\% interval\\\hline\endhead\hline\endfoot
 graph & cd32 & 1 & 1694 & 34.80\% & --- & ---\\
+graph & random & 1 & 1694 & 34.55\% & --- & ---\\
 \end{longtable}
 On canonical scenes the full network's paired accuracy difference was +39.48 points against the frozen encoder and +40.08 points against the validation-selected shallow control. Both lower bounds exceeded zero.
 

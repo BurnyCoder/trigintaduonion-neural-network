@@ -5,7 +5,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | Run | Trainable | Validation | Test | Both mates | Held-out channels | Crowded / ciFAIR |
 | --- | --- | --- | --- | --- | --- | --- |
 | [graph-cd32-cd32-s0](graph-cd32-cd32-s0/experiment.md) | 1694 | 35.42% | 34.80% | n/a | n/a | pending |
-| [graph-random-cd32-s0](graph-random-cd32-s0/experiment.md) | 1694 | 34.78% | pending | n/a | n/a | pending |
+| [graph-random-cd32-s0](graph-random-cd32-s0/experiment.md) | 1694 | 34.78% | 34.55% | n/a | n/a | pending |
 | [pixel-budget-cd32-s0](pixel-budget-cd32-s0/experiment.md) | 13115 | 78.22% | pending | n/a | n/a | pending |
 | [pixel-budget-cd32-s1](pixel-budget-cd32-s1/experiment.md) | 13115 | 78.06% | pending | n/a | n/a | pending |
 | [pixel-budget-cd32-s2](pixel-budget-cd32-s2/experiment.md) | 13115 | 77.84% | pending | n/a | n/a | pending |
