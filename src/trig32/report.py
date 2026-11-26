@@ -83,6 +83,25 @@ def algebra_rows(data):
             for key,rs in groups.items()]
 
 
+def algebra_finding(data):
+    rows=data["algebra"]
+    def means(**condition):
+        groups=[r for r in rows if all(r.get(k)==v for k,v in condition.items())]
+        return sum(r["nmse"] for r in groups)/len(groups) if groups else None
+    worlds={r["seed"] for r in rows}
+    if len(worlds)!=8:
+        return "The algebra diagnostics await the full planned world set."
+    errors=[means(task="multiplier",teacher=t,model=m,n=8) for t,m in
+            (("cd32","cd32"),("cd32","random"),("random","random"),("random","cd32"))]
+    product=[r for r in rows if r["task"]=="product" and r["model"]=="bilinear" and r["n"]==2048]
+    return (f"Across {len(worlds)} algebra worlds, eight training vectors gave mean normalized squared errors "
+            f"of {errors[0]:.2g} and {errors[1]:.3f} for the matched and mismatched canonical-sensor fits. "
+            f"On randomized sensors those errors were {errors[2]:.2g} and {errors[3]:.3f}. "
+            f"With 2,048 input pairs, the blind bilinear learner recovered at least {min(r['basis_correct'] for r in product):,} "
+            f"of the 1,024 signed basis products per world. Its mean error was {means(task='product',model='bilinear',n=2048):.2g}, "
+            f"compared with {means(task='product',model='shuffled',n=2048):.2f} after shuffling targets.")
+
+
 def documents(data):
     """Build Markdown summaries, each experiment's lab notebook and the machine-readable explorer."""
     runs=data["runs"]
@@ -97,8 +116,10 @@ def documents(data):
     if any(c["decision"]=="pending" for c in crosses):
         matching="The registered crossover awaits complete paired worlds."
     else:
-        matching=("Both directional matching criteria passed." if all(c["decision"]=="above threshold" for c in crosses)
-                  else "The registered crossover did not clear both thresholds.")
+        outcome=("Both directional matching criteria passed." if all(c["decision"]=="above threshold" for c in crosses)
+                 else "The registered crossover did not clear both thresholds.")
+        matching=(f"The mean benefit of matching the sensor rule was {100*crosses[0]['mean']:.2f} percentage points "
+                  f"on canonical sensors and {100*crosses[1]['mean']:.2f} points on randomized sensors. "+outcome)
     brief=pilot+" "+matching
     audits=[a for a in data["audits"] if "interventions" in a]
     probe=""
@@ -122,7 +143,23 @@ def documents(data):
     for key,desc in [("scores","Each dot is one test run and each black tick is the mean."),("example","A fixed pilot pair with the selected paths, ground truth and predicted probability."),("predictions","Ground truth, analytic controls and model predictions on the same held-out pairs."),("learning","Pilot training and validation trajectories.")]:
         if (DOCS/"figures"/(key+".png")).exists():
             images.append(f"![{desc}](docs/figures/{key}.png)")
-    metrics_block(ROOT/"README.md","\n\n".join([brief,*images]+([gtable] if groups else [])))
+    readme=ROOT/"README.md"
+    text=readme.read_text(encoding="utf-8")
+    marker="<!-- highlights:start -->"
+    end="<!-- highlights:end -->"
+    if marker not in text:
+        title,intro,rest=text.split("\n\n",2)
+        text="\n\n".join([title,intro,marker+"\n"+end,rest])
+    a,tail=text.split(marker,1)
+    _,b=tail.split(end,1)
+    top=brief
+    if (DOCS/"figures"/"example.png").exists():
+        top+="\n\n![Held-out scene pair and learned same-type probabilities](docs/figures/example.png)"
+    write(readme,a+marker+"\n"+top+"\n"+end+b)
+    images=[i for i in images if "figures/example.png" not in i]
+    if (DOCS/"figures"/"effects.png").exists():
+        images.insert(0,"![Paired differences, seed-level points and 95% intervals](docs/figures/effects.png)")
+    metrics_block(readme,"\n\n".join([*images,gtable] if groups else [brief]))
     metrics_block(DOCS/"model-card.md",brief+f" [All measured outcomes]({PAGES})")
     write(REPORTS/"summary.md","# Results\n\n"+brief+"\n\n"+gtable+"\n\n"+dtable+probe+
           "\n\nWorld differences are expressed as percentage points on a 0–100 scale. Intervals use a two-sided Student t across worlds. A single world has no between-world interval. Pilot and confirmatory worlds are reported separately.\n\n[Raw manifests and predictions](../results/) · [Preregistration](preregistration.md) · [Explorer]("+PAGES+")")
@@ -149,7 +186,7 @@ def documents(data):
           "\n\nThe scene objective is binary cross entropy. The pixel and superpixel objectives are ten-way cross entropy. Each optimizer follows a cosine schedule. The run matrix records the budgets and split choices. Both mates measures the fraction of scene families for which both binary decisions are correct. NMSE divides squared error by total target energy.\n\n[Design and optimizer choices](../planned-runs.md) · [Model details](../../docs/usage.md)\n\n## Independent algebra diagnostics\n\n"+atable)
     if algebra:
         write(ex/"algebra"/"experiment.md","# Algebra diagnostics\n\n"+atable+"\n\n[Raw world measurements](../../../results/algebra/)")
-        write(ex/"algebra"/"learnings.md","# Algebra findings\n\nThe multiplier and blind bilinear fits isolate coefficient estimation. The neural scene study additionally requires noisy sensor decoding, spatial selection and comparing two objects.\n\n[Measured errors](experiment.md)")
+        write(ex/"algebra"/"learnings.md","# Algebra findings\n\n"+algebra_finding(data)+"\n\nThe multiplier and blind bilinear fits isolate coefficient estimation. The neural scene study additionally requires noisy sensor decoding, spatial selection and comparing two objects.\n\n[Measured errors](experiment.md)")
     write(ex/"learnings.md","# Research observations\n\n"+brief+"\n\nThe independent scalar implementation supplies rendering ground truth. Reversing high-basis triples changes coordinate interaction signs while preserving routing, real dimension and the lower subalgebra. An exact multiplier fit tests implementation and identifiability. Generalization of the full scene classifier requires separate held-out predictions.\n\n[Prior methods](../state-of-the-art-review.md) · [Per-run outcomes](experiments.md)")
     write_json(DOCS/"study.json",data)
     by_name={r["name"]:r for r in runs}
