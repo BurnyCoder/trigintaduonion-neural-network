@@ -1,0 +1,12 @@
+{
+  "time": "2026-11-26T13:51:25+00:00",
+  "run": "scene-budget-cd32-s2-n1024",
+  "event": "epoch",
+  "epoch": 80,
+  "epochs": 80,
+  "train_loss": 0.5053398013114929,
+  "train_accuracy": 0.69921875,
+  "val_loss": 1.1040830612182617,
+  "val_accuracy": 0.5078125,
+  "epoch_seconds": 0.303125700000237
+}
