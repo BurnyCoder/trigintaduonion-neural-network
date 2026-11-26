@@ -65,6 +65,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | graph / cd32 | 0 | 1694 | pending | — |
 | graph / random | 0 | 1694 | pending | — |
 | pixel / budget | 0 | 13115 | pending | — |
+| pixel / cd16 | 0 | 22570 | pending | — |
 | pixel / cd32 | 0 | 13034 | pending | — |
 | pixel / random | 0 | 13034 | pending | — |
 | pixel / real | 0 | 308650 | pending | — |
