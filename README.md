@@ -59,7 +59,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
 | scene / budget / cd32 / 1024 families | 3 | 3961 | 49.92% | 47.73% to 52.10% |
-| scene / cd16 / cd32 / 1024 families | 1 | 4057 | 63.53% | — |
+| scene / cd16 / cd32 / 1024 families | 2 | 4057 | 64.89% | 47.52% to 82.26% |
 | scene / cd32 / cd32 / 1024 families | 8 | 3801 | 90.04% | 89.28% to 90.79% |
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
 | scene / cd32 / random / 1024 families | 8 | 3801 | 50.49% | 49.82% to 51.15% |
