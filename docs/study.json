@@ -1573,5 +1573,254 @@
       "hi": null
     }
   ],
-  "algebra": []
+  "algebra": [
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "cd32",
+      "n": 2,
+      "nmse": 2.47239781027734e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "random",
+      "n": 2,
+      "nmse": 1.7915515539000568
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "real",
+      "n": 2,
+      "nmse": 0.9354280373032258
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "cd32",
+      "n": 8,
+      "nmse": 3.8195724286043206e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "random",
+      "n": 8,
+      "nmse": 0.9072990494419202
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "real",
+      "n": 8,
+      "nmse": 0.726615476213967
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "cd32",
+      "n": 32,
+      "nmse": 2.7611975225793422e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "random",
+      "n": 32,
+      "nmse": 0.85136738027593
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "real",
+      "n": 32,
+      "nmse": 1.6425686608522373e-29
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "cd32",
+      "n": 128,
+      "nmse": 3.1042714778690084e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "random",
+      "n": 128,
+      "nmse": 0.8271044295003486
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "cd32",
+      "model": "real",
+      "n": 128,
+      "nmse": 2.3120137649305604e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "cd32",
+      "n": 2,
+      "nmse": 1.576848929485306
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "random",
+      "n": 2,
+      "nmse": 3.635830738999029e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "real",
+      "n": 2,
+      "nmse": 0.9273142910710794
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "cd32",
+      "n": 8,
+      "nmse": 0.9027016411245505
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "random",
+      "n": 8,
+      "nmse": 1.9513123972310336e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "real",
+      "n": 8,
+      "nmse": 0.7361780024689
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "cd32",
+      "n": 32,
+      "nmse": 0.8464283615882741
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "random",
+      "n": 32,
+      "nmse": 1.7817322019007463e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "real",
+      "n": 32,
+      "nmse": 1.52462830531622e-29
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "cd32",
+      "n": 128,
+      "nmse": 0.8200132699683647
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "random",
+      "n": 128,
+      "nmse": 3.402265154836818e-31
+    },
+    {
+      "task": "multiplier",
+      "seed": 0,
+      "teacher": "random",
+      "model": "real",
+      "n": 128,
+      "nmse": 2.38425362486724e-31
+    },
+    {
+      "task": "product",
+      "seed": 0,
+      "model": "bilinear",
+      "n": 256,
+      "nmse": 0.7486477590437604,
+      "basis_correct": 839
+    },
+    {
+      "task": "product",
+      "seed": 0,
+      "model": "shuffled",
+      "n": 256,
+      "nmse": 1.3791328393848767,
+      "basis_correct": 23
+    },
+    {
+      "task": "product",
+      "seed": 0,
+      "model": "bilinear",
+      "n": 1024,
+      "nmse": 3.551998502655503e-27,
+      "basis_correct": 1024
+    },
+    {
+      "task": "product",
+      "seed": 0,
+      "model": "shuffled",
+      "n": 1024,
+      "nmse": 2967.983158003694,
+      "basis_correct": 18
+    },
+    {
+      "task": "product",
+      "seed": 0,
+      "model": "bilinear",
+      "n": 2048,
+      "nmse": 1.9305978848927137e-30,
+      "basis_correct": 1024
+    },
+    {
+      "task": "product",
+      "seed": 0,
+      "model": "shuffled",
+      "n": 2048,
+      "nmse": 2.0928599804391346,
+      "basis_correct": 14
+    },
+    {
+      "task": "product",
+      "seed": 0,
+      "model": "analytic",
+      "n": 0,
+      "nmse": 0.0,
+      "basis_correct": 1024
+    }
+  ]
 }
