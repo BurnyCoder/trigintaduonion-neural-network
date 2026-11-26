@@ -1,0 +1,44 @@
+{
+  "config": {
+    "task": "pixel",
+    "model": "cd32",
+    "rule": "cd32",
+    "seed": 7,
+    "families": 1024,
+    "epochs": 60,
+    "batch": 128,
+    "lr": 0.1,
+    "tag": ""
+  },
+  "name": "pixel-cd32-cd32-s7",
+  "time": "2026-11-26T19:20:39+00:00",
+  "hardware": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "torch": "2.15.0+cu132",
+    "cuda": "13.2",
+    "python": "3.12.13",
+    "commit": "0bf8fb7b575dc030d4565a9c0d608ed52849c307"
+  },
+  "trainable": 13034,
+  "parameters": 13034,
+  "best_epoch": 58,
+  "val_accuracy": 0.7896,
+  "train_examples": 45000,
+  "val_examples": 5000,
+  "seconds": 961.2152458000128,
+  "training_examples_per_second": 2808.944210776441,
+  "peak_gpu_bytes": 354823680,
+  "normalization": {
+    "mean": [
+      0.4913903772830963,
+      0.4821338653564453,
+      0.446573406457901
+    ],
+    "std": [
+      0.24708516895771027,
+      0.2434581220149994,
+      0.26150888204574585
+    ]
+  }
+}
