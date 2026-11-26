@@ -10,6 +10,7 @@ import subprocess
 from .analysis import collect, percent, table, row_metrics, HEADERS, interval
 from .figures import figures
 from .paths import ROOT,write_json
+from .protocol import STAGES,runs as planned_runs
 
 GH="https://github.com/BurnyCoder/trigintaduonion-neural-network"
 PAGES="https://burnycoder.github.io/trigintaduonion-neural-network/"
@@ -151,8 +152,21 @@ def documents(data):
         write(ex/"algebra"/"learnings.md","# Algebra findings\n\nThe multiplier and blind bilinear fits isolate coefficient estimation. The neural scene study additionally requires noisy sensor decoding, spatial selection and comparing two objects.\n\n[Measured errors](experiment.md)")
     write(ex/"learnings.md","# Research observations\n\n"+brief+"\n\nThe independent scalar implementation supplies rendering ground truth. Reversing high-basis triples changes coordinate interaction signs while preserving routing, real dimension and the lower subalgebra. An exact multiplier fit tests implementation and identifiability. Generalization of the full scene classifier requires separate held-out predictions.\n\n[Prior methods](../state-of-the-art-review.md) · [Per-run outcomes](experiments.md)")
     write_json(DOCS/"study.json",data)
+    by_name={r["name"]:r for r in runs}
+    schedule=[]
+    for stage in STAGES:
+        configs=planned_runs(stage)
+        fits=[by_name[c.name] for c in configs if c.name in by_name]
+        tested=sum(bool(r["splits"]) for r in fits)
+        duration=f"{sum(r['seconds'] for r in fits)/len(fits):.1f} s" if fits else "pending"
+        schedule.append([stage,len(configs),len(fits),tested,len(configs)-tested,duration])
+    total=sum(s[1] for s in schedule)
+    finished=sum(s[3] for s in schedule)
+    progress_table=table(schedule,["Stage","Planned","Fitted","Tested","Tests remaining","Mean fit time"])
     write(REPORTS/"progress.md",f"# Study progress\n\nPublic preregistration at [4552d4d]({GH}/commit/4552d4d9bdd1465864d50c9e9bd429631ac2ae2c). "
           f"The reproducible implementation, tests, paper source and explorer accompany the protocol. Completed training manifests: {len(runs)}. Completed neural evaluations: {sum(bool(r['splits']) for r in runs)}. Completed algebra worlds: {len(set(x['seed'] for x in data['algebra']))}.\n\n"+brief+
+          f"\n\n{finished} of {total} planned neural evaluations are complete ({percent(finished/total)} by count). "
+          "Different datasets require different amounts of compute. Mean fit time covers epoch loops and validation. Data preparation, evaluation and both public releases add wall time.\n\n"+progress_table+
           "\n\nThe matrix resumes at the first unpublished milestone. The live dashboard exposes epoch time and permits an ETA for the current fit. The full schedule depends on the observed runtimes of the largest datasets. [Planned runs](planned-runs.md) · [Experiments](experiments/experiments.md)")
     return brief,groups,decisions,algebra
 

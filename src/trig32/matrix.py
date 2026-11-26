@@ -6,27 +6,7 @@ import time
 from pathlib import Path
 
 from .paths import RESULTS,ROOT,log_event,write_json
-from .experiment import Config
-
-
-def runs(stage):
-    if stage=="pilot":
-        return [Config()]
-    if stage=="primary":
-        return [Config(model=m,rule=t,seed=s) for s in range(8)
-                for t in ("cd32","random") for m in ("cd32","random")]
-    if stage=="controls":
-        return [Config(model=m,seed=s) for m in ("frozen","onehop","shallow","real","budget","cd16")
-                for s in range(8 if m in ("frozen","onehop","shallow") else 3)]
-    if stage=="sensitivity":
-        return [Config(model=m,seed=0,families=n) for n in (256,4096,32768)
-                for m in ("cd32","random")]
-    primary=[Config(task="pixel",model=m,seed=s,epochs=60,lr=.1) for s in range(8)
-             for m in ("cd32","random")]
-    other=[Config(task="pixel",model=m,seed=s,epochs=60,lr=.1) for s in range(3)
-           for m in ("real","budget","cd16")]
-    graphs=[Config(task="graph",model=m,seed=0,epochs=60,lr=.003) for m in ("cd32","random")]
-    return graphs+primary+other
+from .protocol import STAGES,runs
 
 
 def command(*args):
@@ -52,7 +32,7 @@ def milestone(name,phase,public):
 
 
 def matrix(stage,public):
-    stages=["pilot","primary","controls","sensitivity","images"] if stage=="all" else [stage]
+    stages=STAGES if stage=="all" else [stage]
     queued=[]
     for group in stages:
         configs=runs(group)

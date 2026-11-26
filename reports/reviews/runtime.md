@@ -1,0 +1,3 @@
+# Runtime review
+
+The pilot completed on CUDA. A later Windows launcher lost its stdout descriptor before a new fit started. The runner was restarted with subprocess standard streams attached directly to regular files. A separate transient sharing violation interrupted replacement of a live metrics JSON while the monitor was active. The epoch checkpoint and journal survived. The runner resumed from the saved epoch. A bounded retry now handles Windows sharing errors during atomic publication, and durable epoch logging precedes console output. A regression test reproduces a transient sharing violation. No training data, model selection rule or decision threshold changed.

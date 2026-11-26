@@ -1,5 +1,5 @@
 """Common entry points for training, checkpoint recovery, evaluation and exported inference."""
-from dataclasses import asdict, dataclass
+from dataclasses import asdict
 import gzip
 import json
 import os
@@ -16,33 +16,10 @@ from torch.nn import functional as F
 from torch.utils.tensorboard import SummaryWriter
 
 from .models import SceneClassifier
-from .paths import CHECKPOINTS, LOGS, RESULTS, ROOT, log_event, now, write_json
+from .paths import CHECKPOINTS, LOGS, RESULTS, ROOT, atomic_replace, log_event, now, write_json
 from .scenes import SceneSet
+from .protocol import Config
 from .vision import GraphSet, PixelClassifier, PixelSet, SuperpixelClassifier
-
-
-@dataclass(frozen=True)
-class Config:
-    task: str = "scene"
-    model: str = "cd32"
-    rule: str = "cd32"
-    seed: int = 42
-    families: int = 1024
-    epochs: int = 80
-    batch: int = 128
-    lr: float = .003
-    tag: str = ""
-
-    @property
-    def name(self):
-        parts=[self.task,self.model,self.rule,f"s{self.seed}"]
-        if self.task=="scene":
-            parts.append(f"n{self.families}")
-        if self.tag:
-            if not self.tag.replace("-","").isalnum():
-                raise ValueError("use alphanumeric run tags")
-            parts.append(self.tag)
-        return "-".join(parts)
 
 
 def hardware(device):
@@ -178,13 +155,13 @@ def _train_locked(cfg,device,cp,stop_after):
                 # Save separate candidates before atomically advancing the epoch checkpoint.
                 save_file({k:v.detach().contiguous().cpu() for k,v in model.state_dict().items()},
                           str(cp/f"best-{epoch}.tmp"))
-                os.replace(cp/f"best-{epoch}.tmp",cp/f"best-{epoch}.safetensors")
+                atomic_replace(cp/f"best-{epoch}.tmp",cp/f"best-{epoch}.safetensors")
             elapsed=time.perf_counter()-t
             seconds+=elapsed
             state={"model":model.state_dict(),"optimizer":optimizer.state_dict(),"scheduler":scheduler.state_dict(),
                    "config":asdict(cfg),"epoch":epoch,"best":best,"best_epoch":best_epoch,"seconds":seconds}
             torch.save(state,cp/"last.tmp")
-            os.replace(cp/"last.tmp",last)
+            atomic_replace(cp/"last.tmp",last)
             record=log_event(cfg.name,event="epoch",epoch=epoch,epochs=cfg.epochs,
                              train_loss=sums[0]/len(trainset),train_accuracy=sums[1]/len(trainset),
                              val_loss=stats["loss"],val_accuracy=stats["accuracy"],epoch_seconds=elapsed)
@@ -196,7 +173,7 @@ def _train_locked(cfg,device,cp,stop_after):
                 return record
         import shutil
         shutil.copyfile(cp/f"best-{best_epoch}.safetensors",cp/"model.tmp")
-        os.replace(cp/"model.tmp",cp/"model.safetensors")
+        atomic_replace(cp/"model.tmp",cp/"model.safetensors")
         result={"config":asdict(cfg),"name":cfg.name,"time":now(),"hardware":meta,"trainable":trainable,
                 "parameters":total,"best_epoch":best_epoch,"val_accuracy":best,
                 "train_examples":len(trainset),"val_examples":len(valset),"seconds":seconds,
@@ -253,7 +230,7 @@ def evaluate(name,device="auto"):
             f.write("index,label,prediction,score\n")
             for i,(y,p,s) in enumerate(zip(rows["label"],rows["prediction"],rows["score"])):
                 f.write(f"{i},{y},{p},{s:.8g}\n")
-        os.replace(out/f"{split}-predictions.csv.gz.tmp",out/f"{split}-predictions.csv.gz")
+        atomic_replace(out/f"{split}-predictions.csv.gz.tmp",out/f"{split}-predictions.csv.gz")
         result[split]=metrics
         log_event(name,event="evaluated",split=split,**metrics)
     write_json(out/"eval.json",{"time":now(),"splits":result})
