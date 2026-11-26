@@ -1,0 +1,12 @@
+{
+  "time": "2026-11-26T17:58:19+00:00",
+  "run": "pixel-random-cd32-s4",
+  "event": "epoch",
+  "epoch": 60,
+  "epochs": 60,
+  "train_loss": 0.6221359809027778,
+  "train_accuracy": 0.7868444444444445,
+  "val_loss": 0.62878623046875,
+  "val_accuracy": 0.7854,
+  "epoch_seconds": 13.99612309999793
+}
