@@ -48,6 +48,8 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 
 ![A fixed pilot pair with the selected paths, ground truth and predicted probability.](docs/figures/example.png)
 
+![Ground truth, analytic controls and model predictions on the same held-out pairs.](docs/figures/predictions.png)
+
 ![Pilot training and validation trajectories.](docs/figures/learning.png)
 
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
