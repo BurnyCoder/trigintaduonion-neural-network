@@ -43,6 +43,12 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 
 <!-- metrics:start -->
 The pilot has no released test prediction yet. The registered crossover awaits complete paired worlds.
+
+![Pilot training and validation trajectories.](docs/figures/learning.png)
+
+| Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
+| --- | --- | --- | --- | --- |
+| scene / cd32 / cd32 / 1024 families (pilot) | 0 | 3801 | pending | — |
 <!-- metrics:end -->
 
 ## Research follow-up

@@ -4,6 +4,7 @@ The pilot has no released test prediction yet. The registered crossover awaits c
 
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
+| scene / cd32 / cd32 / 1024 families (pilot) | 0 | 3801 | pending | — |
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
 | --- | --- | --- | --- | --- | --- |

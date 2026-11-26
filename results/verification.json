@@ -1,0 +1,10 @@
+{
+  "source": "20d073ba492ae3eec9f16904050f5f1cb7047b73",
+  "command": "uv run --no-sync pytest -x -vv --durations=3",
+  "time": "2026-11-26T12:37:02+00:00",
+  "passed": 15,
+  "failed": 0,
+  "skipped": 0,
+  "device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "seconds": 56.16
+}

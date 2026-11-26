@@ -35,6 +35,10 @@ Seed 42 is a development pilot. Compute two-sided 95\% Student intervals over pa
 Auxiliary multiplier and unrestricted bilinear least-squares fits test algebraic recovery. Separate transfer experiments compare structured residual image classifiers on CIFAR-10 and its duplicate-corrected ciFAIR-10 test set [4,14]. Superpixel classification uses the published split [13] with a learned color input and a graph-mean readout. The simulator supplies no sensor rule for natural images. The registered transfer contrast evaluates canonical versus randomized sharing on ciFAIR-10.
 \section{Results and claims}
 The pilot has no released test prediction yet. The registered crossover awaits complete paired worlds.
+\begin{longtable}{p{.43\linewidth}rrrr}
+\hline Task / model / rule & Worlds & Params & Test & 95\% interval\\\hline\endhead
+scene / cd32 / cd32 / 1024 families (pilot) & 0 & 3801 & pending & ---\\
+\hline\end{longtable}
 \begin{longtable}{p{.37\linewidth}rp{.11\linewidth}p{.17\linewidth}l}
 \hline Endpoint & N & Estimate & 95\% interval & Decision\\\hline\endhead
 Matched canonical accuracy & 0 & pending & --- & pending\\
@@ -45,6 +49,8 @@ Canonical minus frozen & 0 & pending & --- & pending\\
 Canonical minus validation-selected shallow control & 0 & pending & --- & pending\\
 Canonical minus randomized on ciFAIR-10 & 0 & pending & --- & pending\\
 \hline\end{longtable}
+\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/learning.png}
+\\{\small Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.}\end{center}
 
 \section{Discussion, limitations and conclusion}
 A successful crossover identifies an effect of matching the assumed interaction rule to this simulator under this training recipe. The treatment changes the tied matrices throughout the encoder and message blocks, so a net effect alone does not localize the mechanism. Scene families share a world-specific filter, and evaluation addresses fresh scenes within each trained world. The task supplies object segmentation, roles and coordinates. Natural images require separate transfer evidence. The factorization and sample count of the real controls affect representational capacity and optimization. The privileged oracle knows the measurement filter and nearest paths. Noise makes even its decisions fallible. Diagnostic product recovery and gradients alone cannot establish that a scene classifier learned the task.
