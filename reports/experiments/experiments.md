@@ -30,7 +30,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | [pixel-random-cd32-s7](pixel-random-cd32-s7/experiment.md) | 13034 | 78.74% | 79.23% | n/a | n/a | 78.15% |
 | [pixel-real-cd32-s0](pixel-real-cd32-s0/experiment.md) | 308650 | 90.28% | 90.33% | n/a | n/a | 89.54% |
 | [pixel-real-cd32-s1](pixel-real-cd32-s1/experiment.md) | 308650 | 90.00% | 89.83% | n/a | n/a | 89.12% |
-| [pixel-real-cd32-s2](pixel-real-cd32-s2/experiment.md) | 308650 | 90.34% | pending | n/a | n/a | pending |
+| [pixel-real-cd32-s2](pixel-real-cd32-s2/experiment.md) | 308650 | 90.34% | 90.25% | n/a | n/a | 89.47% |
 | [scene-budget-cd32-s0-n1024](scene-budget-cd32-s0-n1024/experiment.md) | 3961 | 53.12% | 49.51% | 22.17% | 48.88% | 48.58% |
 | [scene-budget-cd32-s1-n1024](scene-budget-cd32-s1-n1024/experiment.md) | 3961 | 53.32% | 50.93% | 23.05% | 51.32% | 48.34% |
 | [scene-budget-cd32-s2-n1024](scene-budget-cd32-s2-n1024/experiment.md) | 3961 | 53.32% | 49.32% | 19.73% | 50.49% | 49.66% |
