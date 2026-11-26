@@ -14,7 +14,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
 | scene / random / random / 1024 families | 8 | 3801 | 90.06% | 89.63% to 90.49% |
 | scene / real / cd32 / 1024 families | 0 | 11737 | pending | — |
-| scene / shallow / cd32 / 1024 families | 3 | 7713 | 50.02% | 49.95% to 50.09% |
+| scene / shallow / cd32 / 1024 families | 4 | 7713 | 49.98% | 49.84% to 50.11% |
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
 | --- | --- | --- | --- | --- | --- |
@@ -23,7 +23,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | Canonical minus randomized on canonical sensors | 8 | 39.59 pp | 38.54 pp to 40.65 pp | 1.00 pp | above threshold |
 | Randomized minus canonical on randomized sensors | 8 | 39.58 pp | 38.96 pp to 40.19 pp | 1.00 pp | above threshold |
 | Canonical minus frozen | 8 | 39.48 pp | 38.82 pp to 40.15 pp | 0.00 pp | above threshold |
-| Canonical minus validation-selected shallow control | 3 | 40.27 pp | 37.84 pp to 42.70 pp | 0.00 pp | pending |
+| Canonical minus validation-selected shallow control | 4 | 40.04 pp | 38.58 pp to 41.50 pp | 0.00 pp | pending |
 | Canonical minus randomized on ciFAIR-10 | 0 | pending | — | 1.00 pp | pending |
 
 ## Counterfactual families and distribution shifts
@@ -36,7 +36,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | onehop | cd32 | 8 | 50.00% | 0.00% | 50.00% | 50.00% | 50.00% | 93.74% |
 | random | cd32 | 8 | 50.45% | 21.62% | 50.23% | 49.65% | 50.00% | 93.74% |
 | random | random | 8 | 90.06% | 83.72% | 90.14% | 89.09% | 50.00% | 93.83% |
-| shallow | cd32 | 3 | 50.02% | 0.23% | 49.98% | 49.97% | 50.00% | 93.62% |
+| shallow | cd32 | 4 | 49.98% | 0.17% | 50.01% | 49.98% | 50.00% | 93.63% |
 
 Each entry averages the saved world-level scores. Both mates counts families whose two opposite labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.
 
