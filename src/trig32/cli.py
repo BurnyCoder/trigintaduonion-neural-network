@@ -30,7 +30,7 @@ def main():
     a=sub.add_parser("algebra")
     a.add_argument("--seeds",type=int,nargs="+",default=[0])
     sub.add_parser("report")
-    sub.add_parser("dashboard").add_argument("--port",type=int,default=8765)
+    sub.add_parser("dashboard").add_argument("--port",type=int,default=18332)
     m=sub.add_parser("matrix")
     m.add_argument("--stage",choices=["pilot","primary","controls","sensitivity","images","all"],default="all")
     m.add_argument("--publish",action="store_true")
