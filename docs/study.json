@@ -1,0 +1,76 @@
+{
+  "runs": [],
+  "contrasts": [
+    {
+      "title": "Matched canonical accuracy",
+      "threshold": 0.6,
+      "decision": "pending",
+      "values": {},
+      "n": 0,
+      "mean": null,
+      "lo": null,
+      "hi": null
+    },
+    {
+      "title": "Matched randomized accuracy",
+      "threshold": 0.6,
+      "decision": "pending",
+      "values": {},
+      "n": 0,
+      "mean": null,
+      "lo": null,
+      "hi": null
+    },
+    {
+      "title": "Canonical minus randomized on canonical sensors",
+      "threshold": 0.01,
+      "decision": "pending",
+      "values": {},
+      "n": 0,
+      "mean": null,
+      "lo": null,
+      "hi": null
+    },
+    {
+      "title": "Randomized minus canonical on randomized sensors",
+      "threshold": 0.01,
+      "decision": "pending",
+      "values": {},
+      "n": 0,
+      "mean": null,
+      "lo": null,
+      "hi": null
+    },
+    {
+      "title": "Canonical minus frozen",
+      "threshold": 0.0,
+      "decision": "pending",
+      "values": {},
+      "n": 0,
+      "mean": null,
+      "lo": null,
+      "hi": null
+    },
+    {
+      "title": "Canonical minus validation-selected shallow control",
+      "threshold": 0.0,
+      "decision": "pending",
+      "values": {},
+      "n": 0,
+      "mean": null,
+      "lo": null,
+      "hi": null
+    },
+    {
+      "title": "Canonical minus randomized on ciFAIR-10",
+      "threshold": 0.01,
+      "decision": "pending",
+      "values": {},
+      "n": 0,
+      "mean": null,
+      "lo": null,
+      "hi": null
+    }
+  ],
+  "algebra": []
+}

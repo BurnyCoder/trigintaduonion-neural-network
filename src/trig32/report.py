@@ -88,8 +88,11 @@ def documents(data):
     atable=table(algebra,["Diagnostic","Teacher","Learner","Examples","Seeds","Mean NMSE","Correct basis products"])
     pilot=headline(data)
     crosses=data["contrasts"][2:4]
-    matching=("Both directional matching criteria passed." if all(c["decision"]=="above threshold" for c in crosses)
-              else "The registered crossover has not passed both thresholds.")
+    if any(c["decision"]=="pending" for c in crosses):
+        matching="The registered crossover awaits complete paired worlds."
+    else:
+        matching=("Both directional matching criteria passed." if all(c["decision"]=="above threshold" for c in crosses)
+                  else "The registered crossover did not clear both thresholds.")
     brief=pilot+" "+matching
     images=[]
     for key,desc in [("scores","Each dot is one test run and each black tick is the mean."),("example","A fixed pilot pair with the selected paths, ground truth and predicted probability."),("learning","Pilot training and validation trajectories.")]:

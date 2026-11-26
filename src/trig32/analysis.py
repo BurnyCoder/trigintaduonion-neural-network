@@ -3,7 +3,6 @@ import json
 from pathlib import Path
 
 import numpy as np
-from scipy.stats import t
 
 from .paths import RESULTS, LOGS
 
@@ -18,7 +17,10 @@ def interval(values):
     if not len(a):
         return {"n":0,"mean":None,"lo":None,"hi":None}
     m=float(a.mean())
-    radius=float(t.ppf(.975,len(a)-1)*a.std(ddof=1)/np.sqrt(len(a))) if len(a)>1 else None
+    radius=None
+    if len(a)>1:
+        from scipy.stats import t
+        radius=float(t.ppf(.975,len(a)-1)*a.std(ddof=1)/np.sqrt(len(a)))
     return {"n":len(a),"mean":m,"lo":m-radius if radius is not None else None,
             "hi":m+radius if radius is not None else None}
 
