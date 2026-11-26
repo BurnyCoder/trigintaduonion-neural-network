@@ -8,7 +8,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 ![Held-out scene pair and learned same-type probabilities](docs/figures/example.png)
 <!-- highlights:end -->
 
-The **primary comparison** crosses two independently rendered sensor rules with two end-to-end models. Canonical Cayley–Dickson multiplication and a randomized high-dimensional rule use the same coefficient budget. A full network has a learned sensor encoder, two residual geometric message-passing blocks and a symmetric readout. Clinical, physical or natural-image interpretations of the synthetic sensor require independent evidence.
+The **primary comparison** crosses two sensor rules with two end-to-end models. Canonical Cayley–Dickson multiplication and a randomized rule use the same number of learned coefficients. A nonlinear sensor encoder feeds two geometric message-passing blocks and a symmetric readout. CIFAR-10 superpixels and raw CIFAR-10/ciFAIR-10 images provide independent transfer tests. The linear layer, convolution and graph classifier can also be used directly in PyTorch. [Layer definitions](src/trig32/algebra.py) · [Graph classifier](src/trig32/models.py) · [Python examples](docs/usage.md#using-the-pytorch-modules)
 
 ```mermaid
 flowchart LR
@@ -69,6 +69,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | scene / onehop / cd32 / 1024 families | 8 | 3801 | 50.00% | 50.00% to 50.00% |
 | scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
 | scene / random / cd32 / 256 families | 0 | 3801 | pending | — |
+| scene / random / cd32 / 4096 families | 0 | 3801 | pending | — |
 | scene / random / random / 1024 families | 8 | 3801 | 90.06% | 89.63% to 90.49% |
 | scene / real / cd32 / 1024 families | 3 | 11737 | 50.05% | 47.93% to 52.16% |
 | scene / shallow / cd32 / 1024 families | 8 | 7713 | 49.96% | 49.89% to 50.03% |
@@ -76,6 +77,6 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 
 ## Research follow-up
 
-- Inspect the paired crossover, the frozen and shallow controls, and out-of-distribution accuracy as the registered seeds finish.
-- Compare sample-size sensitivity and the independent natural-image tasks.
-- Localize any observed matching effect by intervening separately on the sensor encoder and the two graph update blocks in a new preregistration.
+- Preregister separate rule swaps in the sensor encoder and graph updates to localize the matching effect.
+- Repeat the data-size comparison across fresh worlds with equal numbers of optimizer updates.
+- Train across multiple hidden filters and evaluate on entirely new filters to measure between-world transfer.
