@@ -48,5 +48,25 @@
       "max_probability_change": 1.0,
       "examples": 2048
     }
+  },
+  "float64_reference": {
+    "original": {
+      "accuracy_against_original_labels": 0.8916015625,
+      "changed_decisions": 0,
+      "max_probability_change": 0.0,
+      "examples": 2048
+    },
+    "isometry_and_reindexing": {
+      "accuracy_against_original_labels": 0.8916015625,
+      "changed_decisions": 0,
+      "max_probability_change": 2.609024107869118e-14,
+      "examples": 2048
+    },
+    "broken_correspondence": {
+      "accuracy_against_original_labels": 0.49853515625,
+      "changed_decisions": 1009,
+      "max_probability_change": 1.0,
+      "examples": 2048
+    }
   }
 }

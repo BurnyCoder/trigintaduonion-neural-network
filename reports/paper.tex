@@ -39,6 +39,7 @@ The pilot classified 89.16\% of 2,048 unseen scenes correctly and answered both 
 \hline Task / model / rule & Worlds & Params & Test & 95\% interval\\\hline\endhead
 scene / cd32 / cd32 / 1024 families & 0 & 3801 & pending & ---\\
 scene / cd32 / cd32 / 1024 families (pilot) & 1 & 3801 & 89.16\% & ---\\
+scene / random / cd32 / 1024 families & 0 & 3801 & pending & ---\\
 \hline\end{longtable}
 \begin{longtable}{p{.37\linewidth}rp{.11\linewidth}p{.17\linewidth}l}
 \hline Endpoint & N & Estimate & 95\% interval & Decision\\\hline\endhead
@@ -60,6 +61,8 @@ Canonical minus randomized on ciFAIR-10 & 0 & pending & --- & pending\\
 \\{\small Same-type probabilities and binary controls on three fixed held-out families from the lowest available evaluated seed in the canonical sensor condition.}\end{center}
 \subsection*{Supplementary fixed-checkpoint interventions}
 scene-cd32-cd32-s42-n1024. A common orthogonal transformation, translation and node reordering changed 0 of 2048 decisions. Cyclically shifting sensor payloads among objects changed 1009 decisions and gave 49.85\% accuracy against the original labels. This supplementary probe was specified after the pilot evaluation.
+Maximum absolute probability drift under the common spatial transformation was 0.0306 in the training arithmetic and 2.61e-14 when reevaluating the trained coefficients in float64.
+The decoded pixel training and validation sets contained 45,000 and 5,000 images, respectively, and shared 0 exact pixel hashes. The original and corrected test sets contained 0 and 0 images present byte-for-byte in the training partition.
 \subsection*{Independent algebra diagnostic}
 \begin{longtable}{lllrrrr}
 \hline Task & Teacher & Learner & N & Worlds & NMSE & Basis\\\hline\endhead
