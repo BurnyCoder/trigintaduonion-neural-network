@@ -218,7 +218,12 @@ def load_run(name,device="auto",weights=None):
     cfg=Config(**d["config"])
     dev=setup(device,cfg.seed)
     model=build(cfg).to(dev)
-    model.load_state_dict(load_file(str(weights or CHECKPOINTS/name/"model.safetensors"),device="cpu"))
+    file=Path(weights) if weights else CHECKPOINTS/name/"model.safetensors"
+    if not weights and not file.exists():
+        from huggingface_hub import hf_hub_download
+        from .release import REPO
+        file=Path(hf_hub_download(REPO,f"weights/{name}/model.safetensors"))
+    model.load_state_dict(load_file(str(file),device="cpu"))
     return cfg,model.eval(),dev
 
 

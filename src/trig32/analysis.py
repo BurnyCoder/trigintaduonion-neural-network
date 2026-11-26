@@ -81,7 +81,8 @@ def collect():
             record["examples"]={k:v for k,v in read(sample).items() if k in ("beacon","land","pos","labels","predictions","scores","z","oracle")}
         runs.append(record)
     diagnostics=[row for p in sorted((RESULTS/"algebra").glob("seed-*.json")) for row in read(p)]
-    return dict(runs=runs,contrasts=contrasts(runs),algebra=diagnostics)
+    audits=[read(p) for p in sorted((RESULTS/"audits").glob("*.json"))]
+    return dict(runs=runs,contrasts=contrasts(runs),algebra=diagnostics,audits=audits)
 
 
 def percent(x):

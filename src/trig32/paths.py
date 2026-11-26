@@ -11,8 +11,9 @@ ROOT = Path(os.environ.get("TRIG32_ROOT", Path.cwd())).resolve()
 load_dotenv(ROOT / ".env")
 DATA = Path(os.environ.get("TRIG32_DATA", ROOT / "data"))
 CHECKPOINTS = Path(os.environ.get("TRIG32_CHECKPOINTS", ROOT / "checkpoints"))
-RESULTS = ROOT / "results"
-LOGS = ROOT / "logs"
+OUTPUT = Path(os.environ.get("TRIG32_OUTPUT", ROOT))
+RESULTS = OUTPUT / "results"
+LOGS = OUTPUT / "logs"
 
 
 def now():

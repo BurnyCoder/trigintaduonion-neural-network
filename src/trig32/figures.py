@@ -86,3 +86,28 @@ def figures(data):
                    title=f"Label {int(f['labels'][i])}    P(same) {f['scores'][i]:.3f}")
         axes[0].legend(loc="upper left",fontsize=6)
         save(fig,"example")
+    # Compare identical example IDs and observations before plotting across architectures.
+    by_seed={}
+    for r in finished:
+        c=r["config"]
+        if "examples" in r and c["rule"]=="cd32" and c["families"]==1024:
+            by_seed.setdefault(c["seed"],[]).append(r)
+    if by_seed:
+        selected=by_seed[min(by_seed)]
+        ex=selected[0]["examples"]
+        names=["Ground truth","Known-filter oracle","Constant control"]
+        values=[ex["labels"],ex["oracle"],np.zeros(len(ex["labels"]))]
+        for r in selected:
+            if r["examples"]["labels"]!=ex["labels"] or r["examples"]["z"]!=ex["z"]:
+                raise ValueError("the displayed examples must come from the same world and sensor")
+            names.append(r["config"]["model"])
+            values.append(r["examples"]["scores"])
+        fig,ax=plt.subplots(figsize=(7,max(2.4,.31*len(names)+1.2)),layout="constrained")
+        pic=ax.imshow(np.asarray(values),aspect="auto",cmap="viridis",vmin=0,vmax=1)
+        ax.set_yticks(range(len(names)),names)
+        ax.set_xticks(range(len(ex["labels"])),[f"{i//2+1} {'swap' if i%2 else 'original'}" for i in range(len(ex["labels"]))],fontsize=8)
+        for row,v in enumerate(values):
+            for col,s in enumerate(v):
+                ax.text(col,row,f"{s:.2f}",size=8,ha="center",va="center",color="black" if s>.55 else "white")
+        fig.colorbar(pic,ax=ax,label="P(same) or binary decision",shrink=.8)
+        save(fig,"predictions")

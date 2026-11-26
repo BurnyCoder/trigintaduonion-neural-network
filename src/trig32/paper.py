@@ -90,6 +90,14 @@ Auxiliary multiplier and unrestricted bilinear least-squares fits test algebraic
     text+=plot("scores","Each dot is a held-out world. The vertical tick denotes its group's arithmetic mean.")
     text+=plot("learning","Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.")
     text+=plot("example","A fixed held-out family. Circles show object readings, square markers landmarks and stars beacons. Dashed paths show ground-truth selections.")
+    text+=plot("predictions","Same-type probabilities and binary controls on three fixed held-out families from the lowest available evaluated seed in the canonical sensor condition.")
+    if data["audits"]:
+        text+=r"\subsection*{Supplementary fixed-checkpoint interventions}"+"\n"
+        for a in data["audits"]:
+            if "interventions" in a:
+                iso=a["interventions"]["isometry_and_reindexing"]
+                broken=a["interventions"]["broken_correspondence"]
+                text+=esc(f"{a['run']}. A common orthogonal transformation, translation and node reordering changed {iso['changed_decisions']} of {iso['examples']} decisions. Cyclically shifting sensor payloads among objects changed {broken['changed_decisions']} decisions and gave {100*broken['accuracy_against_original_labels']:.2f}% accuracy against the original labels. This supplementary probe was specified after the pilot evaluation.")+"\n"
     if algebra:
         text+=r"\subsection*{Independent algebra diagnostic}"+"\n"+tabular(["Task","Teacher","Learner","N","Worlds","NMSE","Basis"],algebra,"lllrrrr")
     text+=r"""
@@ -99,7 +107,7 @@ A successful crossover identifies an effect of matching the assumed interaction 
 \section*{Appendix: replication and evidence}
 The public repository contains the full seed matrix, pinned environment, checkpoint configurations, training and validation logs, individual test predictions, both mates of fixed example families, and regeneration code as runs are published. To regenerate this paper and every table and figure, run \texttt{uv run trig32 report} at the repository root. See the \href{https://github.com/BurnyCoder/trigintaduonion-neural-network}{source and run guide} and \href{https://burnycoder.github.io/trigintaduonion-neural-network/}{interactive explorer}.
 \section*{References}
-\begin{enumerate}
+\begin{enumerate}\setlength{\itemsep}{1pt}
 """
     text+="\n".join(r"\item \href{"+url+"}{"+esc(name)+"}" for name,url in SOURCES)
     text+=r"""

@@ -1,0 +1,7 @@
+# Replication and intervention audit
+
+The development pilot's held-out evaluation was already available when this supplementary audit was specified. The registered crossover and decisions are unchanged. The raw recount checks sequential example IDs, complementary mate labels, accuracy and the fraction of families with both answers correct. The spatial audit runs a fixed checkpoint on the original test scenes, then after a common orthogonal transformation, translation and within-role index reversal. It also cyclically shifts whole sensor payloads among objects at fixed positions. This last intervention breaks the correspondence with the original labels and measures sensitivity to object assignment. Results are saved under `results/audits/`. [Initial protocol](../preregistration.md)
+
+The training integration tests cover all eight scene arms, exported weight reloading, graph and pixel adapters, endpoint decisions with missing worlds, duplicate groups, interrupted versus uninterrupted fitting and CPU/GPU agreement. An additional regression checks that scene-level supervision reaches the tied sensor, both spatial update blocks and the readout. The test log is machine generated.
+
+A fresh clone includes published manifests. Use a separate output directory for an independent replication, or use the portable weights for inference on external observations. The live monitor uses a dedicated loopback address after browser verification exposed a port conflict.

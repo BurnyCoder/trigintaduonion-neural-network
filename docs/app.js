@@ -60,7 +60,8 @@ async function live(){
   if(!["localhost","127.0.0.1","::1"].includes(location.hostname))return;
   try {const response=await fetch("/live.json",{cache:"no-store"});if(!response.ok)return;
     const e=await response.json();if(!e.epoch)return;
-    el("live").hidden=false;el("live-status").textContent=e.run+" · epoch "+e.epoch+" of "+e.epochs+" · "+e.time;
+    el("live").hidden=false;el("live-title").textContent=e.finished?"Latest completed training":"Training now";
+    el("live-status").textContent=e.run+" · epoch "+e.epoch+" of "+e.epochs+" · "+e.time;
     el("epoch-progress").max=e.epochs;el("epoch-progress").value=e.epoch;
     el("live-values").textContent="Train "+pct(e.train_accuracy)+"   ·   Validation "+pct(e.val_accuracy)+"   ·   Loss "+e.val_loss.toFixed(4)+"   ·   "+e.epoch_seconds.toFixed(1)+" s/epoch";
   }catch{ /* Local live endpoint may be starting. Published runs remain available. */ }
