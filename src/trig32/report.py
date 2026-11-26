@@ -115,9 +115,21 @@ def additional_findings(data):
                           f"{100*frozen['mean']:+.2f} points against the frozen encoder and "
                           f"{100*shallow['mean']:+.2f} points against the validation-selected shallow control. "
                           +outcome)
+    shared_seeds=sorted(c.seed for c in planned_runs("controls") if c.model=="real")
+    models=("cd32","cd16","real","budget")
+    shared={(r["config"]["model"],r["config"]["seed"]):r["splits"]["test"]["accuracy"]
+            for r in data["runs"] if r["config"]["task"]=="scene" and r["config"]["rule"]=="cd32"
+            and r["config"]["families"]==1024 and not r["config"]["tag"]
+            and r["config"]["model"] in models and "test" in r["splits"]}
+    if all((m,s) in shared for m in models for s in shared_seeds):
+        mean=[percent(sum(shared[m,s] for s in shared_seeds)/len(shared_seeds)) for m in models]
+        paragraphs.append(f"On the {len(shared_seeds)} canonical worlds shared by the capacity baselines, "
+                          f"mean test accuracy was {mean[0]} for the trigintaduonion network, {mean[1]} for "
+                          f"the sedenion network, {mean[2]} for unrestricted real maps and {mean[3]} for "
+                          "low-rank real maps. These comparisons are descriptive.")
     by_size={(r["config"]["families"],r["config"]["model"]):r["splits"]["test"]["accuracy"]
              for r in data["runs"] if r["config"]["task"]=="scene" and r["config"]["rule"]=="cd32"
-             and r["config"]["seed"]==0 and "test" in r["splits"]}
+             and r["config"]["seed"]==0 and not r["config"]["tag"] and "test" in r["splits"]}
     sizes=sorted({c.families for c in planned_runs("sensitivity")})
     if all((n,m) in by_size for n in sizes for m in ("cd32","random")):
         first,last=sizes[0],sizes[-1]
@@ -238,9 +250,10 @@ def documents(data):
         text="\n\n".join([title,intro,marker+"\n"+end,rest])
     a,tail=text.split(marker,1)
     _,b=tail.split(end,1)
-    top=brief
+    overview=brief
     if data["contrasts"][-1]["n"]==8:
-        top+=" "+interpretations[-1]
+        overview+=" "+interpretations[-1]
+    top=overview
     if (DOCS/"figures"/"example.png").exists():
         top+="\n\n![Held-out scene pair and learned same-type probabilities](docs/figures/example.png)"
     write(readme,a+marker+"\n"+top+"\n"+end+b)
@@ -250,7 +263,7 @@ def documents(data):
     if (DOCS/"figures"/"sample-size.png").exists():
         images.append("![Seed-zero accuracy on a fixed test set as the training-family count changes](docs/figures/sample-size.png)")
     metrics_block(readme,"\n\n".join([*images,gtable] if groups else [brief]))
-    metrics_block(DOCS/"model-card.md",brief+f" [All measured outcomes]({PAGES})")
+    metrics_block(DOCS/"model-card.md",overview+f" [All measured outcomes]({PAGES})")
     text_results="\n\n".join([brief,*interpretations])
     write(REPORTS/"summary.md","# Results\n\n"+text_results+"\n\n"+gtable+"\n\n"+dtable+generalization+external+probe+
           "\n\nScene intervals use a two-sided Student t across independent worlds. Each image seed evaluates the same images, so the image interval measures training variability conditional on that test set. Differences use percentage points. A single seed has no between-seed interval. The pilot is excluded from all confirmatory contrasts.\n\n[Raw manifests and predictions](../results/) · [Preregistration](preregistration.md) · [Explorer]("+PAGES+")")
@@ -282,20 +295,31 @@ def documents(data):
     write_json(DOCS/"study.json",data)
     by_name={r["name"]:r for r in runs}
     schedule=[]
+    registered_fits=[]
     for stage in STAGES:
         configs=planned_runs(stage)
         fits=[by_name[c.name] for c in configs if c.name in by_name]
+        registered_fits.extend(fits)
         tested=sum(bool(r["splits"]) for r in fits)
         duration=f"{sum(r['seconds'] for r in fits)/len(fits):.1f} s" if fits else "pending"
         schedule.append([stage,len(configs),len(fits),tested,len(configs)-tested,duration])
     total=sum(s[1] for s in schedule)
     finished=sum(s[3] for s in schedule)
     progress_table=table(schedule,["Stage","Planned","Fitted","Tested","Tests remaining","Mean fit time"])
+    if finished==total:
+        hours=sum(r["seconds"] for r in registered_fits)/3600
+        longest=max(registered_fits,key=lambda r:r["seconds"])
+        status=(f"All registered neural evaluations are complete. Logged training and validation took "
+                f"{hours:.2f} cumulative epoch-loop hours. The longest fit was {longest['name']} at "
+                f"{longest['seconds']/60:.1f} minutes. [Raw prediction recount](../results/recount.json)")
+    else:
+        status=("The matrix resumes at the first unpublished milestone. The live dashboard exposes epoch time "
+                "and permits an ETA for the current fit. The full schedule depends on the observed runtimes of the largest datasets.")
     write(REPORTS/"progress.md",f"# Study progress\n\nPublic preregistration at [4552d4d]({GH}/commit/4552d4d9bdd1465864d50c9e9bd429631ac2ae2c). "
           f"The reproducible implementation, tests, paper source and explorer accompany the protocol. Completed training manifests: {len(runs)}. Completed neural evaluations: {sum(bool(r['splits']) for r in runs)}. Completed algebra worlds: {len(set(x['seed'] for x in data['algebra']))}.\n\n"+brief+
           f"\n\n{finished} of {total} planned neural evaluations are complete ({percent(finished/total)} by count). "
           "Different datasets require different amounts of compute. Mean fit time covers epoch loops and validation. Data preparation, evaluation and both public releases add wall time.\n\n"+progress_table+
-          "\n\nThe matrix resumes at the first unpublished milestone. The live dashboard exposes epoch time and permits an ETA for the current fit. The full schedule depends on the observed runtimes of the largest datasets. [Planned runs](planned-runs.md) · [Experiments](experiments/experiments.md)")
+          "\n\n"+status+" [Planned runs](planned-runs.md) · [Experiments](experiments/experiments.md)")
     return brief,groups,decisions,algebra
 
 

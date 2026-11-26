@@ -130,9 +130,17 @@ The pixel models apply a real input stem, three two-convolution residual stages 
     if algebra:
         from .report import algebra_finding
         text+=r"\subsection*{Independent algebra diagnostic}"+"\n"+esc(algebra_finding(data))+"\n"+tabular(["Task","Teacher","Learner","N","Worlds","NMSE","Basis"],algebra,"lllrrrr")
+    crossed=data["contrasts"][2:4]
+    if all(c["decision"]=="above threshold" for c in crossed):
+        conclusion=("Changing the sensor rule reversed which of two equally sized neural classifiers performed better. "
+                    "This intervention identifies a benefit of matching channel sharing to this simulator under the registered training procedure.")
+    elif any(c["decision"]=="pending" for c in crossed):
+        conclusion="The registered crossover requires all paired test worlds before it can establish a matching effect."
+    else:
+        conclusion="The registered crossover did not establish the specified benefit in both sensor conditions."
+    text+=r"\section{Discussion, limitations and conclusion}"+"\n"+esc(conclusion)+"\n"
     text+=r"""
-\section{Discussion, limitations and conclusion}
-A successful crossover identifies an effect of matching the assumed interaction rule to this simulator under this training recipe. The treatment changes the tied matrices throughout the encoder and message blocks, so a net effect alone does not localize the mechanism. Scene families share a world-specific filter, and evaluation addresses fresh scenes within each trained world. The task supplies object segmentation, roles and coordinates. Natural images require separate transfer evidence. The factorization and sample count of the real controls affect representational capacity and optimization. The privileged oracle knows the measurement filter and nearest paths. Noise makes even its decisions fallible. Diagnostic product recovery and gradients alone cannot establish that a scene classifier learned the task.
+The treatment changes the tied matrices throughout the encoder and message blocks, so the precise site of the effect remains unresolved. The shallow set control also changes the sensor encoder. The depth contrasts concern the complete processing chain compared with these controls. Scene families share a world-specific filter, and evaluation addresses fresh scenes within each trained world. The task supplies object segmentation, roles and coordinates. The factorization and sample count of the real controls affect representational capacity and optimization. The privileged oracle knows the measurement filter and nearest paths. Noise makes even its decisions fallible.
 
 \section*{Appendix: a check on the observation model}
 Each row of the signed left-multiplication matrix is a signed permutation of the unit filter. Its inner product with a standard Gaussian excitation is therefore a unit-variance normal random variable $s$ for either rule and every queried coordinate. The marginal distribution of $z=bs+\epsilon$ is the same for both types. The joint excitation and reading carry the type information. With noise standard deviation $\sigma$, the privileged single-object rule has sign-error probability $q=\arctan(\sigma)/\pi$ by the angle between two Gaussian projections. Independence of the two objects' measurements gives population accuracy $(1-q)^2+q^2$ for the equality oracle. The fixed global type counts could be used by a joint decoder. See the \href{https://github.com/BurnyCoder/trigintaduonion-neural-network/blob/main/reports/reviews/sensor-and-oracle.md}{derivation and source}.
