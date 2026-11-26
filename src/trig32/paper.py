@@ -50,7 +50,7 @@ def make_paper(brief,groups,decisions,algebra,data):
 \usepackage{graphicx,longtable,hyperref}
 \hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,pdfauthor={Libor Burny Burian}}
 \setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\setlength{\emergencystretch}{3em}
-\title{Can a 32-component algebra help a neural network compare spatially selected objects?}
+\title{Testing the inductive bias of a trigintaduonion neural network on spatial relations}
 \author{Libor \textquotedblleft Burny\textquotedblright\ Burian}
 \date{DATE}
 \begin{document}\maketitle
@@ -60,7 +60,7 @@ A noisy sensor observes one component of an unknown linear mixing of an object's
 \section{Motivation and related work}
 Spatial structure can restrict which interactions a model must learn. Relational scene benchmarks [10], message passing [11] and distance-conditioned equivariant networks [12] motivate our scene generator and graph processor. We study a second, independent assumption about which observable channels share parameters. Real convolutional and residual networks [3,4], complex [5], quaternion [6], octonion [7] and sedenion networks [8,9] establish precedents for the smaller component counts. Our contribution is the combination of a 32-component trainable graph classifier, paired counterfactual scenes and a crossover intervention. We make no priority claim for 32-component neural layers.
 \section{Method}
-Starting with real scalars, double five times using
+The trigintaduonions form a 32-dimensional real algebra. Starting with real scalars, double five times using
 \[
  (a,b)(c,d)=(ac-\bar d b,\;da+b\bar c).
 \]
@@ -81,11 +81,24 @@ Each primary world has 1,024 training, 256 validation and 1,024 test families. W
 Seed 42 is a development pilot. Compute two-sided 95\% Student intervals over paired differences from eight independent confirmatory worlds. A matched learner must have a lower bound above 60\% for task success. Both directional crossover lower bounds must exceed one percentage point for a matching claim. Both depth comparisons must have positive lower bounds for the multistage attribution. Incomplete seed sets defer decisions [16]. Data-size sensitivity and the individual controls are descriptive. Multiple testing, resource limits and optimization sensitivity constrain interpretation.
 
 Auxiliary multiplier and unrestricted bilinear least-squares fits test algebraic recovery. Separate transfer experiments compare structured residual image classifiers on CIFAR-10 and its duplicate-corrected ciFAIR-10 test set [4,14]. Superpixel classification uses the published split [13] with a learned color input and a graph-mean readout. The simulator supplies no sensor rule for natural images. The registered transfer contrast evaluates canonical versus randomized sharing on ciFAIR-10.
+
+The one-hop control supplies zero landmark features to the beacon block. Because its updates are bias-free, its resulting logit is constant across scenes. Its nominal parameter count includes modules disconnected from the readout. The coordinate-aware shallow set model is the control with direct access to every object. The full model's initialized distance penalty already favors nearby neighbors.
+
+The pixel models apply a real input stem, three two-convolution residual stages and a real classifier. The full-width models have stage widths 32, 64 and 128. The real budget control has widths 6, 13 and 26. Train with random reflected crops, horizontal flips, SGD with momentum 0.9 and initial learning rate 0.1 for 60 epochs. The superpixel models use the two graph update blocks on published edges with mean pooling and AdamW at 0.003. Spatial and color normalization use training data. Image-seed intervals quantify training variability on a fixed test set.
 \section{Results and claims}
 """+esc(brief)+"\n"
     if groups:
         text+=tabular(["Task / model / rule","Worlds","Params","Test","95% interval"],groups,r"p{.43\linewidth}rrrr")
     text+=tabular(["Endpoint","N","Estimate","95% interval","Decision"],[[r[0],r[1],r[2],r[3],r[5]] for r in decisions],r"p{.37\linewidth}rp{.11\linewidth}p{.17\linewidth}l")
+    from .report import scene_generalization
+    challenges=scene_generalization(data)
+    if challenges:
+        text+=r"\subsection*{Counterfactual families and distribution shifts}"+"\n"
+        text+=tabular(["Learner","Rule","N","Test","Both","Unseen","Crowded","Constant","Oracle"],
+                      challenges,"llrrrrrrr")
+        text+=("Entries are mean percentages over evaluated confirmatory worlds. Both counts families for which "
+               "both opposite labels were correct. Unseen uses withheld sensor coordinates. Crowded doubles "
+               "the object count. Constant and Oracle score the same original test scenes.\n")
     text+=plot("scores","Dots represent held-out worlds, a vertical tick the mean, and a horizontal line the 95% Student interval for groups with at least three worlds.")
     text+=plot("effects","Paired differences by world and their mean and 95% interval. Crosses mark the registered decision thresholds.")
     text+=plot("learning","Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.")
