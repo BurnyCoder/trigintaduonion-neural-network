@@ -16,7 +16,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | [scene-cd32-cd32-s3-n1024](scene-cd32-cd32-s3-n1024/experiment.md) | 3801 | 88.28% | 89.21% | 81.84% | 88.57% | 86.08% |
 | [scene-cd32-cd32-s4-n1024](scene-cd32-cd32-s4-n1024/experiment.md) | 3801 | 90.62% | 88.62% | 80.08% | 89.40% | 87.40% |
 | [scene-cd32-cd32-s42-n1024](scene-cd32-cd32-s42-n1024/experiment.md) | 3801 | 91.60% | 89.16% | 82.23% | 89.79% | 88.82% |
-| [scene-cd32-cd32-s5-n1024](scene-cd32-cd32-s5-n1024/experiment.md) | 3801 | 90.82% | pending | pending | pending | pending |
+| [scene-cd32-cd32-s5-n1024](scene-cd32-cd32-s5-n1024/experiment.md) | 3801 | 90.82% | 90.77% | 85.16% | 89.70% | 88.62% |
 | [scene-cd32-cd32-s6-n1024](scene-cd32-cd32-s6-n1024/experiment.md) | 3801 | 89.65% | pending | pending | pending | pending |
 | [scene-cd32-cd32-s7-n1024](scene-cd32-cd32-s7-n1024/experiment.md) | 3801 | 92.38% | pending | pending | pending | pending |
 | [scene-cd32-random-s0-n1024](scene-cd32-random-s0-n1024/experiment.md) | 3801 | 53.91% | 51.27% | 24.90% | 50.98% | 50.10% |
