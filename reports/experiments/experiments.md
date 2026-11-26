@@ -51,7 +51,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | [scene-random-cd32-s5-n1024](scene-random-cd32-s5-n1024/experiment.md) | 3801 | 55.47% | pending | pending | pending | pending |
 | [scene-random-cd32-s6-n1024](scene-random-cd32-s6-n1024/experiment.md) | 3801 | 51.95% | pending | pending | pending | pending |
 | [scene-random-cd32-s7-n1024](scene-random-cd32-s7-n1024/experiment.md) | 3801 | 53.32% | pending | pending | pending | pending |
-| [scene-random-random-s0-n1024](scene-random-random-s0-n1024/experiment.md) | 3801 | 89.84% | pending | pending | pending | pending |
+| [scene-random-random-s0-n1024](scene-random-random-s0-n1024/experiment.md) | 3801 | 89.84% | 89.99% | 83.69% | 90.58% | 89.11% |
 | [scene-random-random-s1-n1024](scene-random-random-s1-n1024/experiment.md) | 3801 | 91.21% | pending | pending | pending | pending |
 | [scene-random-random-s2-n1024](scene-random-random-s2-n1024/experiment.md) | 3801 | 91.41% | pending | pending | pending | pending |
 | [scene-random-random-s3-n1024](scene-random-random-s3-n1024/experiment.md) | 3801 | 91.41% | pending | pending | pending | pending |
