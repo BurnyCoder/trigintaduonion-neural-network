@@ -1,0 +1,11 @@
+# Design and implementation review
+
+The primary contrast compares equally sized trainable weight tensors with a different fixed sign table. Both renderers share the latent family, query coordinate, noise and split. Each full network receives only the final scene label. A positive crossover would establish that sign-rule compatibility affects this training procedure. Changing the table in multiple layers leaves the precise site of that effect unresolved. [Registered decision rules](../preregistration.md)
+
+- The simulator and layer kernel use independently implemented canonical multiplication. Exhaustive signed basis tests, gradient checks and order-sensitive products detect sign and orientation mistakes.
+- Pair mates share their geometry and payload multiset. The split key is a family and the inference unit for confidence intervals is the independently drawn world. A world also changes initialization, so uncertainty includes both effects.
+- A one-hop readout is structurally blind to object attributes. Selecting the stronger shallow control on validation and including a global coordinate-aware comparator addresses this weak baseline. The learned distance bias already favors local neighbors. Training gains alone cannot establish that the processor discovered nearest-neighbor geometry independently.
+- Readings include Gaussian noise. Privileged and constant controls are evaluated on exactly the same observations. Exact global type balance and presegmented roles are properties of the simulator.
+- Checkpoint selection uses validation; the pilot is excluded from confirmation. A t interval from a small number of worlds is sensitive to outliers. Individual raw worlds and both signed directions remain visible.
+- Image transfer is a different hypothesis. Narrow real models differ in width, and the original and corrected CIFAR test sets overlap. Multiple secondary comparisons remain descriptive. [ciFAIR authors](https://cvjena.github.io/cifair/)
+- The release includes only tracked research files and portable weights. Tokens, data caches, local paths in .env and full optimizer checkpoints are ignored by Git. Each completed stage persists a local acknowledgement after public release.

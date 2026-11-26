@@ -1,3 +1,7 @@
-# Progress
+# Study progress
 
-2026-11-26 · Initial public protocol. Literature and methods reviewed, study design frozen for publication, software implementation pending. The workspace began empty. Target the first end-to-end pilot within 14 hours and all planned training within one week. Timing estimates will be revised from the pilot.
+Public preregistration at [4552d4d](https://github.com/BurnyCoder/trigintaduonion-neural-network/commit/4552d4d9bdd1465864d50c9e9bd429631ac2ae2c). The reproducible implementation, tests, paper source and explorer accompany the protocol. Completed training manifests: 0. Completed neural evaluations: 0. Completed algebra worlds: 0.
+
+The pilot has no released test prediction yet. The registered crossover awaits complete paired worlds.
+
+The matrix resumes at the first unpublished milestone. The live dashboard exposes epoch time and permits an ETA for the current fit. The full schedule depends on the observed runtimes of the largest datasets. [Planned runs](planned-runs.md) · [Experiments](experiments/experiments.md)
