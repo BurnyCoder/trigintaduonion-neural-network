@@ -1,6 +1,7 @@
 """Regenerate the public study from immutable evaluations, without importing a model."""
 from collections import defaultdict
 import shutil
+from statistics import median
 
 from .analysis import collect, percent, table, row_metrics, HEADERS, interval
 from .figures import figures
@@ -19,6 +20,20 @@ def write(path,body):
     body=body.rstrip()+"\n"
     if not path.exists() or path.read_text(encoding="utf-8")!=body:
         path.write_text(body,encoding="utf-8")
+
+
+def estimate_remaining_training(pending, completed):
+    """Project full epoch-loop time from measured fits at the same task and training budget."""
+    seconds, covered = 0.0, 0
+    for config in pending:
+        # A family count determines scene data size. The external benchmarks use fixed datasets.
+        keys = ("task", "families", "epochs", "batch")
+        comparable = [r for r in completed if all(r["config"][k] == getattr(config, k) for k in keys)]
+        if comparable:
+            same_model = [r for r in comparable if r["config"]["model"] == config.model]
+            seconds += median(r["seconds"] for r in (same_model or comparable))
+            covered += 1
+    return seconds, covered
 
 
 def metrics_block(path,body):
@@ -300,9 +315,11 @@ def documents(data):
     by_name={r["name"]:r for r in runs}
     schedule=[]
     registered_fits=[]
+    pending=[]
     for stage in STAGES:
         configs=planned_runs(stage)
         fits=[by_name[c.name] for c in configs if c.name in by_name]
+        pending.extend(c for c in configs if c.name not in by_name)
         registered_fits.extend(fits)
         tested=sum(bool(r["splits"]) for r in fits)
         duration=f"{sum(r['seconds'] for r in fits)/len(fits):.1f} s" if fits else "pending"
@@ -316,9 +333,17 @@ def documents(data):
         status=(f"All registered neural evaluations are complete. Logged training and validation took "
                 f"{hours:.2f} cumulative epoch-loop hours. The longest fit was {longest['name']} at "
                 f"{longest['seconds']/60:.1f} minutes. [Raw prediction recount](../results/recount.json)")
+    elif pending:
+        seconds, covered = estimate_remaining_training(pending, registered_fits)
+        status = (f"At this milestone, measured runtimes project {seconds/3600:.2f} hours of training "
+                  f"and validation for {covered} of the {len(pending)} outstanding fits. "
+                  "The estimate uses the median for the same task and training budget, preferring the same "
+                  "model when available. It excludes data preparation, test evaluation and publication."
+                  if covered else "The remaining tasks have no completed fit with a comparable training budget.")
+        status += (" The live dashboard tracks the current epoch. The monitoring intervals are five minutes "
+                   "for fits over ten minutes, fifteen minutes above half an hour and thirty minutes above an hour.")
     else:
-        status=("The matrix resumes at the first unpublished milestone. The live dashboard exposes epoch time "
-                "and permits an ETA for the current fit. The full schedule depends on the observed runtimes of the largest datasets.")
+        status = "All checkpoints are frozen. Held-out evaluation and publication are in progress."
     write(REPORTS/"progress.md",f"# Study progress\n\nPublic preregistration at [4552d4d]({GH}/commit/4552d4d9bdd1465864d50c9e9bd429631ac2ae2c). "
           f"The reproducible implementation, tests, paper source and explorer accompany the protocol. Completed training manifests: {len(runs)}. Completed neural evaluations: {sum(bool(r['splits']) for r in runs)}. Completed algebra worlds: {len(set(x['seed'] for x in data['algebra']))}.\n\n"+brief+
           f"\n\n{finished} of {total} planned neural evaluations are complete ({percent(finished/total)} by count). "
