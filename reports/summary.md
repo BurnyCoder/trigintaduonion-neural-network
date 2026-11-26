@@ -9,7 +9,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | scene / cd32 / cd32 / 1024 families | 8 | 3801 | 90.04% | 89.28% to 90.79% |
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
 | scene / cd32 / random / 1024 families | 8 | 3801 | 50.49% | 49.82% to 51.15% |
-| scene / frozen / cd32 / 1024 families | 3 | 2113 | 50.50% | 49.52% to 51.48% |
+| scene / frozen / cd32 / 1024 families | 4 | 2113 | 50.33% | 49.57% to 51.09% |
 | scene / onehop / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
 | scene / random / random / 1024 families | 8 | 3801 | 90.06% | 89.63% to 90.49% |
@@ -22,7 +22,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | Matched randomized accuracy | 8 | 90.06% | 89.63% to 90.49% | 60.00% | above threshold |
 | Canonical minus randomized on canonical sensors | 8 | 39.59 pp | 38.54 pp to 40.65 pp | 1.00 pp | above threshold |
 | Randomized minus canonical on randomized sensors | 8 | 39.58 pp | 38.96 pp to 40.19 pp | 1.00 pp | above threshold |
-| Canonical minus frozen | 3 | 39.78 pp | 36.86 pp to 42.70 pp | 0.00 pp | pending |
+| Canonical minus frozen | 4 | 39.69 pp | 38.13 pp to 41.24 pp | 0.00 pp | pending |
 | Canonical minus validation-selected shallow control | 0 | pending | — | 0.00 pp | pending |
 | Canonical minus randomized on ciFAIR-10 | 0 | pending | — | 1.00 pp | pending |
 
@@ -32,7 +32,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | cd32 | cd32 | 8 | 90.04% | 83.53% | 89.68% | 88.53% | 50.00% | 93.74% |
 | cd32 | random | 8 | 50.49% | 22.88% | 50.69% | 50.07% | 50.00% | 93.83% |
-| frozen | cd32 | 3 | 50.50% | 16.11% | 49.37% | 51.17% | 50.00% | 93.62% |
+| frozen | cd32 | 4 | 50.33% | 15.38% | 49.33% | 50.73% | 50.00% | 93.63% |
 | random | cd32 | 8 | 50.45% | 21.62% | 50.23% | 49.65% | 50.00% | 93.74% |
 | random | random | 8 | 90.06% | 83.72% | 90.14% | 89.09% | 50.00% | 93.83% |
 
