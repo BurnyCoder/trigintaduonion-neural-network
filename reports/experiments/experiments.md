@@ -5,6 +5,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | Run | Trainable | Validation | Test | Both mates | Held-out channels | Crowded / ciFAIR |
 | --- | --- | --- | --- | --- | --- | --- |
 | [scene-budget-cd32-s0-n1024](scene-budget-cd32-s0-n1024/experiment.md) | 3961 | 53.12% | pending | pending | pending | pending |
+| [scene-budget-cd32-s1-n1024](scene-budget-cd32-s1-n1024/experiment.md) | 3961 | 53.32% | pending | pending | pending | pending |
 | [scene-cd32-cd32-s0-n1024](scene-cd32-cd32-s0-n1024/experiment.md) | 3801 | 91.99% | pending | pending | pending | pending |
 | [scene-cd32-cd32-s1-n1024](scene-cd32-cd32-s1-n1024/experiment.md) | 3801 | 90.43% | pending | pending | pending | pending |
 | [scene-cd32-cd32-s2-n1024](scene-cd32-cd32-s2-n1024/experiment.md) | 3801 | 91.21% | pending | pending | pending | pending |
