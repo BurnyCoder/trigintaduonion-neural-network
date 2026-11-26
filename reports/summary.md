@@ -15,7 +15,7 @@ On canonical scenes the full network's paired accuracy difference was +39.48 poi
 | scene / onehop / cd32 / 1024 families | 8 | 3801 | 50.00% | 50.00% to 50.00% |
 | scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
 | scene / random / random / 1024 families | 8 | 3801 | 90.06% | 89.63% to 90.49% |
-| scene / real / cd32 / 1024 families | 2 | 11737 | 50.54% | 49.30% to 51.78% |
+| scene / real / cd32 / 1024 families | 3 | 11737 | 50.05% | 47.93% to 52.16% |
 | scene / shallow / cd32 / 1024 families | 8 | 7713 | 49.96% | 49.89% to 50.03% |
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
@@ -38,7 +38,7 @@ On canonical scenes the full network's paired accuracy difference was +39.48 poi
 | onehop | cd32 | 8 | 50.00% | 0.00% | 50.00% | 50.00% | 50.00% | 93.74% |
 | random | cd32 | 8 | 50.45% | 21.62% | 50.23% | 49.65% | 50.00% | 93.74% |
 | random | random | 8 | 90.06% | 83.72% | 90.14% | 89.09% | 50.00% | 93.83% |
-| real | cd32 | 2 | 50.54% | 20.51% | 49.66% | 50.66% | 50.00% | 93.68% |
+| real | cd32 | 3 | 50.05% | 18.98% | 50.29% | 50.63% | 50.00% | 93.62% |
 | shallow | cd32 | 8 | 49.96% | 0.13% | 50.00% | 49.98% | 50.00% | 93.74% |
 
 Each entry averages the saved world-level scores. Both mates counts families whose two opposite labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.
