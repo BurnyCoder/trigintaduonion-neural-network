@@ -1,0 +1,250 @@
+[
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "cd32",
+    "n": 2,
+    "nmse": 3.7899952244613113e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "random",
+    "n": 2,
+    "nmse": 1.7974192921106025
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "real",
+    "n": 2,
+    "nmse": 0.9260743189381635
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "cd32",
+    "n": 8,
+    "nmse": 1.95437633960545e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "random",
+    "n": 8,
+    "nmse": 0.9353061756303881
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "real",
+    "n": 8,
+    "nmse": 0.7205806403784736
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "cd32",
+    "n": 32,
+    "nmse": 3.121037187882936e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "random",
+    "n": 32,
+    "nmse": 0.7798061120350376
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "real",
+    "n": 32,
+    "nmse": 4.148212257993514e-28
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "cd32",
+    "n": 128,
+    "nmse": 4.994968310969925e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "random",
+    "n": 128,
+    "nmse": 0.760460088373
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "cd32",
+    "model": "real",
+    "n": 128,
+    "nmse": 2.347886462100598e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "cd32",
+    "n": 2,
+    "nmse": 1.483252029861252
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "random",
+    "n": 2,
+    "nmse": 3.5151210649857907e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "real",
+    "n": 2,
+    "nmse": 0.9320941543121488
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "cd32",
+    "n": 8,
+    "nmse": 0.9502349596978138
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "random",
+    "n": 8,
+    "nmse": 3.1617161662395823e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "real",
+    "n": 8,
+    "nmse": 0.7382213420371884
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "cd32",
+    "n": 32,
+    "nmse": 0.7738620785785765
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "random",
+    "n": 32,
+    "nmse": 1.340301995736556e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "real",
+    "n": 32,
+    "nmse": 2.7817892991730616e-28
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "cd32",
+    "n": 128,
+    "nmse": 0.7594336333411208
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "random",
+    "n": 128,
+    "nmse": 2.874125524275665e-31
+  },
+  {
+    "task": "multiplier",
+    "seed": 2,
+    "teacher": "random",
+    "model": "real",
+    "n": 128,
+    "nmse": 2.328757844148478e-31
+  },
+  {
+    "task": "product",
+    "seed": 2,
+    "model": "bilinear",
+    "n": 256,
+    "nmse": 0.7340944451944057,
+    "basis_correct": 820
+  },
+  {
+    "task": "product",
+    "seed": 2,
+    "model": "shuffled",
+    "n": 256,
+    "nmse": 1.3838793290581943,
+    "basis_correct": 10
+  },
+  {
+    "task": "product",
+    "seed": 2,
+    "model": "bilinear",
+    "n": 1024,
+    "nmse": 5.8230406907811566e-27,
+    "basis_correct": 1024
+  },
+  {
+    "task": "product",
+    "seed": 2,
+    "model": "shuffled",
+    "n": 1024,
+    "nmse": 4169.258461075911,
+    "basis_correct": 13
+  },
+  {
+    "task": "product",
+    "seed": 2,
+    "model": "bilinear",
+    "n": 2048,
+    "nmse": 1.924889566769891e-30,
+    "basis_correct": 1024
+  },
+  {
+    "task": "product",
+    "seed": 2,
+    "model": "shuffled",
+    "n": 2048,
+    "nmse": 2.061036286890671,
+    "basis_correct": 15
+  },
+  {
+    "task": "product",
+    "seed": 2,
+    "model": "analytic",
+    "n": 0,
+    "nmse": 0.0,
+    "basis_correct": 1024
+  }
+]
