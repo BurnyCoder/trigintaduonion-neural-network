@@ -1,0 +1,32 @@
+{
+  "config": {
+    "task": "scene",
+    "model": "cd32",
+    "rule": "random",
+    "seed": 3,
+    "families": 1024,
+    "epochs": 80,
+    "batch": 128,
+    "lr": 0.003,
+    "tag": ""
+  },
+  "name": "scene-cd32-random-s3-n1024",
+  "time": "2026-11-26T13:05:56+00:00",
+  "hardware": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "torch": "2.15.0+cu132",
+    "cuda": "13.2",
+    "python": "3.12.13",
+    "commit": "7a9d38dac12b91984873a49b27949b16c1cbde9e"
+  },
+  "trainable": 3801,
+  "parameters": 3801,
+  "best_epoch": 11,
+  "val_accuracy": 0.572265625,
+  "train_examples": 2048,
+  "val_examples": 512,
+  "seconds": 24.123213900000337,
+  "training_examples_per_second": 6791.798169148503,
+  "peak_gpu_bytes": 38955520
+}
