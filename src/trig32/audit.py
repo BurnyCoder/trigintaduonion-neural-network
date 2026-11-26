@@ -38,9 +38,11 @@ def interventions(model,ds,batch,device):
     """Act on visible geometry and payload correspondence without additional training."""
     outputs={k:[] for k in ("original","isometry_and_reindexing","broken_correspondence")}
     # This orthogonal reflection also rotates axes. The common translation leaves distances unchanged.
-    transform=torch.tensor([[.6,.8],[.8,-.6]],device=device)
+    dtype=next(model.parameters()).dtype
+    transform=torch.tensor([[.6,.8],[.8,-.6]],device=device,dtype=dtype)
     for ids in torch.arange(len(ds),device=device).split(batch):
         f,_=ds.batch(ids)
+        f={k:v.to(dtype) if v.is_floating_point() else v for k,v in f.items()}
         changed={**f,**{k:f[k]@transform+1.25 for k in ("beacon","land","pos")}}
         for k in ("beacon","land","pos","x","k","z"):
             changed[k]=changed[k].flip(1)
@@ -68,5 +70,8 @@ def audit(name,device="auto"):
     result={"run":name,"recount":{split:recount(folder,split,v) for split,v in splits.items()}}
     if cfg.task=="scene":
         result["interventions"]=interventions(model,dataset(cfg,"test",dev),cfg.batch,dev)
+        # Re-evaluate the *same* trained coefficients at higher arithmetic precision to separate
+        # numerical confidence drift from the structural symmetry of the model.
+        result["float64_reference"]=interventions(model.cpu().double(),dataset(cfg,"test","cpu"),cfg.batch,"cpu")
     write_json(RESULTS/"audits"/(name+".json"),result)
     return result

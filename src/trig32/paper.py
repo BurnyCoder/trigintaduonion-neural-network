@@ -98,6 +98,14 @@ Auxiliary multiplier and unrestricted bilinear least-squares fits test algebraic
                 iso=a["interventions"]["isometry_and_reindexing"]
                 broken=a["interventions"]["broken_correspondence"]
                 text+=esc(f"{a['run']}. A common orthogonal transformation, translation and node reordering changed {iso['changed_decisions']} of {iso['examples']} decisions. Cyclically shifting sensor payloads among objects changed {broken['changed_decisions']} decisions and gave {100*broken['accuracy_against_original_labels']:.2f}% accuracy against the original labels. This supplementary probe was specified after the pilot evaluation.")+"\n"
+                if "float64_reference" in a:
+                    strict=a["float64_reference"]["isometry_and_reindexing"]["max_probability_change"]
+                    text+=esc(f"Maximum absolute probability drift under the common spatial transformation was {iso['max_probability_change']:.3g} in the training arithmetic and {strict:.3g} when reevaluating the trained coefficients in float64.")+"\n"
+    for task in ("graph","pixel"):
+        text+=plot("gallery-"+task,"Six fixed held-out "+task+" inputs, in dataset order. The explorer shows each trained model's predicted and true classes for these inputs.")
+    if data["benchmark_inputs"]:
+        pixels=data["benchmark_inputs"]["pixels"]
+        text+=esc(f"The decoded pixel training and validation sets contained {pixels['train']:,} and {pixels['validation']:,} images, respectively, and shared {pixels['exact_train_val_overlap']} exact pixel hashes. The original and corrected test sets contained {pixels['test']['images_seen_exactly_in_training']} and {pixels['cifair']['images_seen_exactly_in_training']} images present byte-for-byte in the training partition.")+"\n"
     if algebra:
         text+=r"\subsection*{Independent algebra diagnostic}"+"\n"+tabular(["Task","Teacher","Learner","N","Worlds","NMSE","Basis"],algebra,"lllrrrr")
     text+=r"""

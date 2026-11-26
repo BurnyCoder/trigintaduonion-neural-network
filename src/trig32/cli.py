@@ -33,6 +33,7 @@ def main():
     a=sub.add_parser("algebra")
     a.add_argument("--seeds",type=int,nargs="+",default=[0])
     sub.add_parser("report")
+    sub.add_parser("data-audit",help="verify the published natural-image inputs and split isolation")
     sub.add_parser("dashboard").add_argument("--port",type=int,default=18332)
     m=sub.add_parser("matrix")
     m.add_argument("--stage",choices=["pilot","primary","controls","sensitivity","images","all"],default="all")
@@ -48,6 +49,9 @@ def main():
     elif args.cmd=="evaluate":
         from .experiment import evaluate
         print(json.dumps(evaluate(args.run,args.device)))
+    elif args.cmd=="data-audit":
+        from .data_audit import data_audit
+        print(json.dumps(data_audit()))
     elif args.cmd=="audit":
         from .audit import audit
         print(json.dumps(audit(args.run,args.device)))
@@ -93,7 +97,14 @@ def predict(args):
         values=(image-np.asarray(stats["mean"]))/np.asarray(stats["std"])
         f=torch.as_tensor(values.transpose(2,0,1),device=dev,dtype=torch.float32)[None]
     elif args.input:
-        raise ValueError("use --index to select a published superpixel graph")
+        graph=json.loads(args.input.read_text(encoding="utf-8"))
+        f={k:torch.as_tensor(graph[k],dtype=torch.long if k=="edge" else torch.float32,device=dev)
+           for k in ("x","pos","edge")}
+        if f["x"].ndim!=2 or f["x"].shape[1]!=3 or f["pos"].shape!=(len(f["x"]),2) or f["edge"].ndim!=2 or f["edge"].shape[0]!=2:
+            raise ValueError("expected x[N,3], pos[N,2] and edge[2,E]")
+        if not len(f["x"]) or (f["edge"].numel() and (f["edge"].min()<0 or f["edge"].max()>=len(f["x"]))):
+            raise ValueError("graph must contain nodes and valid zero-based edge indices")
+        f.update(n=1,group=torch.zeros(len(f["x"]),dtype=torch.long,device=dev))
     else:
         ds=dataset(cfg,"test",dev)
         f,_=ds.batch(torch.tensor([args.index],device=dev))

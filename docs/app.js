@@ -55,6 +55,19 @@ function show() {
     if(v==="—") continue;const box=document.createElement("span"), strong=document.createElement("strong");strong.textContent=v;box.append(strong,k);el("metrics").append(box);
   }
   el("scene-panel").hidden=!current.examples;curve();scene();
+  let gallery=el("image-gallery");
+  if(!gallery){gallery=document.createElement("article");gallery.id="image-gallery";el("detail").append(gallery);}
+  gallery.hidden=!current.image_examples;
+  if(current.image_examples){
+    gallery.replaceChildren();
+    const data=current.image_examples,title=document.createElement("h3"),img=document.createElement("img");
+    title.textContent="Held-out examples";img.src="figures/gallery-"+current.config.task+".png";
+    img.alt="Six fixed held-out inputs in order from left to right";img.className="arch";gallery.append(title,img);
+    const tab=document.createElement("table"),names=data.class_names;
+    cells(tab,["Input","Ground truth","Predicted class","Confidence"]);
+    data.label.forEach((v,i)=>cells(tab,[i+1,names[v],names[data.prediction[i]],pct(data.score[i])]));
+    gallery.append(tab);
+  }
 }
 async function live(){
   if(!["localhost","127.0.0.1","::1"].includes(location.hostname))return;

@@ -123,9 +123,15 @@ class PixelSet:
         if not stats.exists():
             tx,ty = (x,y) if split in ("train","val") else pixel_arrays("train")
             train,valid = split_pixels(tx,ty)
-            training = tx[train].astype(np.float32)/255
-            cache_npz(stats,train=train,val=valid,mean=training.mean((0,2,3),dtype=np.float64),
-                      std=training.std((0,2,3),dtype=np.float64))
+            # Accumulate channel moments in float64 without materializing the whole float image set.
+            sums,squares=np.zeros(3),np.zeros(3)
+            for idx in np.array_split(train,max(1,len(train)//512)):
+                unit=tx[idx].astype(np.float64)/255
+                sums+=unit.sum((0,2,3))
+                squares+=np.square(unit).sum((0,2,3))
+            count=len(train)*tx.shape[2]*tx.shape[3]
+            mean=sums/count
+            cache_npz(stats,train=train,val=valid,mean=mean,std=np.sqrt(squares/count-mean**2))
         with np.load(stats) as s:
             if split in ("train","val"):
                 idx=s[split]
@@ -216,8 +222,13 @@ class GraphSet:
         self.data=graph_arrays(split)
         self.device=device
         self.y=torch.tensor(self.data["y"],device=device)
-        self.color_scale=255 if self.data["x"].max()>1.01 else 1
-        self.pos_scale=32 if self.data["pos"].max()>2 else 1
+        scale=DATA/"graphs-scaling-v1.npz"
+        if not scale.exists():
+            training=self.data if split=="train" else graph_arrays("train")
+            cache_npz(scale,color=255 if training["x"].max()>1.01 else 1,
+                      pos=32 if training["pos"].max()>2 else 1)
+        with np.load(scale) as s:
+            self.color_scale,self.pos_scale=int(s["color"]),int(s["pos"])
 
     def __len__(self):
         return len(self.y)
@@ -257,3 +268,29 @@ class SuperpixelClassifier(nn.Module):
         pooled=h.new_zeros((f["n"],WIDTH)).index_add_(0,f["group"],h)
         denom=torch.bincount(f["group"],minlength=f["n"]).clamp_min(1)
         return self.head(pooled/denom[:,None])
+
+
+CLASS_NAMES=("airplane","automobile","bird","cat","deer","dog","frog","horse","ship","truck")
+
+
+def image_examples(ds,predictions,path):
+    """Draw the same first six held-out original inputs, preserving class targets separately."""
+    from PIL import ImageDraw
+    amount=min(6,len(ds))
+    gallery=Image.new("RGB",(96*amount,96),"white")
+    for i in range(amount):
+        if isinstance(ds,PixelSet):
+            arr=ds.x[i].cpu().numpy().transpose(1,2,0)
+            tile=Image.fromarray(arr).resize((96,96),Image.Resampling.NEAREST)
+        else:
+            a,b=ds.data["node_ptr"][i:i+2]
+            loc=ds.data["pos"][a:b]/ds.pos_scale
+            rgb=np.uint8(np.clip(ds.data["x"][a:b]/ds.color_scale,0,1)*255)
+            tile=Image.new("RGB",(96,96),"#f3f5f2")
+            draw=ImageDraw.Draw(tile)
+            for (x,y),color in zip(loc,rgb):
+                u,v=float(x*95),float(y*95)
+                draw.ellipse((u-3,v-3,u+3,v+3),fill=tuple(map(int,color)))
+        gallery.paste(tile,(96*i,0))
+    gallery.save(path)
+    return {"class_names":CLASS_NAMES,**{k:v[:amount].tolist() for k,v in predictions.items()}}
