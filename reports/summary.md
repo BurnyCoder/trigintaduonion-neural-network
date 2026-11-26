@@ -1,10 +1,10 @@
 # Results
 
-The pilot has no released test prediction yet. The registered crossover awaits complete paired worlds.
+The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both mates correctly in 82.23% of families. The constant control scored 50.00% and the privileged sensor-and-geometry oracle scored 93.55%. On unseen sensor coordinates accuracy was 89.79%. Seed 42 is excluded from all confirmatory contrasts. The registered crossover awaits complete paired worlds.
 
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
-| scene / cd32 / cd32 / 1024 families (pilot) | 0 | 3801 | pending | — |
+| scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
 | --- | --- | --- | --- | --- | --- |

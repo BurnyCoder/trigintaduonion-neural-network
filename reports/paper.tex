@@ -8,7 +8,7 @@
 \date{26 November 2026}
 \begin{document}\maketitle
 \begin{abstract}
-A noisy sensor observes one component of an unknown linear mixing of an object's excitation. A graph neural network must identify two objects through intermediary landmarks and predict whether they have the same hidden type. We cross the multiplication rule used by the sensor with the rule used to tie neural weights. This synthetic intervention measures whether compatible weight sharing improves end-to-end decisions. The pilot has no released test prediction yet. The registered crossover awaits complete paired worlds.
+A noisy sensor observes one component of an unknown linear mixing of an object's excitation. A graph neural network must identify two objects through intermediary landmarks and predict whether they have the same hidden type. We cross the multiplication rule used by the sensor with the rule used to tie neural weights. This synthetic intervention measures whether compatible weight sharing improves end-to-end decisions. The pilot classified 89.16\% of 2,048 unseen scenes correctly and answered both mates correctly in 82.23\% of families. The constant control scored 50.00\% and the privileged sensor-and-geometry oracle scored 93.55\%. On unseen sensor coordinates accuracy was 89.79\%. Seed 42 is excluded from all confirmatory contrasts. The registered crossover awaits complete paired worlds.
 \end{abstract}
 \section{Motivation and related work}
 Spatial structure can restrict which interactions a model must learn. Relational scene benchmarks [10], message passing [11] and distance-conditioned equivariant networks [12] motivate our scene generator and graph processor. We study a second, independent assumption about which observable channels share parameters. Real convolutional and residual networks [3,4], complex [5], quaternion [6], octonion [7] and sedenion networks [8,9] establish precedents for the smaller component counts. Our contribution is the combination of a 32-component trainable graph classifier, paired counterfactual scenes and a crossover intervention. We make no priority claim for 32-component neural layers.
@@ -34,10 +34,10 @@ Seed 42 is a development pilot. Compute two-sided 95\% Student intervals over pa
 
 Auxiliary multiplier and unrestricted bilinear least-squares fits test algebraic recovery. Separate transfer experiments compare structured residual image classifiers on CIFAR-10 and its duplicate-corrected ciFAIR-10 test set [4,14]. Superpixel classification uses the published split [13] with a learned color input and a graph-mean readout. The simulator supplies no sensor rule for natural images. The registered transfer contrast evaluates canonical versus randomized sharing on ciFAIR-10.
 \section{Results and claims}
-The pilot has no released test prediction yet. The registered crossover awaits complete paired worlds.
+The pilot classified 89.16\% of 2,048 unseen scenes correctly and answered both mates correctly in 82.23\% of families. The constant control scored 50.00\% and the privileged sensor-and-geometry oracle scored 93.55\%. On unseen sensor coordinates accuracy was 89.79\%. Seed 42 is excluded from all confirmatory contrasts. The registered crossover awaits complete paired worlds.
 \begin{longtable}{p{.43\linewidth}rrrr}
 \hline Task / model / rule & Worlds & Params & Test & 95\% interval\\\hline\endhead
-scene / cd32 / cd32 / 1024 families (pilot) & 0 & 3801 & pending & ---\\
+scene / cd32 / cd32 / 1024 families (pilot) & 1 & 3801 & 89.16\% & ---\\
 \hline\end{longtable}
 \begin{longtable}{p{.37\linewidth}rp{.11\linewidth}p{.17\linewidth}l}
 \hline Endpoint & N & Estimate & 95\% interval & Decision\\\hline\endhead
@@ -49,8 +49,12 @@ Canonical minus frozen & 0 & pending & --- & pending\\
 Canonical minus validation-selected shallow control & 0 & pending & --- & pending\\
 Canonical minus randomized on ciFAIR-10 & 0 & pending & --- & pending\\
 \hline\end{longtable}
+\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/scores.png}
+\\{\small Each dot is a held-out world. The vertical tick denotes its group's arithmetic mean.}\end{center}
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/learning.png}
 \\{\small Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.}\end{center}
+\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/example.png}
+\\{\small A fixed held-out family. Circles show object readings, square markers landmarks and stars beacons. Dashed paths show ground-truth selections.}\end{center}
 
 \section{Discussion, limitations and conclusion}
 A successful crossover identifies an effect of matching the assumed interaction rule to this simulator under this training recipe. The treatment changes the tied matrices throughout the encoder and message blocks, so a net effect alone does not localize the mechanism. Scene families share a world-specific filter, and evaluation addresses fresh scenes within each trained world. The task supplies object segmentation, roles and coordinates. Natural images require separate transfer evidence. The factorization and sample count of the real controls affect representational capacity and optimization. The privileged oracle knows the measurement filter and nearest paths. Noise makes even its decisions fallible. Diagnostic product recovery and gradients alone cannot establish that a scene classifier learned the task.
