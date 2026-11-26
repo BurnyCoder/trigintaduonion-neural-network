@@ -43,7 +43,7 @@ The pixel models apply a real input stem, three two-convolution residual stages 
 Across 8 independent simulated worlds, a network matched to the canonical sensor classified 90.04\% (95\% interval 89.28\% to 90.79\%) of held-out scenes correctly. A network matched to the randomized sensor classified 90.06\% (95\% interval 89.63\% to 90.49\%) correctly. The mean benefit of matching the sensor rule was 39.59 percentage points on canonical sensors and 39.58 points on randomized sensors. Both directional matching criteria passed.
 \begin{longtable}{p{.43\linewidth}rrrr}
 \hline Task / model / rule & Worlds & Params & Test & 95\% interval\\\hline\endhead\hline\endfoot
-graph / cd32 & 0 & 1694 & pending & ---\\
+graph / cd32 & 1 & 1694 & 34.80\% & ---\\
 graph / random & 0 & 1694 & pending & ---\\
 pixel / budget & 0 & 13115 & pending & ---\\
 pixel / cd16 & 0 & 22570 & pending & ---\\
@@ -93,6 +93,11 @@ real & cd32 & 3 & 50.05\% & 18.98\% & 50.29\% & 50.63\% & 50.00\% & 93.62\%\\
 shallow & cd32 & 8 & 49.96\% & 0.13\% & 50.00\% & 49.98\% & 50.00\% & 93.74\%\\
 \end{longtable}
 Entries are mean percentages over evaluated confirmatory worlds. Both counts families for which both opposite labels were correct. Unseen uses withheld sensor coordinates. Crowded doubles the object count. Constant and Oracle score the same original test scenes.
+\subsection*{Independent natural-image benchmarks}
+\begin{longtable}{llrrrrl}
+\hline Input & Learner & Seeds & Params & CIFAR-10 & ciFAIR-10 & ciFAIR 95\% interval\\\hline\endhead\hline\endfoot
+graph & cd32 & 1 & 1694 & 34.80\% & --- & ---\\
+\end{longtable}
 On canonical scenes the full network's paired accuracy difference was +39.48 points against the frozen encoder and +40.08 points against the validation-selected shallow control. Both lower bounds exceeded zero.
 
 On the 3 canonical worlds shared by the capacity baselines, mean test accuracy was 90.28\% for the trigintaduonion network, 61.90\% for the sedenion network, 50.05\% for unrestricted real maps and 49.92\% for low-rank real maps. These comparisons are descriptive.
@@ -121,6 +126,9 @@ In the single-world data-size study, increasing training from 256 to 32,768 fami
 \subsection*{Supplementary fixed-checkpoint interventions}
 scene-cd32-cd32-s42-n1024. A common orthogonal transformation, translation and node reordering changed 0 of 2048 decisions. Cyclically shifting sensor payloads among objects changed 1009 decisions and gave 49.85\% accuracy against the original labels. This supplementary probe was specified after the pilot evaluation.
 Maximum absolute probability drift under the common spatial transformation was 0.0306 in the training arithmetic and 2.61e-14 when reevaluating the trained coefficients in float64.
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.30\textheight,keepaspectratio]{docs/figures/gallery-graph.png}
+\par{\small Six fixed held-out graph inputs, in dataset order. The explorer shows each trained model's predicted and true classes for these inputs.}\end{minipage}\end{center}
 The decoded pixel training and validation sets contained 45,000 and 5,000 images, respectively, and shared 0 exact pixel hashes. The original and corrected test sets contained 0 and 0 images present byte-for-byte in the training partition.
 \subsection*{Independent algebra diagnostic}
 Across 8 algebra worlds, eight training vectors gave mean normalized squared errors of 2.4e-31 and 0.962 for the matched and mismatched canonical-sensor fits. On randomized sensors those errors were 2e-31 and 0.943. With 2,048 input pairs, the blind bilinear learner recovered at least 1,024 of the 1,024 signed basis products per world. Its mean error was 1.9e-30, compared with 2.06 after shuffling targets.

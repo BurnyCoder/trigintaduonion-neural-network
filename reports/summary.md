@@ -10,7 +10,7 @@ In the single-world data-size study, increasing training from 256 to 32,768 fami
 
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
-| graph / cd32 | 0 | 1694 | pending | — |
+| graph / cd32 | 1 | 1694 | 34.80% | — |
 | graph / random | 0 | 1694 | pending | — |
 | pixel / budget | 0 | 13115 | pending | — |
 | pixel / cd16 | 0 | 22570 | pending | — |
@@ -61,6 +61,12 @@ In the single-world data-size study, increasing training from 256 to 32,768 fami
 | shallow | cd32 | 8 | 49.96% | 0.13% | 50.00% | 49.98% | 50.00% | 93.74% |
 
 Each entry averages the saved world-level scores. Both mates counts families whose two opposite labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.
+
+## Independent image benchmarks
+
+| Input | Learner | Seeds | Trainable | CIFAR-10 | ciFAIR-10 | ciFAIR 95% interval |
+| --- | --- | --- | --- | --- | --- | --- |
+| graph | cd32 | 1 | 1694 | 34.80% | — | — |
 
 ## Supplementary fixed-checkpoint interventions
 
