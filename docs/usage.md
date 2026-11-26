@@ -26,6 +26,36 @@ For an independent fit in a clone that already contains released metrics, set `T
 
 A scene has two beacon positions `beacon[2,2]`, landmark coordinates `land[L,2]`, object coordinates `pos[O,2]`, Gaussian excitation `x[O,32]`, channel indices `k[O]` from 0 to 31, and corresponding signed noisy measurements `z[O]`. The public classifier returns one real logit per scene. Sigmoid produces the probability of equal types. The model accepts a variable object or landmark count shared across a batch. Split membership, hidden types, the world filter and selected neighbors are never model inputs. A model trained in one synthetic world may need retraining for a new filter. The independent clean-label oracle uses the full filter and exact nearest paths.
 
+### Using the PyTorch modules
+
+The linear layer maps groups of 32 real components to new groups of 32. For convolution, place the components consecutively in the ordinary PyTorch channel axis. Left multiplication fixes the operand order throughout both layers.
+
+```python
+import torch
+from trig32.algebra import CD32Conv2d, CD32Linear
+
+linear = CD32Linear(2, 3)
+assert linear(torch.randn(5, 2, 32)).shape == (5, 3, 32)
+conv = CD32Conv2d(1, 2, 3, padding=1)
+assert conv(torch.randn(5, 32, 8, 8)).shape == (5, 64, 8, 8)
+```
+
+The spatial classifier accepts the feature dictionary above. This example differentiates the complete encoder, both message blocks and the scene head using the final equality labels. Use the training CLI for optimizer steps, checkpoint selection and evaluation.
+
+```python
+import torch
+from torch.nn.functional import binary_cross_entropy_with_logits
+from trig32.models import SceneClassifier
+from trig32.scenes import SceneSet
+
+torch.manual_seed(7)
+scenes = SceneSet(families=2, seed=7, split="train", rule="cd32")
+features, targets = scenes.batch(torch.arange(len(scenes)))
+model = SceneClassifier(kind="cd32", seed=7)
+logits = model(features)
+binary_cross_entropy_with_logits(logits, targets).backward()
+```
+
 ### Comparison arms and optimization
 
 For external superpixel inference, pass JSON with normalized `x[N,3]` RGB means, unit-square `pos[N,2]`, and zero-based directed `edge[2,E]` source/destination indices. The graph readout returns ten class probabilities. The natural-image explorer shows fixed inputs with their true labels, predicted labels and confidence.

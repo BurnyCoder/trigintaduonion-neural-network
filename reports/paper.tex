@@ -51,7 +51,7 @@ scene / onehop / cd32 / 1024 families & 8 & 3801 & 50.00\% & 50.00\% to 50.00\%\
 scene / random / cd32 / 1024 families & 8 & 3801 & 50.45\% & 49.75\% to 51.14\%\\
 scene / random / random / 1024 families & 8 & 3801 & 90.06\% & 89.63\% to 90.49\%\\
 scene / real / cd32 / 1024 families & 0 & 11737 & pending & ---\\
-scene / shallow / cd32 / 1024 families & 4 & 7713 & 49.98\% & 49.84\% to 50.11\%\\
+scene / shallow / cd32 / 1024 families & 5 & 7713 & 49.98\% & 49.89\% to 50.07\%\\
 \hline\end{longtable}
 \begin{longtable}{p{.37\linewidth}rp{.11\linewidth}p{.17\linewidth}l}
 \hline Endpoint & N & Estimate & 95\% interval & Decision\\\hline\endhead
@@ -60,7 +60,7 @@ Matched randomized accuracy & 8 & 90.06\% & 89.63\% to 90.49\% & above threshold
 Canonical minus randomized on canonical sensors & 8 & 39.59 pp & 38.54 pp to 40.65 pp & above threshold\\
 Randomized minus canonical on randomized sensors & 8 & 39.58 pp & 38.96 pp to 40.19 pp & above threshold\\
 Canonical minus frozen & 8 & 39.48 pp & 38.82 pp to 40.15 pp & above threshold\\
-Canonical minus validation-selected shallow control & 4 & 40.04 pp & 38.58 pp to 41.50 pp & pending\\
+Canonical minus validation-selected shallow control & 5 & 39.76 pp & 38.49 pp to 41.02 pp & pending\\
 Canonical minus randomized on ciFAIR-10 & 0 & pending & --- & pending\\
 \hline\end{longtable}
 \subsection*{Counterfactual families and distribution shifts}
@@ -72,7 +72,7 @@ frozen & cd32 & 8 & 50.56\% & 15.01\% & 49.57\% & 50.75\% & 50.00\% & 93.74\%\\
 onehop & cd32 & 8 & 50.00\% & 0.00\% & 50.00\% & 50.00\% & 50.00\% & 93.74\%\\
 random & cd32 & 8 & 50.45\% & 21.62\% & 50.23\% & 49.65\% & 50.00\% & 93.74\%\\
 random & random & 8 & 90.06\% & 83.72\% & 90.14\% & 89.09\% & 50.00\% & 93.83\%\\
-shallow & cd32 & 4 & 49.98\% & 0.17\% & 50.01\% & 49.98\% & 50.00\% & 93.63\%\\
+shallow & cd32 & 5 & 49.98\% & 0.18\% & 49.99\% & 49.99\% & 50.00\% & 93.54\%\\
 \hline\end{longtable}
 Entries are mean percentages over evaluated confirmatory worlds. Both counts families for which both opposite labels were correct. Unseen uses withheld sensor coordinates. Crowded doubles the object count. Constant and Oracle score the same original test scenes.
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/scores.png}
