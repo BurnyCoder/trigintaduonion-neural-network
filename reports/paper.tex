@@ -47,7 +47,7 @@ graph / cd32 & 1 & 1694 & 34.80\% & ---\\
 graph / random & 1 & 1694 & 34.55\% & ---\\
 pixel / budget & 0 & 13115 & pending & ---\\
 pixel / cd16 & 0 & 22570 & pending & ---\\
-pixel / cd32 & 0 & 13034 & pending & ---\\
+pixel / cd32 & 1 & 13034 & 79.21\% & ---\\
 pixel / random & 0 & 13034 & pending & ---\\
 pixel / real & 0 & 308650 & pending & ---\\
 scene / budget / cd32 / 1024 families & 3 & 3961 & 49.92\% & 47.73\% to 52.10\%\\
@@ -98,6 +98,7 @@ Entries are mean percentages over evaluated confirmatory worlds. Both counts fam
 \hline Input & Learner & Seeds & Params & CIFAR-10 & ciFAIR-10 & ciFAIR 95\% interval\\\hline\endhead\hline\endfoot
 graph & cd32 & 1 & 1694 & 34.80\% & --- & ---\\
 graph & random & 1 & 1694 & 34.55\% & --- & ---\\
+pixel & cd32 & 1 & 13034 & 79.21\% & 78.07\% & ---\\
 \end{longtable}
 On canonical scenes the full network's paired accuracy difference was +39.48 points against the frozen encoder and +40.08 points against the validation-selected shallow control. Both lower bounds exceeded zero.
 
@@ -130,6 +131,9 @@ Maximum absolute probability drift under the common spatial transformation was 0
 \begin{center}\begin{minipage}{.99\linewidth}\centering
 \includegraphics[width=.98\linewidth,height=.30\textheight,keepaspectratio]{docs/figures/gallery-graph.png}
 \par{\small Six fixed held-out graph inputs, in dataset order. The explorer shows each trained model's predicted and true classes for these inputs.}\end{minipage}\end{center}
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.30\textheight,keepaspectratio]{docs/figures/gallery-pixel.png}
+\par{\small Six fixed held-out pixel inputs, in dataset order. The explorer shows each trained model's predicted and true classes for these inputs.}\end{minipage}\end{center}
 The decoded pixel training and validation sets contained 45,000 and 5,000 images, respectively, and shared 0 exact pixel hashes. The original and corrected test sets contained 0 and 0 images present byte-for-byte in the training partition.
 \subsection*{Independent algebra diagnostic}
 Across 8 algebra worlds, eight training vectors gave mean normalized squared errors of 2.4e-31 and 0.962 for the matched and mismatched canonical-sensor fits. On randomized sensors those errors were 2e-31 and 0.943. With 2,048 input pairs, the blind bilinear learner recovered at least 1,024 of the 1,024 signed basis products per world. Its mean error was 1.9e-30, compared with 2.06 after shuffling targets.
