@@ -4,7 +4,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 
 | Run | Trainable | Validation | Test | Both mates | Held-out channels | Crowded / ciFAIR |
 | --- | --- | --- | --- | --- | --- | --- |
-| [scene-budget-cd32-s0-n1024](scene-budget-cd32-s0-n1024/experiment.md) | 3961 | 53.12% | pending | pending | pending | pending |
+| [scene-budget-cd32-s0-n1024](scene-budget-cd32-s0-n1024/experiment.md) | 3961 | 53.12% | 49.51% | 22.17% | 48.88% | 48.58% |
 | [scene-budget-cd32-s1-n1024](scene-budget-cd32-s1-n1024/experiment.md) | 3961 | 53.32% | pending | pending | pending | pending |
 | [scene-budget-cd32-s2-n1024](scene-budget-cd32-s2-n1024/experiment.md) | 3961 | 53.32% | pending | pending | pending | pending |
 | [scene-cd16-cd32-s0-n1024](scene-cd16-cd32-s0-n1024/experiment.md) | 4057 | 63.67% | pending | pending | pending | pending |

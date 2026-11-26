@@ -6,7 +6,7 @@ On canonical scenes the full network's paired accuracy difference was +39.48 poi
 
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
-| scene / budget / cd32 / 1024 families | 0 | 3961 | pending | — |
+| scene / budget / cd32 / 1024 families | 1 | 3961 | 49.51% | — |
 | scene / cd16 / cd32 / 1024 families | 0 | 4057 | pending | — |
 | scene / cd32 / cd32 / 1024 families | 8 | 3801 | 90.04% | 89.28% to 90.79% |
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
@@ -32,6 +32,7 @@ On canonical scenes the full network's paired accuracy difference was +39.48 poi
 
 | Learner | Sensor | Worlds | Test | Both mates | Unseen channels | Crowded | Constant | Known-filter oracle |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| budget | cd32 | 1 | 49.51% | 22.17% | 48.88% | 48.58% | 50.00% | 93.95% |
 | cd32 | cd32 | 8 | 90.04% | 83.53% | 89.68% | 88.53% | 50.00% | 93.74% |
 | cd32 | random | 8 | 50.49% | 22.88% | 50.69% | 50.07% | 50.00% | 93.83% |
 | frozen | cd32 | 8 | 50.56% | 15.01% | 49.57% | 50.75% | 50.00% | 93.74% |
