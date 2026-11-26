@@ -1,10 +1,28 @@
 {
-  "source": "20d073ba492ae3eec9f16904050f5f1cb7047b73",
-  "command": "uv run --no-sync pytest -x -vv --durations=3",
-  "time": "2026-11-26T12:37:02+00:00",
-  "passed": 15,
+  "source": "5600b28",
+  "command": "uv run --no-sync pytest -q --junitxml=.work/verification.xml",
+  "time": "2026-11-26T13:43:56.438484+01:00",
+  "passed": 16,
   "failed": 0,
+  "errors": 0,
   "skipped": 0,
-  "device": "NVIDIA GeForce RTX 5070 Laptop GPU",
-  "seconds": 56.16
+  "seconds": 17.686,
+  "cases": [
+    "test_scene_supervision_reaches_every_stage",
+    "test_decisions_require_eight_matched_worlds",
+    "test_duplicate_isolation_and_natural_adapters",
+    "test_stopped_training_reloads_portable_best",
+    "test_all_ordered_products_and_triples",
+    "test_linear_conv_and_autograd",
+    "test_swapped_mates_and_disjoint_streams",
+    "test_full_classifier_and_isometries[cd32]",
+    "test_full_classifier_and_isometries[random]",
+    "test_full_classifier_and_isometries[real]",
+    "test_full_classifier_and_isometries[budget]",
+    "test_full_classifier_and_isometries[cd16]",
+    "test_full_classifier_and_isometries[frozen]",
+    "test_full_classifier_and_isometries[onehop]",
+    "test_full_classifier_and_isometries[shallow]",
+    "test_cuda_forward_and_backward"
+  ]
 }

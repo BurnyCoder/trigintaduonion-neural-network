@@ -4,6 +4,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
+| scene / cd32 / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
@@ -15,6 +16,14 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | Canonical minus frozen | 0 | pending | — | 0.00 pp | pending |
 | Canonical minus validation-selected shallow control | 0 | pending | — | 0.00 pp | pending |
 | Canonical minus randomized on ciFAIR-10 | 0 | pending | — | 1.00 pp | pending |
+
+## Supplementary fixed-checkpoint interventions
+
+| Run | Input | Accuracy against original labels | Decisions changed | Max Δ probability |
+| --- | --- | --- | --- | --- |
+| scene-cd32-cd32-s42-n1024 | original | 89.16% | 0 | 0 |
+| scene-cd32-cd32-s42-n1024 | isometry_and_reindexing | 89.16% | 0 | 0.0306 |
+| scene-cd32-cd32-s42-n1024 | broken_correspondence | 49.85% | 1009 | 1 |
 
 World differences are expressed as percentage points on a 0–100 scale. Intervals use a two-sided Student t across worlds. A single world has no between-world interval. Pilot and confirmatory worlds are reported separately.
 

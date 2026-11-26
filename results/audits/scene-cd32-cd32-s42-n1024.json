@@ -1,0 +1,52 @@
+{
+  "run": "scene-cd32-cd32-s42-n1024",
+  "recount": {
+    "test": {
+      "rows": 2048,
+      "correct": 1826,
+      "accuracy": 0.8916015625,
+      "both_correct": 0.822265625,
+      "flip_fraction": 0.861328125,
+      "positive_fraction": 0.5,
+      "constant_accuracy": 0.5
+    },
+    "heldout": {
+      "rows": 2048,
+      "correct": 1839,
+      "accuracy": 0.89794921875,
+      "both_correct": 0.8330078125,
+      "flip_fraction": 0.8701171875,
+      "positive_fraction": 0.5,
+      "constant_accuracy": 0.5
+    },
+    "crowded": {
+      "rows": 2048,
+      "correct": 1819,
+      "accuracy": 0.88818359375,
+      "both_correct": 0.80859375,
+      "flip_fraction": 0.8408203125,
+      "positive_fraction": 0.5,
+      "constant_accuracy": 0.5
+    }
+  },
+  "interventions": {
+    "original": {
+      "accuracy_against_original_labels": 0.8916015625,
+      "changed_decisions": 0,
+      "max_probability_change": 0.0,
+      "examples": 2048
+    },
+    "isometry_and_reindexing": {
+      "accuracy_against_original_labels": 0.8916015625,
+      "changed_decisions": 0,
+      "max_probability_change": 0.030604779720306396,
+      "examples": 2048
+    },
+    "broken_correspondence": {
+      "accuracy_against_original_labels": 0.49853515625,
+      "changed_decisions": 1009,
+      "max_probability_change": 1.0,
+      "examples": 2048
+    }
+  }
+}
