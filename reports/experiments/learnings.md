@@ -6,6 +6,8 @@ On canonical scenes the full network's paired accuracy difference was +39.48 poi
 
 On the 3 canonical worlds shared by the capacity baselines, mean test accuracy was 90.28% for the trigintaduonion network, 61.90% for the sedenion network, 50.05% for unrestricted real maps and 49.92% for low-rank real maps. These comparisons are descriptive.
 
+In the single-world data-size study, increasing training from 256 to 32,768 families changed canonical accuracy from 56.10% to 92.97% and randomized accuracy from 51.12% to 54.93%. The larger conditions also used more optimizer updates under the fixed epoch budget.
+
 The independent scalar implementation supplies rendering ground truth. Reversing high-basis triples changes coordinate interaction signs while preserving routing, real dimension and the lower subalgebra. An exact multiplier fit tests implementation and identifiability. Generalization of the full scene classifier requires separate held-out predictions.
 
 [Prior methods](../state-of-the-art-review.md) · [Per-run outcomes](experiments.md)
