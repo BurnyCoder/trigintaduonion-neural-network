@@ -2,11 +2,11 @@
 
 pixel / cd32. Seed 5, 60 epochs, batch size 128, starting learning rate 0.1. Accuracy counts correctly classified held-out images or image graphs.
 
-The validation-selected epoch was 55. Test predictions are pending release.
+The selected epoch was 55. Validation accuracy was 78.06% and test accuracy was 78.25%.
 
 | Run | Trainable | Validation | Test | Both mates | Held-out channels | Crowded / ciFAIR |
 | --- | --- | --- | --- | --- | --- | --- |
-| pixel-cd32-cd32-s5 | 13034 | 78.06% | pending | n/a | n/a | pending |
+| pixel-cd32-cd32-s5 | 13034 | 78.06% | 78.25% | n/a | n/a | 77.26% |
 
 Device NVIDIA GeForce RTX 5070 Laptop GPU. Training took 960.2 epoch-loop seconds. Peak allocated device memory was 354,823,680 bytes. Source revision d70745b06b8c580c704b928dc85f158ae8f1833b.
 
