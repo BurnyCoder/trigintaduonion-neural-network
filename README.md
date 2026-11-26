@@ -2,6 +2,12 @@
 
 Can knowing how a sensor mixes its 32 channels help a neural network answer a spatial question? Two beacons each select an object through a nearby landmark. A graph classifier learns whether the selected objects have the same hidden type from their positions and noisy sensor readings. Swapping one selected object's reading with a distractor reverses the answer.
 
+<!-- highlights:start -->
+The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both mates correctly in 82.23% of families. The constant control scored 50.00% and the privileged sensor-and-geometry oracle scored 93.55%. On unseen sensor coordinates accuracy was 89.79%. Seed 42 is excluded from all confirmatory contrasts. The registered crossover awaits complete paired worlds.
+
+![Held-out scene pair and learned same-type probabilities](docs/figures/example.png)
+<!-- highlights:end -->
+
 The **primary comparison** crosses two independently rendered sensor rules with two end-to-end models. Canonical Cayley–Dickson multiplication and a randomized high-dimensional rule use the same coefficient budget. A full network has a learned sensor encoder, two residual geometric message-passing blocks and a symmetric readout. Clinical, physical or natural-image interpretations of the synthetic sensor require independent evidence.
 
 ```mermaid
@@ -42,11 +48,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 ## Measured outcomes
 
 <!-- metrics:start -->
-The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both mates correctly in 82.23% of families. The constant control scored 50.00% and the privileged sensor-and-geometry oracle scored 93.55%. On unseen sensor coordinates accuracy was 89.79%. Seed 42 is excluded from all confirmatory contrasts. The registered crossover awaits complete paired worlds.
-
 ![Each dot is one test run and each black tick is the mean.](docs/figures/scores.png)
-
-![A fixed pilot pair with the selected paths, ground truth and predicted probability.](docs/figures/example.png)
 
 ![Ground truth, analytic controls and model predictions on the same held-out pairs.](docs/figures/predictions.png)
 

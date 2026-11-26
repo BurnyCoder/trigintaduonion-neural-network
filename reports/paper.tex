@@ -54,7 +54,7 @@ Canonical minus validation-selected shallow control & 0 & pending & --- & pendin
 Canonical minus randomized on ciFAIR-10 & 0 & pending & --- & pending\\
 \hline\end{longtable}
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/scores.png}
-\\{\small Each dot is a held-out world. The vertical tick denotes its group's arithmetic mean.}\end{center}
+\\{\small Dots represent held-out worlds, a vertical tick the mean, and a horizontal line the 95\% Student interval for groups with at least three worlds.}\end{center}
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/learning.png}
 \\{\small Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.}\end{center}
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/example.png}
@@ -66,6 +66,7 @@ scene-cd32-cd32-s42-n1024. A common orthogonal transformation, translation and n
 Maximum absolute probability drift under the common spatial transformation was 0.0306 in the training arithmetic and 2.61e-14 when reevaluating the trained coefficients in float64.
 The decoded pixel training and validation sets contained 45,000 and 5,000 images, respectively, and shared 0 exact pixel hashes. The original and corrected test sets contained 0 and 0 images present byte-for-byte in the training partition.
 \subsection*{Independent algebra diagnostic}
+Across 8 algebra worlds, eight training vectors gave mean normalized squared errors of 2.4e-31 and 0.962 for the matched and mismatched canonical-sensor fits. On randomized sensors those errors were 2e-31 and 0.943. With 2,048 input pairs, the blind bilinear learner recovered at least 1,024 of the 1,024 signed basis products per world. Its mean error was 1.9e-30, compared with 2.06 after shuffling targets.
 \begin{longtable}{lllrrrr}
 \hline Task & Teacher & Learner & N & Worlds & NMSE & Basis\\\hline\endhead
 multiplier & cd32 & cd32 & 2 & 8 & 3.32e-31 & ---\\
