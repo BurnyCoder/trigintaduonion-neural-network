@@ -64,7 +64,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | --- | --- | --- | --- | --- |
 | graph / cd32 | 1 | 1694 | 34.80% | — |
 | graph / random | 1 | 1694 | 34.55% | — |
-| pixel / budget | 2 | 13115 | 78.17% | 77.48% to 78.87% |
+| pixel / budget | 3 | 13115 | 78.31% | 77.72% to 78.89% |
 | pixel / cd16 | 2 | 22570 | 81.83% | 79.47% to 84.18% |
 | pixel / cd32 | 8 | 13034 | 78.80% | 78.47% to 79.14% |
 | pixel / random | 8 | 13034 | 79.06% | 78.63% to 79.48% |
