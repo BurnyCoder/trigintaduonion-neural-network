@@ -63,6 +63,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | scene / onehop / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / random / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / random / random / 1024 families | 0 | 3801 | pending | — |
+| scene / real / cd32 / 1024 families | 0 | 11737 | pending | — |
 | scene / shallow / cd32 / 1024 families | 0 | 7713 | pending | — |
 <!-- metrics:end -->
 
