@@ -63,7 +63,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | [scene-real-cd32-s1-n1024](scene-real-cd32-s1-n1024/experiment.md) | 11737 | 53.32% | pending | pending | pending | pending |
 | [scene-real-cd32-s2-n1024](scene-real-cd32-s2-n1024/experiment.md) | 11737 | 53.91% | pending | pending | pending | pending |
 | [scene-shallow-cd32-s0-n1024](scene-shallow-cd32-s0-n1024/experiment.md) | 7713 | 50.39% | 50.00% | 0.10% | 50.00% | 50.00% |
-| [scene-shallow-cd32-s1-n1024](scene-shallow-cd32-s1-n1024/experiment.md) | 7713 | 50.20% | pending | pending | pending | pending |
+| [scene-shallow-cd32-s1-n1024](scene-shallow-cd32-s1-n1024/experiment.md) | 7713 | 50.20% | 50.00% | 0.39% | 49.95% | 49.90% |
 | [scene-shallow-cd32-s2-n1024](scene-shallow-cd32-s2-n1024/experiment.md) | 7713 | 50.59% | pending | pending | pending | pending |
 | [scene-shallow-cd32-s3-n1024](scene-shallow-cd32-s3-n1024/experiment.md) | 7713 | 50.39% | pending | pending | pending | pending |
 | [scene-shallow-cd32-s4-n1024](scene-shallow-cd32-s4-n1024/experiment.md) | 7713 | 50.20% | pending | pending | pending | pending |

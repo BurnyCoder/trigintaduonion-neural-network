@@ -14,7 +14,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
 | scene / random / random / 1024 families | 8 | 3801 | 90.06% | 89.63% to 90.49% |
 | scene / real / cd32 / 1024 families | 0 | 11737 | pending | — |
-| scene / shallow / cd32 / 1024 families | 1 | 7713 | 50.00% | — |
+| scene / shallow / cd32 / 1024 families | 2 | 7713 | 50.00% | 50.00% to 50.00% |
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
 | --- | --- | --- | --- | --- | --- |
@@ -23,7 +23,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | Canonical minus randomized on canonical sensors | 8 | 39.59 pp | 38.54 pp to 40.65 pp | 1.00 pp | above threshold |
 | Randomized minus canonical on randomized sensors | 8 | 39.58 pp | 38.96 pp to 40.19 pp | 1.00 pp | above threshold |
 | Canonical minus frozen | 8 | 39.48 pp | 38.82 pp to 40.15 pp | 0.00 pp | above threshold |
-| Canonical minus validation-selected shallow control | 1 | 40.62 pp | — | 0.00 pp | pending |
+| Canonical minus validation-selected shallow control | 2 | 39.89 pp | 30.59 pp to 49.20 pp | 0.00 pp | pending |
 | Canonical minus randomized on ciFAIR-10 | 0 | pending | — | 1.00 pp | pending |
 
 ## Counterfactual families and distribution shifts
@@ -36,7 +36,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | onehop | cd32 | 8 | 50.00% | 0.00% | 50.00% | 50.00% | 50.00% | 93.74% |
 | random | cd32 | 8 | 50.45% | 21.62% | 50.23% | 49.65% | 50.00% | 93.74% |
 | random | random | 8 | 90.06% | 83.72% | 90.14% | 89.09% | 50.00% | 93.83% |
-| shallow | cd32 | 1 | 50.00% | 0.10% | 50.00% | 50.00% | 50.00% | 93.95% |
+| shallow | cd32 | 2 | 50.00% | 0.24% | 49.98% | 49.95% | 50.00% | 93.68% |
 
 Each entry averages the saved world-level scores. Both mates counts families whose two opposite labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.
 
