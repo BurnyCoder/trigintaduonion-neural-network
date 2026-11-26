@@ -6,6 +6,7 @@ import numpy as np
 from matplotlib.patches import FancyBboxPatch
 
 from .paths import ROOT
+from .analysis import interval
 
 FIG=ROOT/"docs"/"figures"
 INK="#142b39"
@@ -51,12 +52,31 @@ def figures(data):
             group.setdefault(key,[]).append(r["splits"]["test"]["accuracy"])
         fig,ax=plt.subplots(figsize=(8,max(2.5,.36*len(group)+1.2)))
         for i,(key,vals) in enumerate(group.items()):
-            ax.scatter(np.array(vals)*100,np.full(len(vals),i),c=BLUE,s=15,alpha=.7)
+            if len(vals)>=3:
+                v=interval(vals)
+                ax.hlines(i,100*v["lo"],100*v["hi"],color=TEAL,lw=2)
+            offset=np.linspace(-.11,.11,len(vals)) if len(vals)>1 else np.zeros(1)
+            ax.scatter(np.array(vals)*100,i+offset,c=BLUE,s=15,alpha=.7)
             ax.scatter(np.mean(vals)*100,i,marker="|",s=135,c=INK)
         ax.set_yticks(range(len(group)),[" / ".join(map(str,k)) for k in group],fontsize=8)
         ax.set(xlabel="Held-out accuracy (%)   ·   points are individual runs",xlim=(0,100))
         ax.grid(axis="x",alpha=.22)
         save(fig,"scores")
+    effects=[r for r in data["contrasts"][2:] if r["values"]]
+    if effects:
+        fig,ax=plt.subplots(figsize=(8,1.3+.64*len(effects)),layout="constrained")
+        for i,r in enumerate(effects):
+            scores=np.array(list(r["values"].values()))*100
+            ax.scatter(scores,np.full(len(scores),i),color="#83a6a4",s=13)
+            if r["lo"] is not None:
+                ax.hlines(i,100*r["lo"],100*r["hi"],color=TEAL,lw=2)
+            ax.scatter(100*r["mean"],i,s=35,c=INK)
+            ax.scatter(100*r["threshold"],i,marker="x",c=GOLD,s=40)
+        ax.axvline(0,color="#adb9b4",zorder=-1)
+        ax.set_yticks(range(len(effects)),[r["title"] for r in effects],fontsize=8)
+        ax.set_xlabel("Paired accuracy difference (percentage points)   ·   × decision threshold")
+        ax.grid(axis="x",alpha=.18)
+        save(fig,"effects")
     if runs:
         r=next((x for x in runs if x["config"]["seed"]==42),runs[0])
         events=r["curve"]

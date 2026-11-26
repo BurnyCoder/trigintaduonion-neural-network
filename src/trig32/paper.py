@@ -87,7 +87,8 @@ Auxiliary multiplier and unrestricted bilinear least-squares fits test algebraic
     if groups:
         text+=tabular(["Task / model / rule","Worlds","Params","Test","95% interval"],groups,r"p{.43\linewidth}rrrr")
     text+=tabular(["Endpoint","N","Estimate","95% interval","Decision"],[[r[0],r[1],r[2],r[3],r[5]] for r in decisions],r"p{.37\linewidth}rp{.11\linewidth}p{.17\linewidth}l")
-    text+=plot("scores","Each dot is a held-out world. The vertical tick denotes its group's arithmetic mean.")
+    text+=plot("scores","Dots represent held-out worlds, a vertical tick the mean, and a horizontal line the 95% Student interval for groups with at least three worlds.")
+    text+=plot("effects","Paired differences by world and their mean and 95% interval. Crosses mark the registered decision thresholds.")
     text+=plot("learning","Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.")
     text+=plot("example","A fixed held-out family. Circles show object readings, square markers landmarks and stars beacons. Dashed paths show ground-truth selections.")
     text+=plot("predictions","Same-type probabilities and binary controls on three fixed held-out families from the lowest available evaluated seed in the canonical sensor condition.")
@@ -107,7 +108,8 @@ Auxiliary multiplier and unrestricted bilinear least-squares fits test algebraic
         pixels=data["benchmark_inputs"]["pixels"]
         text+=esc(f"The decoded pixel training and validation sets contained {pixels['train']:,} and {pixels['validation']:,} images, respectively, and shared {pixels['exact_train_val_overlap']} exact pixel hashes. The original and corrected test sets contained {pixels['test']['images_seen_exactly_in_training']} and {pixels['cifair']['images_seen_exactly_in_training']} images present byte-for-byte in the training partition.")+"\n"
     if algebra:
-        text+=r"\subsection*{Independent algebra diagnostic}"+"\n"+tabular(["Task","Teacher","Learner","N","Worlds","NMSE","Basis"],algebra,"lllrrrr")
+        from .report import algebra_finding
+        text+=r"\subsection*{Independent algebra diagnostic}"+"\n"+esc(algebra_finding(data))+"\n"+tabular(["Task","Teacher","Learner","N","Worlds","NMSE","Basis"],algebra,"lllrrrr")
     text+=r"""
 \section{Discussion, limitations and conclusion}
 A successful crossover identifies an effect of matching the assumed interaction rule to this simulator under this training recipe. The treatment changes the tied matrices throughout the encoder and message blocks, so a net effect alone does not localize the mechanism. Scene families share a world-specific filter, and evaluation addresses fresh scenes within each trained world. The task supplies object segmentation, roles and coordinates. Natural images require separate transfer evidence. The factorization and sample count of the real controls affect representational capacity and optimization. The privileged oracle knows the measurement filter and nearest paths. Noise makes even its decisions fallible. Diagnostic product recovery and gradients alone cannot establish that a scene classifier learned the task.
