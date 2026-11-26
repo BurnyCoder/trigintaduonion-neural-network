@@ -3,7 +3,7 @@
 Can knowing how a sensor mixes its 32 channels help a neural network answer a spatial question? Two beacons each select an object through a nearby landmark. A graph classifier learns whether the selected objects have the same hidden type from their positions and noisy sensor readings. Swapping one selected object's reading with a distractor reverses the answer.
 
 <!-- highlights:start -->
-Across 8 independent simulated worlds, a network matched to the canonical sensor classified 90.04% (95% interval 89.28% to 90.79%) of held-out scenes correctly. A network matched to the randomized sensor classified 90.06% (95% interval 89.63% to 90.49%) correctly. The mean benefit of matching the sensor rule was 39.59 percentage points on canonical sensors and 39.58 points on randomized sensors. Both directional matching criteria passed.
+Across 8 independent simulated worlds, a network matched to the canonical sensor classified 90.04% (95% interval 89.28% to 90.79%) of held-out scenes correctly. A network matched to the randomized sensor classified 90.06% (95% interval 89.63% to 90.49%) correctly. The mean benefit of matching the sensor rule was 39.59 percentage points on canonical sensors and 39.58 points on randomized sensors. Both directional matching criteria passed. On the corrected natural-image test set, the paired difference for canonical minus randomized sharing was -0.28 points (95% interval -0.80 to +0.24). The upper bound rules out a one-point canonical advantage for this training recipe.
 
 ![Held-out scene pair and learned same-type probabilities](docs/figures/example.png)
 
@@ -67,7 +67,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | pixel / budget | 0 | 13115 | pending | — |
 | pixel / cd16 | 0 | 22570 | pending | — |
 | pixel / cd32 | 8 | 13034 | 78.80% | 78.47% to 79.14% |
-| pixel / random | 7 | 13034 | 79.03% | 78.53% to 79.53% |
+| pixel / random | 8 | 13034 | 79.06% | 78.63% to 79.48% |
 | pixel / real | 0 | 308650 | pending | — |
 | scene / budget / cd32 / 1024 families | 3 | 3961 | 49.92% | 47.73% to 52.10% |
 | scene / cd16 / cd32 / 1024 families | 3 | 4057 | 61.90% | 48.57% to 75.22% |

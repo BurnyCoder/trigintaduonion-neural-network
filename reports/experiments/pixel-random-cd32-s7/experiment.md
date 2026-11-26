@@ -2,11 +2,11 @@
 
 pixel / random. Seed 7, 60 epochs, batch size 128, starting learning rate 0.1. Accuracy counts correctly classified held-out images or image graphs.
 
-The validation-selected epoch was 58. Test predictions are pending release.
+The selected epoch was 58. Validation accuracy was 78.74% and test accuracy was 79.23%.
 
 | Run | Trainable | Validation | Test | Both mates | Held-out channels | Crowded / ciFAIR |
 | --- | --- | --- | --- | --- | --- | --- |
-| pixel-random-cd32-s7 | 13034 | 78.74% | pending | n/a | n/a | pending |
+| pixel-random-cd32-s7 | 13034 | 78.74% | 79.23% | n/a | n/a | 78.15% |
 
 Device NVIDIA GeForce RTX 5070 Laptop GPU. Training took 932.7 epoch-loop seconds. Peak allocated device memory was 354,823,680 bytes. Source revision 9834857a5a7317503f55ada959d629ef6e49bd10.
 

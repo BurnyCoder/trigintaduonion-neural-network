@@ -8,6 +8,8 @@ On the 3 canonical worlds shared by the capacity baselines, mean test accuracy w
 
 In the single-world data-size study, increasing training from 256 to 32,768 families changed canonical accuracy from 56.10% to 92.97% and randomized accuracy from 51.12% to 54.93%. The larger conditions also used more optimizer updates under the fixed epoch budget.
 
+On the corrected natural-image test set, the paired difference for canonical minus randomized sharing was -0.28 points (95% interval -0.80 to +0.24). The upper bound rules out a one-point canonical advantage for this training recipe.
+
 The independent scalar implementation supplies rendering ground truth. Reversing high-basis triples changes coordinate interaction signs while preserving routing, real dimension and the lower subalgebra. An exact multiplier fit tests implementation and identifiability. Generalization of the full scene classifier requires separate held-out predictions.
 
 [Prior methods](../state-of-the-art-review.md) · [Per-run outcomes](experiments.md)
