@@ -45,7 +45,7 @@ scene / budget / cd32 / 1024 families & 0 & 3961 & pending & ---\\
 scene / cd16 / cd32 / 1024 families & 0 & 4057 & pending & ---\\
 scene / cd32 / cd32 / 1024 families & 1 & 3801 & 90.62\% & ---\\
 scene / cd32 / cd32 / 1024 families (pilot) & 1 & 3801 & 89.16\% & ---\\
-scene / cd32 / random / 1024 families & 0 & 3801 & pending & ---\\
+scene / cd32 / random / 1024 families & 1 & 3801 & 51.27\% & ---\\
 scene / frozen / cd32 / 1024 families & 0 & 2113 & pending & ---\\
 scene / onehop / cd32 / 1024 families & 0 & 3801 & pending & ---\\
 scene / random / cd32 / 1024 families & 1 & 3801 & 51.42\% & ---\\
@@ -67,6 +67,7 @@ Canonical minus randomized on ciFAIR-10 & 0 & pending & --- & pending\\
 \begin{longtable}{llrrrrrrr}
 \hline Learner & Rule & N & Test & Both & Unseen & Crowded & Constant & Oracle\\\hline\endhead
 cd32 & cd32 & 1 & 90.62\% & 84.96\% & 90.14\% & 89.36\% & 50.00\% & 93.95\%\\
+cd32 & random & 1 & 51.27\% & 24.90\% & 50.98\% & 50.10\% & 50.00\% & 93.55\%\\
 random & cd32 & 1 & 51.42\% & 23.14\% & 51.81\% & 48.68\% & 50.00\% & 93.95\%\\
 \hline\end{longtable}
 Entries are mean percentages over evaluated confirmatory worlds. Both counts families for which both opposite labels were correct. Unseen uses withheld sensor coordinates. Crowded doubles the object count. Constant and Oracle score the same original test scenes.

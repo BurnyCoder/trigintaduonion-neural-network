@@ -8,7 +8,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | scene / cd16 / cd32 / 1024 families | 0 | 4057 | pending | — |
 | scene / cd32 / cd32 / 1024 families | 1 | 3801 | 90.62% | — |
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
-| scene / cd32 / random / 1024 families | 0 | 3801 | pending | — |
+| scene / cd32 / random / 1024 families | 1 | 3801 | 51.27% | — |
 | scene / frozen / cd32 / 1024 families | 0 | 2113 | pending | — |
 | scene / onehop / cd32 / 1024 families | 0 | 3801 | pending | — |
 | scene / random / cd32 / 1024 families | 1 | 3801 | 51.42% | — |
@@ -31,6 +31,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | Learner | Sensor | Worlds | Test | Both mates | Unseen channels | Crowded | Constant | Known-filter oracle |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | cd32 | cd32 | 1 | 90.62% | 84.96% | 90.14% | 89.36% | 50.00% | 93.95% |
+| cd32 | random | 1 | 51.27% | 24.90% | 50.98% | 50.10% | 50.00% | 93.55% |
 | random | cd32 | 1 | 51.42% | 23.14% | 51.81% | 48.68% | 50.00% | 93.95% |
 
 Each entry averages the saved world-level scores. Both mates counts families whose two opposite labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.

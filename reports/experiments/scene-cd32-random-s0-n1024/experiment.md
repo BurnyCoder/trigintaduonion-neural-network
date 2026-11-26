@@ -2,11 +2,11 @@
 
 scene / cd32 / random / 1024 families. Seed 0, 80 epochs, batch size 128, starting learning rate 0.003. A family contains the original scene and a counterfactual with reversed ground truth.
 
-The validation-selected epoch was 70. Test predictions are pending release.
+The selected epoch was 70. Validation accuracy was 53.91% and test accuracy was 51.27%. Both mates were correct in 24.90% of families. The oracle scored 93.55%.
 
 | Run | Trainable | Validation | Test | Both mates | Held-out channels | Crowded / ciFAIR |
 | --- | --- | --- | --- | --- | --- | --- |
-| scene-cd32-random-s0-n1024 | 3801 | 53.91% | pending | pending | pending | pending |
+| scene-cd32-random-s0-n1024 | 3801 | 53.91% | 51.27% | 24.90% | 50.98% | 50.10% |
 
 Device NVIDIA GeForce RTX 5070 Laptop GPU. Training took 26.1 epoch-loop seconds. Peak allocated device memory was 38,955,520 bytes. Source revision 5033032022aacf6ac474b72dcb154c6cb54f6398.
 
