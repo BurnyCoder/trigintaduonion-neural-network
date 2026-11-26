@@ -53,6 +53,7 @@ scene / frozen / cd32 / 1024 families & 8 & 2113 & 50.56\% & 50.10\% to 51.01\%\
 scene / onehop / cd32 / 1024 families & 8 & 3801 & 50.00\% & 50.00\% to 50.00\%\\
 scene / random / cd32 / 1024 families & 8 & 3801 & 50.45\% & 49.75\% to 51.14\%\\
 scene / random / cd32 / 256 families & 0 & 3801 & pending & ---\\
+scene / random / cd32 / 32768 families & 0 & 3801 & pending & ---\\
 scene / random / cd32 / 4096 families & 0 & 3801 & pending & ---\\
 scene / random / random / 1024 families & 8 & 3801 & 90.06\% & 89.63\% to 90.49\%\\
 scene / real / cd32 / 1024 families & 3 & 11737 & 50.05\% & 47.93\% to 52.16\%\\
@@ -84,6 +85,8 @@ shallow & cd32 & 8 & 49.96\% & 0.13\% & 50.00\% & 49.98\% & 50.00\% & 93.74\%\\
 \hline\end{longtable}
 Entries are mean percentages over evaluated confirmatory worlds. Both counts families for which both opposite labels were correct. Unseen uses withheld sensor coordinates. Crowded doubles the object count. Constant and Oracle score the same original test scenes.
 On canonical scenes the full network's paired accuracy difference was +39.48 points against the frozen encoder and +40.08 points against the validation-selected shallow control. Both lower bounds exceeded zero.
+
+On the 3 canonical worlds shared by the capacity baselines, mean test accuracy was 90.28\% for the trigintaduonion network, 61.90\% for the sedenion network, 50.05\% for unrestricted real maps and 49.92\% for low-rank real maps. These comparisons are descriptive.
 
 \begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/scores.png}
 \\{\small Dots represent held-out worlds, a vertical tick the mean, and a horizontal line the 95\% Student interval for groups with at least three worlds.}\end{center}
@@ -135,9 +138,10 @@ product & cd32 & bilinear & 2048 & 8 & 1.94e-30 & 1024.0\\
 product & cd32 & shuffled & 2048 & 8 & 2.06 & 17.8\\
 product & cd32 & analytic & 0 & 8 & 0 & 1024.0\\
 \hline\end{longtable}
-
 \section{Discussion, limitations and conclusion}
-A successful crossover identifies an effect of matching the assumed interaction rule to this simulator under this training recipe. The treatment changes the tied matrices throughout the encoder and message blocks, so a net effect alone does not localize the mechanism. Scene families share a world-specific filter, and evaluation addresses fresh scenes within each trained world. The task supplies object segmentation, roles and coordinates. Natural images require separate transfer evidence. The factorization and sample count of the real controls affect representational capacity and optimization. The privileged oracle knows the measurement filter and nearest paths. Noise makes even its decisions fallible. Diagnostic product recovery and gradients alone cannot establish that a scene classifier learned the task.
+Changing the sensor rule reversed which of two equally sized neural classifiers performed better. This intervention identifies a benefit of matching channel sharing to this simulator under the registered training procedure.
+
+The treatment changes the tied matrices throughout the encoder and message blocks, so the precise site of the effect remains unresolved. The shallow set control also changes the sensor encoder. The depth contrasts concern the complete processing chain compared with these controls. Scene families share a world-specific filter, and evaluation addresses fresh scenes within each trained world. The task supplies object segmentation, roles and coordinates. The factorization and sample count of the real controls affect representational capacity and optimization. The privileged oracle knows the measurement filter and nearest paths. Noise makes even its decisions fallible.
 
 \section*{Appendix: a check on the observation model}
 Each row of the signed left-multiplication matrix is a signed permutation of the unit filter. Its inner product with a standard Gaussian excitation is therefore a unit-variance normal random variable $s$ for either rule and every queried coordinate. The marginal distribution of $z=bs+\epsilon$ is the same for both types. The joint excitation and reading carry the type information. With noise standard deviation $\sigma$, the privileged single-object rule has sign-error probability $q=\arctan(\sigma)/\pi$ by the angle between two Gaussian projections. Independence of the two objects' measurements gives population accuracy $(1-q)^2+q^2$ for the equality oracle. The fixed global type counts could be used by a joint decoder. See the \href{https://github.com/BurnyCoder/trigintaduonion-neural-network/blob/main/reports/reviews/sensor-and-oracle.md}{derivation and source}.

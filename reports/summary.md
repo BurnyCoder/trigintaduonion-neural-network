@@ -4,6 +4,8 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 
 On canonical scenes the full network's paired accuracy difference was +39.48 points against the frozen encoder and +40.08 points against the validation-selected shallow control. Both lower bounds exceeded zero.
 
+On the 3 canonical worlds shared by the capacity baselines, mean test accuracy was 90.28% for the trigintaduonion network, 61.90% for the sedenion network, 50.05% for unrestricted real maps and 49.92% for low-rank real maps. These comparisons are descriptive.
+
 | Task / learner / sensor | Tested worlds | Trainable | Mean test | 95% interval |
 | --- | --- | --- | --- | --- |
 | scene / budget / cd32 / 1024 families | 3 | 3961 | 49.92% | 47.73% to 52.10% |
@@ -18,6 +20,7 @@ On canonical scenes the full network's paired accuracy difference was +39.48 poi
 | scene / onehop / cd32 / 1024 families | 8 | 3801 | 50.00% | 50.00% to 50.00% |
 | scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
 | scene / random / cd32 / 256 families | 0 | 3801 | pending | — |
+| scene / random / cd32 / 32768 families | 0 | 3801 | pending | — |
 | scene / random / cd32 / 4096 families | 0 | 3801 | pending | — |
 | scene / random / random / 1024 families | 8 | 3801 | 90.06% | 89.63% to 90.49% |
 | scene / real / cd32 / 1024 families | 3 | 11737 | 50.05% | 47.93% to 52.16% |

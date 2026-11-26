@@ -4,6 +4,8 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 
 On canonical scenes the full network's paired accuracy difference was +39.48 points against the frozen encoder and +40.08 points against the validation-selected shallow control. Both lower bounds exceeded zero.
 
+On the 3 canonical worlds shared by the capacity baselines, mean test accuracy was 90.28% for the trigintaduonion network, 61.90% for the sedenion network, 50.05% for unrestricted real maps and 49.92% for low-rank real maps. These comparisons are descriptive.
+
 The independent scalar implementation supplies rendering ground truth. Reversing high-basis triples changes coordinate interaction signs while preserving routing, real dimension and the lower subalgebra. An exact multiplier fit tests implementation and identifiability. Generalization of the full scene classifier requires separate held-out predictions.
 
 [Prior methods](../state-of-the-art-review.md) · [Per-run outcomes](experiments.md)
