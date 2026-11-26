@@ -32,15 +32,18 @@ def esc(x):
 
 def tabular(head,rows,spec):
     return (r"\begin{longtable}{"+spec+"}\n"+r"\hline " + " & ".join(esc(x) for x in head)+
-            r"\\\hline\endhead"+"\n"+"\n".join(" & ".join(esc(x) for x in row)+r"\\" for row in rows)+
-            "\n"+r"\hline\end{longtable}"+"\n")
+            r"\\\hline\endhead\hline\endfoot"+"\n"+"\n".join(" & ".join(esc(x) for x in row)+r"\\" for row in rows)+
+            "\n"+r"\end{longtable}"+"\n")
 
 
 def plot(file,caption):
     if not (ROOT/"docs"/"figures"/(file+".png")).exists():
         return ""
-    return (r"\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/"+file+
-            ".png}\n"+r"\\{\small "+esc(caption)+r"}\end{center}"+"\n")
+    # A full set of model rows needs substantially more page height than a two-panel learning curve.
+    height={"scores":".74","effects":".48","predictions":".48"}.get(file,".30")
+    return (r"\begin{center}\begin{minipage}{.99\linewidth}\centering"
+            +"\n"+r"\includegraphics[width=.98\linewidth,height="+height+r"\textheight,keepaspectratio]{docs/figures/"+file+
+            ".png}\n"+r"\par{\small "+esc(caption)+r"}\end{minipage}\end{center}"+"\n")
 
 
 def make_paper(brief,groups,decisions,algebra,data):
@@ -48,9 +51,10 @@ def make_paper(brief,groups,decisions,algebra,data):
     header=r"""\documentclass[10pt]{article}
 \usepackage[margin=0.8in]{geometry}
 \usepackage{graphicx,longtable,hyperref}
-\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,pdfauthor={Libor Burny Burian}}
+\newcommand{\studytitle}{Testing the inductive bias of a trigintaduonion neural network on spatial relations}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,pdfauthor={Libor Burny Burian},pdftitle={\studytitle}}
 \setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\setlength{\emergencystretch}{3em}
-\title{Testing the inductive bias of a trigintaduonion neural network on spatial relations}
+\title{\studytitle}
 \author{Libor \textquotedblleft Burny\textquotedblright\ Burian}
 \date{DATE}
 \begin{document}\maketitle
@@ -106,8 +110,8 @@ The pixel models apply a real input stem, three two-convolution residual stages 
                       external,"llrrrrl")
     for finding in additional_findings(data):
         text+=esc(finding)+"\n\n"
-    text+=plot("scores","Dots represent held-out worlds, a vertical tick the mean, and a horizontal line the 95% Student interval for groups with at least three worlds.")
-    text+=plot("effects","Paired differences by world and their mean and 95% interval. Crosses mark the registered decision thresholds.")
+    text+=plot("scores","Dots represent evaluated seeds, a vertical tick the mean, and a horizontal line the 95% Student interval for groups with at least three seeds. Scene seeds sample new worlds. Image seeds reuse a fixed test set.")
+    text+=plot("effects","Paired seed differences and their mean and 95% interval. Crosses mark the registered decision thresholds.")
     text+=plot("sample-size","Data-size sensitivity on the canonical sensor in seed zero. Training families are nested and the test set is fixed. With a fixed epoch and batch budget, larger samples also receive more optimizer steps.")
     text+=plot("learning","Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.")
     text+=plot("example","A fixed held-out family. Circles show object readings, square markers landmarks and stars beacons. Dashed paths show ground-truth selections.")
