@@ -11,7 +11,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | scene / cd32 / random / 1024 families | 7 | 3801 | 50.58% | 49.83% to 51.33% |
 | scene / frozen / cd32 / 1024 families | 0 | 2113 | pending | — |
 | scene / onehop / cd32 / 1024 families | 0 | 3801 | pending | — |
-| scene / random / cd32 / 1024 families | 7 | 3801 | 50.54% | 49.76% to 51.32% |
+| scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
 | scene / random / random / 1024 families | 7 | 3801 | 90.12% | 89.63% to 90.61% |
 | scene / real / cd32 / 1024 families | 0 | 11737 | pending | — |
 | scene / shallow / cd32 / 1024 families | 0 | 7713 | pending | — |
@@ -20,7 +20,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | --- | --- | --- | --- | --- | --- |
 | Matched canonical accuracy | 8 | 90.04% | 89.28% to 90.79% | 60.00% | above threshold |
 | Matched randomized accuracy | 7 | 90.12% | 89.63% to 90.61% | 60.00% | pending |
-| Canonical minus randomized on canonical sensors | 7 | 39.43 pp | 38.26 pp to 40.59 pp | 1.00 pp | pending |
+| Canonical minus randomized on canonical sensors | 8 | 39.59 pp | 38.54 pp to 40.65 pp | 1.00 pp | above threshold |
 | Randomized minus canonical on randomized sensors | 7 | 39.54 pp | 38.81 pp to 40.26 pp | 1.00 pp | pending |
 | Canonical minus frozen | 0 | pending | — | 0.00 pp | pending |
 | Canonical minus validation-selected shallow control | 0 | pending | — | 0.00 pp | pending |
@@ -32,7 +32,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | cd32 | cd32 | 8 | 90.04% | 83.53% | 89.68% | 88.53% | 50.00% | 93.74% |
 | cd32 | random | 7 | 50.58% | 23.42% | 50.89% | 49.80% | 50.00% | 93.72% |
-| random | cd32 | 7 | 50.54% | 21.32% | 50.43% | 49.45% | 50.00% | 93.79% |
+| random | cd32 | 8 | 50.45% | 21.62% | 50.23% | 49.65% | 50.00% | 93.74% |
 | random | random | 7 | 90.12% | 83.94% | 90.19% | 88.96% | 50.00% | 93.72% |
 
 Each entry averages the saved world-level scores. Both mates counts families whose two opposite labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.

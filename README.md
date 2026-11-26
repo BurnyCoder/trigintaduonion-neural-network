@@ -65,7 +65,7 @@ In another terminal, `uv run trig32 dashboard` serves live accuracy at <http://1
 | scene / cd32 / random / 1024 families | 7 | 3801 | 50.58% | 49.83% to 51.33% |
 | scene / frozen / cd32 / 1024 families | 0 | 2113 | pending | — |
 | scene / onehop / cd32 / 1024 families | 0 | 3801 | pending | — |
-| scene / random / cd32 / 1024 families | 7 | 3801 | 50.54% | 49.76% to 51.32% |
+| scene / random / cd32 / 1024 families | 8 | 3801 | 50.45% | 49.75% to 51.14% |
 | scene / random / random / 1024 families | 7 | 3801 | 90.12% | 89.63% to 90.61% |
 | scene / real / cd32 / 1024 families | 0 | 11737 | pending | — |
 | scene / shallow / cd32 / 1024 families | 0 | 7713 | pending | — |
