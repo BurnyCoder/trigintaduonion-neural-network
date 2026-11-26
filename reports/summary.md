@@ -15,7 +15,7 @@ In the single-world data-size study, increasing training from 256 to 32,768 fami
 | pixel / budget | 0 | 13115 | pending | — |
 | pixel / cd16 | 0 | 22570 | pending | — |
 | pixel / cd32 | 6 | 13034 | 78.80% | 78.31% to 79.29% |
-| pixel / random | 5 | 13034 | 79.08% | 78.30% to 79.86% |
+| pixel / random | 6 | 13034 | 79.09% | 78.50% to 79.69% |
 | pixel / real | 0 | 308650 | pending | — |
 | scene / budget / cd32 / 1024 families | 3 | 3961 | 49.92% | 47.73% to 52.10% |
 | scene / cd16 / cd32 / 1024 families | 3 | 4057 | 61.90% | 48.57% to 75.22% |
@@ -43,7 +43,7 @@ In the single-world data-size study, increasing training from 256 to 32,768 fami
 | Randomized minus canonical on randomized sensors | 8 | 39.58 pp | 38.96 pp to 40.19 pp | 1.00 pp | above threshold |
 | Canonical minus frozen | 8 | 39.48 pp | 38.82 pp to 40.15 pp | 0.00 pp | above threshold |
 | Canonical minus validation-selected shallow control | 8 | 40.08 pp | 39.33 pp to 40.84 pp | 0.00 pp | above threshold |
-| Canonical minus randomized on ciFAIR-10 | 5 | -0.22 pp | -1.18 pp to 0.74 pp | 1.00 pp | pending |
+| Canonical minus randomized on ciFAIR-10 | 6 | -0.31 pp | -1.07 pp to 0.45 pp | 1.00 pp | pending |
 
 ## Counterfactual families and distribution shifts
 
@@ -69,7 +69,7 @@ Each entry averages the saved world-level scores. Both mates counts families who
 | graph | cd32 | 1 | 1694 | 34.80% | — | — |
 | graph | random | 1 | 1694 | 34.55% | — | — |
 | pixel | cd32 | 6 | 13034 | 78.80% | 77.73% | 77.30% to 78.16% |
-| pixel | random | 5 | 13034 | 79.08% | 78.05% | 77.29% to 78.81% |
+| pixel | random | 6 | 13034 | 79.09% | 78.05% | 77.47% to 78.62% |
 
 ## Supplementary fixed-checkpoint interventions
 
