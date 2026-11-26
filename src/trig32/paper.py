@@ -90,7 +90,7 @@ The pixel models apply a real input stem, three two-convolution residual stages 
     if groups:
         text+=tabular(["Task / model / rule","Worlds","Params","Test","95% interval"],groups,r"p{.43\linewidth}rrrr")
     text+=tabular(["Endpoint","N","Estimate","95% interval","Decision"],[[r[0],r[1],r[2],r[3],r[5]] for r in decisions],r"p{.37\linewidth}rp{.11\linewidth}p{.17\linewidth}l")
-    from .report import scene_generalization
+    from .report import additional_findings, benchmark_rows, scene_generalization
     challenges=scene_generalization(data)
     if challenges:
         text+=r"\subsection*{Counterfactual families and distribution shifts}"+"\n"
@@ -99,6 +99,13 @@ The pixel models apply a real input stem, three two-convolution residual stages 
         text+=("Entries are mean percentages over evaluated confirmatory worlds. Both counts families for which "
                "both opposite labels were correct. Unseen uses withheld sensor coordinates. Crowded doubles "
                "the object count. Constant and Oracle score the same original test scenes.\n")
+    external=benchmark_rows(data)
+    if external:
+        text+=r"\subsection*{Independent natural-image benchmarks}"+"\n"
+        text+=tabular(["Input","Learner","Seeds","Params","CIFAR-10","ciFAIR-10","ciFAIR 95% interval"],
+                      external,"llrrrrl")
+    for finding in additional_findings(data):
+        text+=esc(finding)+"\n\n"
     text+=plot("scores","Dots represent held-out worlds, a vertical tick the mean, and a horizontal line the 95% Student interval for groups with at least three worlds.")
     text+=plot("effects","Paired differences by world and their mean and 95% interval. Crosses mark the registered decision thresholds.")
     text+=plot("sample-size","Data-size sensitivity on the canonical sensor in seed zero. Training families are nested and the test set is fixed. With a fixed epoch and batch budget, larger samples also receive more optimizer steps.")
@@ -153,8 +160,13 @@ Codex wrote this codebase and paper. A human provided the exact specification th
         cmd=["tectonic","--outdir",str(scratch),str(source)]
     env={**os.environ,"TEXINPUTS":str(ROOT)+os.pathsep+str(directory)+os.pathsep}
     # Keep compiler diagnostics available without flooding epoch logs.
-    proc=subprocess.run(cmd,cwd=ROOT,env=env,capture_output=True,timeout=180)
-    (scratch/"engine.log").write_bytes(proc.stdout+proc.stderr)
-    if proc.returncode:
-        raise RuntimeError(f"paper build failed, see {scratch/'engine.log'}")
+    for _ in range(3 if compiler else 1):
+        proc=subprocess.run(cmd,cwd=ROOT,env=env,capture_output=True,timeout=180)
+        log=proc.stdout+proc.stderr
+        (scratch/"engine.log").write_bytes(log)
+        if proc.returncode:
+            raise RuntimeError(f"paper build failed, see {scratch/'engine.log'}")
+        # Multipage tables store their widths in the auxiliary file for the next pdfLaTeX pass.
+        if not any(warning in log for warning in (b"Rerun LaTeX",b"Rerun to get",b"Label(s) may have changed")):
+            break
     shutil.copyfile(scratch/"paper.pdf",directory/"paper.pdf")
