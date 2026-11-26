@@ -1,0 +1,28 @@
+[project]
+name = "trig32"
+version = "0.1.0"
+description = "Controlled experiments on trigintaduonion channel sharing and spatial reasoning"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "torch==2.15.0", "numpy>=2", "scipy", "matplotlib", "pillow",
+    "huggingface-hub", "pyarrow", "safetensors", "tensorboard", "python-dotenv",
+    "reportlab", "hypercomplex==0.3.4",
+]
+
+[project.scripts]
+trig32 = "trig32.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu132", marker = "(sys_platform == 'win32' or sys_platform == 'linux') and (platform_machine == 'AMD64' or platform_machine == 'x86_64')" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true

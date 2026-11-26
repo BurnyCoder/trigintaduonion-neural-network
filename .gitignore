@@ -1,0 +1,13 @@
+.venv/
+.env
+__pycache__/
+.pytest_cache/
+*.egg-info/
+.work/
+data/
+checkpoints/
+logs/tensorboard/
+*.tmp
+*.aux
+*.synctex.gz
+*.out
