@@ -1,0 +1,32 @@
+{
+  "config": {
+    "task": "graph",
+    "model": "cd32",
+    "rule": "cd32",
+    "seed": 0,
+    "families": 1024,
+    "epochs": 60,
+    "batch": 128,
+    "lr": 0.003,
+    "tag": ""
+  },
+  "name": "graph-cd32-cd32-s0",
+  "time": "2026-11-26T15:07:16+00:00",
+  "hardware": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "torch": "2.15.0+cu132",
+    "cuda": "13.2",
+    "python": "3.12.13",
+    "commit": "3008a640622d9172809d10652fc9adaca78736e3"
+  },
+  "trainable": 1694,
+  "parameters": 1694,
+  "best_epoch": 50,
+  "val_accuracy": 0.3542,
+  "train_examples": 45000,
+  "val_examples": 5000,
+  "seconds": 571.2349709000009,
+  "training_examples_per_second": 4726.601376918598,
+  "peak_gpu_bytes": 135758336
+}

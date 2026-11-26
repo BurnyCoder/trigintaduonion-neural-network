@@ -1,11 +1,11 @@
 {
   "planned": 99,
-  "completed_training": 66,
-  "completed_evaluation": 66,
-  "checked_splits": 198,
-  "recounted_decisions": 405504,
+  "completed_training": 72,
+  "completed_evaluation": 72,
+  "checked_splits": 216,
+  "recounted_decisions": 442368,
   "distinct_label_streams": 27,
-  "full_epoch_journals_verified": 66,
+  "full_epoch_journals_verified": 72,
   "latest_registered_scene_fit": "2026-11-26T13:54:01+00:00",
   "earliest_registered_scene_eval": "2026-11-26T13:54:24+00:00"
 }

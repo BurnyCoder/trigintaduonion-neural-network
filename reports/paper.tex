@@ -1,9 +1,10 @@
 \documentclass[10pt]{article}
 \usepackage[margin=0.8in]{geometry}
 \usepackage{graphicx,longtable,hyperref}
-\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,pdfauthor={Libor Burny Burian}}
+\newcommand{\studytitle}{Testing the inductive bias of a trigintaduonion neural network on spatial relations}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,pdfauthor={Libor Burny Burian},pdftitle={\studytitle}}
 \setlength{\parindent}{0pt}\setlength{\parskip}{5pt}\setlength{\emergencystretch}{3em}
-\title{Testing the inductive bias of a trigintaduonion neural network on spatial relations}
+\title{\studytitle}
 \author{Libor \textquotedblleft Burny\textquotedblright\ Burian}
 \date{26 November 2026}
 \begin{document}\maketitle
@@ -24,8 +25,9 @@ Each world draws a unit filter $w$ with zero scalar component and equal squared 
 Draw two beacons, four landmarks and eight objects uniformly in the plane. Reject layouts with coinciding nearest choices or a nearest/second-nearest distance margin of at most 0.035 at a selected hop. Half the objects have each type. From each beacon follow its nearest landmark and then its nearest object. Equality of the two object types is the binary target. Swapping the entire reading of a selected object with an opposite-type distractor flips the answer. Full families stay within the same split. An order-independent readings-only predictor or geometry-only predictor makes exactly one correct decision per family.
 
 The encoder mixes the excitation with four learned channel projections, reads each at the observed coordinate and supplies the projections, their products with $z$, and $z$ to a nonlinear MLP. A landmark pools object features and a beacon pools landmark features using a learned function of squared distance plus a learned negative distance slope. Signed linear residual updates transform the pooled features. A real MLP reads the sum and elementwise product of both beacon embeddings. Using distances and symmetric aggregates makes the full prediction invariant to a common planar isometry and within-role index permutations.
-\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/architecture.png}
-\\{\small Figure 1. End-to-end classifier. Object types and selection indices are withheld from the learner.}\end{center}
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.30\textheight,keepaspectratio]{docs/figures/architecture.png}
+\par{\small Figure 1. End-to-end classifier. Object types and selection indices are withheld from the learner.}\end{minipage}\end{center}
 
 \section{Experiment and falsification criteria}
 Each primary world has 1,024 training, 256 validation and 1,024 test families. Withhold sensor coordinates 12--15 and 28--31 during training. Evaluate fresh scenes with these coordinates and scenes with 16 objects separately. Both matched and mismatched networks receive identical underlying geometry, labels, excitations, noise and optimizer settings. Fit 80 epochs of AdamW, initial learning rate 0.003, weight decay 0.0001, batch size 128 scenes and cosine decay. Break ties in maximum validation accuracy in favor of the earliest epoch. A frozen random encoder with trained readout, one-hop network, shallow coordinate-aware set network, unrestricted real, low-rank real and sedenion learners control different aspects of the architecture.
@@ -40,7 +42,8 @@ The pixel models apply a real input stem, three two-convolution residual stages 
 \section{Results and claims}
 Across 8 independent simulated worlds, a network matched to the canonical sensor classified 90.04\% (95\% interval 89.28\% to 90.79\%) of held-out scenes correctly. A network matched to the randomized sensor classified 90.06\% (95\% interval 89.63\% to 90.49\%) correctly. The mean benefit of matching the sensor rule was 39.59 percentage points on canonical sensors and 39.58 points on randomized sensors. Both directional matching criteria passed.
 \begin{longtable}{p{.43\linewidth}rrrr}
-\hline Task / model / rule & Worlds & Params & Test & 95\% interval\\\hline\endhead
+\hline Task / model / rule & Worlds & Params & Test & 95\% interval\\\hline\endhead\hline\endfoot
+graph / cd32 & 0 & 1694 & pending & ---\\
 scene / budget / cd32 / 1024 families & 3 & 3961 & 49.92\% & 47.73\% to 52.10\%\\
 scene / cd16 / cd32 / 1024 families & 3 & 4057 & 61.90\% & 48.57\% to 75.22\%\\
 scene / cd32 / cd32 / 1024 families & 8 & 3801 & 90.04\% & 89.28\% to 90.79\%\\
@@ -58,9 +61,9 @@ scene / random / cd32 / 4096 families & 1 & 3801 & 50.88\% & ---\\
 scene / random / random / 1024 families & 8 & 3801 & 90.06\% & 89.63\% to 90.49\%\\
 scene / real / cd32 / 1024 families & 3 & 11737 & 50.05\% & 47.93\% to 52.16\%\\
 scene / shallow / cd32 / 1024 families & 8 & 7713 & 49.96\% & 49.89\% to 50.03\%\\
-\hline\end{longtable}
+\end{longtable}
 \begin{longtable}{p{.37\linewidth}rp{.11\linewidth}p{.17\linewidth}l}
-\hline Endpoint & N & Estimate & 95\% interval & Decision\\\hline\endhead
+\hline Endpoint & N & Estimate & 95\% interval & Decision\\\hline\endhead\hline\endfoot
 Matched canonical accuracy & 8 & 90.04\% & 89.28\% to 90.79\% & above threshold\\
 Matched randomized accuracy & 8 & 90.06\% & 89.63\% to 90.49\% & above threshold\\
 Canonical minus randomized on canonical sensors & 8 & 39.59 pp & 38.54 pp to 40.65 pp & above threshold\\
@@ -68,10 +71,10 @@ Randomized minus canonical on randomized sensors & 8 & 39.58 pp & 38.96 pp to 40
 Canonical minus frozen & 8 & 39.48 pp & 38.82 pp to 40.15 pp & above threshold\\
 Canonical minus validation-selected shallow control & 8 & 40.08 pp & 39.33 pp to 40.84 pp & above threshold\\
 Canonical minus randomized on ciFAIR-10 & 0 & pending & --- & pending\\
-\hline\end{longtable}
+\end{longtable}
 \subsection*{Counterfactual families and distribution shifts}
 \begin{longtable}{llrrrrrrr}
-\hline Learner & Rule & N & Test & Both & Unseen & Crowded & Constant & Oracle\\\hline\endhead
+\hline Learner & Rule & N & Test & Both & Unseen & Crowded & Constant & Oracle\\\hline\endhead\hline\endfoot
 budget & cd32 & 3 & 49.92\% & 21.65\% & 50.23\% & 48.86\% & 50.00\% & 93.62\%\\
 cd16 & cd32 & 3 & 61.90\% & 38.90\% & 61.88\% & 61.74\% & 50.00\% & 93.62\%\\
 cd32 & cd32 & 8 & 90.04\% & 83.53\% & 89.68\% & 88.53\% & 50.00\% & 93.74\%\\
@@ -82,7 +85,7 @@ random & cd32 & 8 & 50.45\% & 21.62\% & 50.23\% & 49.65\% & 50.00\% & 93.74\%\\
 random & random & 8 & 90.06\% & 83.72\% & 90.14\% & 89.09\% & 50.00\% & 93.83\%\\
 real & cd32 & 3 & 50.05\% & 18.98\% & 50.29\% & 50.63\% & 50.00\% & 93.62\%\\
 shallow & cd32 & 8 & 49.96\% & 0.13\% & 50.00\% & 49.98\% & 50.00\% & 93.74\%\\
-\hline\end{longtable}
+\end{longtable}
 Entries are mean percentages over evaluated confirmatory worlds. Both counts families for which both opposite labels were correct. Unseen uses withheld sensor coordinates. Crowded doubles the object count. Constant and Oracle score the same original test scenes.
 On canonical scenes the full network's paired accuracy difference was +39.48 points against the frozen encoder and +40.08 points against the validation-selected shallow control. Both lower bounds exceeded zero.
 
@@ -90,18 +93,24 @@ On the 3 canonical worlds shared by the capacity baselines, mean test accuracy w
 
 In the single-world data-size study, increasing training from 256 to 32,768 families changed canonical accuracy from 56.10\% to 92.97\% and randomized accuracy from 51.12\% to 54.93\%. The larger conditions also used more optimizer updates under the fixed epoch budget.
 
-\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/scores.png}
-\\{\small Dots represent held-out worlds, a vertical tick the mean, and a horizontal line the 95\% Student interval for groups with at least three worlds.}\end{center}
-\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/effects.png}
-\\{\small Paired differences by world and their mean and 95\% interval. Crosses mark the registered decision thresholds.}\end{center}
-\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/sample-size.png}
-\\{\small Data-size sensitivity on the canonical sensor in seed zero. Training families are nested and the test set is fixed. With a fixed epoch and batch budget, larger samples also receive more optimizer steps.}\end{center}
-\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/learning.png}
-\\{\small Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.}\end{center}
-\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/example.png}
-\\{\small A fixed held-out family. Circles show object readings, square markers landmarks and stars beacons. Dashed paths show ground-truth selections.}\end{center}
-\begin{center}\includegraphics[width=.94\linewidth,height=.29\textheight,keepaspectratio]{docs/figures/predictions.png}
-\\{\small Same-type probabilities and binary controls on three fixed held-out families from the lowest available evaluated seed in the canonical sensor condition.}\end{center}
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.74\textheight,keepaspectratio]{docs/figures/scores.png}
+\par{\small Dots represent evaluated seeds, a vertical tick the mean, and a horizontal line the 95\% Student interval for groups with at least three seeds. Scene seeds sample new worlds. Image seeds reuse a fixed test set.}\end{minipage}\end{center}
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.48\textheight,keepaspectratio]{docs/figures/effects.png}
+\par{\small Paired seed differences and their mean and 95\% interval. Crosses mark the registered decision thresholds.}\end{minipage}\end{center}
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.30\textheight,keepaspectratio]{docs/figures/sample-size.png}
+\par{\small Data-size sensitivity on the canonical sensor in seed zero. Training families are nested and the test set is fixed. With a fixed epoch and batch budget, larger samples also receive more optimizer steps.}\end{minipage}\end{center}
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.30\textheight,keepaspectratio]{docs/figures/learning.png}
+\par{\small Pilot binary cross entropy and accuracy by epoch, from the timestamped training log.}\end{minipage}\end{center}
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.30\textheight,keepaspectratio]{docs/figures/example.png}
+\par{\small A fixed held-out family. Circles show object readings, square markers landmarks and stars beacons. Dashed paths show ground-truth selections.}\end{minipage}\end{center}
+\begin{center}\begin{minipage}{.99\linewidth}\centering
+\includegraphics[width=.98\linewidth,height=.48\textheight,keepaspectratio]{docs/figures/predictions.png}
+\par{\small Same-type probabilities and binary controls on three fixed held-out families from the lowest available evaluated seed in the canonical sensor condition.}\end{minipage}\end{center}
 \subsection*{Supplementary fixed-checkpoint interventions}
 scene-cd32-cd32-s42-n1024. A common orthogonal transformation, translation and node reordering changed 0 of 2048 decisions. Cyclically shifting sensor payloads among objects changed 1009 decisions and gave 49.85\% accuracy against the original labels. This supplementary probe was specified after the pilot evaluation.
 Maximum absolute probability drift under the common spatial transformation was 0.0306 in the training arithmetic and 2.61e-14 when reevaluating the trained coefficients in float64.
@@ -109,7 +118,7 @@ The decoded pixel training and validation sets contained 45,000 and 5,000 images
 \subsection*{Independent algebra diagnostic}
 Across 8 algebra worlds, eight training vectors gave mean normalized squared errors of 2.4e-31 and 0.962 for the matched and mismatched canonical-sensor fits. On randomized sensors those errors were 2e-31 and 0.943. With 2,048 input pairs, the blind bilinear learner recovered at least 1,024 of the 1,024 signed basis products per world. Its mean error was 1.9e-30, compared with 2.06 after shuffling targets.
 \begin{longtable}{lllrrrr}
-\hline Task & Teacher & Learner & N & Worlds & NMSE & Basis\\\hline\endhead
+\hline Task & Teacher & Learner & N & Worlds & NMSE & Basis\\\hline\endhead\hline\endfoot
 multiplier & cd32 & cd32 & 2 & 8 & 3.32e-31 & ---\\
 multiplier & cd32 & random & 2 & 8 & 1.63 & ---\\
 multiplier & cd32 & real & 2 & 8 & 0.936 & ---\\
@@ -141,7 +150,7 @@ product & cd32 & shuffled & 1024 & 8 & 1.6e+04 & 15.2\\
 product & cd32 & bilinear & 2048 & 8 & 1.94e-30 & 1024.0\\
 product & cd32 & shuffled & 2048 & 8 & 2.06 & 17.8\\
 product & cd32 & analytic & 0 & 8 & 0 & 1024.0\\
-\hline\end{longtable}
+\end{longtable}
 \section{Discussion, limitations and conclusion}
 Changing the sensor rule reversed which of two equally sized neural classifiers performed better. This intervention identifies a benefit of matching channel sharing to this simulator under the registered training procedure.
 
