@@ -60,3 +60,5 @@
 {"time": "2026-11-26T18:47:12+00:00", "run": "pixel-cd32-cd32-s6", "event": "epoch", "epoch": 59, "epochs": 60, "train_loss": 0.6412030815972222, "train_accuracy": 0.7784444444444445, "val_loss": 0.634287548828125, "val_accuracy": 0.781, "epoch_seconds": 15.448319999999512}
 {"time": "2026-11-26T18:47:29+00:00", "run": "pixel-cd32-cd32-s6", "event": "epoch", "epoch": 60, "epochs": 60, "train_loss": 0.6379093315972222, "train_accuracy": 0.7815555555555556, "val_loss": 0.63316083984375, "val_accuracy": 0.7816, "epoch_seconds": 16.196604600001592}
 {"time": "2026-11-26T18:47:29+00:00", "run": "pixel-cd32-cd32-s6", "event": "trained", "val_accuracy": 0.785, "best_epoch": 57}
+{"time": "2026-11-26T21:39:33+00:00", "run": "pixel-cd32-cd32-s6", "event": "evaluated", "split": "test", "accuracy": 0.7874, "loss": 0.62363134765625, "examples": 10000}
+{"time": "2026-11-26T21:39:33+00:00", "run": "pixel-cd32-cd32-s6", "event": "evaluated", "split": "cifair", "accuracy": 0.7761, "loss": 0.653647607421875, "examples": 10000}
