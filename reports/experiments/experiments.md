@@ -31,7 +31,7 @@ Across 8 independent simulated worlds, a network matched to the canonical sensor
 | [scene-frozen-cd32-s1-n1024](scene-frozen-cd32-s1-n1024/experiment.md) | 2113 | 53.52% | 50.73% | 16.21% | 48.73% | 50.63% |
 | [scene-frozen-cd32-s2-n1024](scene-frozen-cd32-s2-n1024/experiment.md) | 2113 | 54.10% | 50.73% | 18.46% | 50.29% | 51.76% |
 | [scene-frozen-cd32-s3-n1024](scene-frozen-cd32-s3-n1024/experiment.md) | 2113 | 52.93% | 49.80% | 13.18% | 49.22% | 49.41% |
-| [scene-frozen-cd32-s4-n1024](scene-frozen-cd32-s4-n1024/experiment.md) | 2113 | 50.39% | pending | pending | pending | pending |
+| [scene-frozen-cd32-s4-n1024](scene-frozen-cd32-s4-n1024/experiment.md) | 2113 | 50.39% | 50.15% | 11.23% | 50.49% | 50.98% |
 | [scene-frozen-cd32-s5-n1024](scene-frozen-cd32-s5-n1024/experiment.md) | 2113 | 51.56% | pending | pending | pending | pending |
 | [scene-frozen-cd32-s6-n1024](scene-frozen-cd32-s6-n1024/experiment.md) | 2113 | 54.49% | pending | pending | pending | pending |
 | [scene-frozen-cd32-s7-n1024](scene-frozen-cd32-s7-n1024/experiment.md) | 2113 | 53.52% | pending | pending | pending | pending |
