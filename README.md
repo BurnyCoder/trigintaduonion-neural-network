@@ -6,6 +6,8 @@ Can knowing how a sensor mixes its 32 channels help a neural network answer a sp
 Across 8 independent simulated worlds, a network matched to the canonical sensor classified 90.04% (95% interval 89.28% to 90.79%) of held-out scenes correctly. A network matched to the randomized sensor classified 90.06% (95% interval 89.63% to 90.49%) correctly. The mean benefit of matching the sensor rule was 39.59 percentage points on canonical sensors and 39.58 points on randomized sensors. Both directional matching criteria passed.
 
 ![Held-out scene pair and learned same-type probabilities](docs/figures/example.png)
+
+[Watch the two readings trade places in the first pilot pair](https://burnycoder.github.io/trigintaduonion-neural-network/figures/reading-swap.mp4)
 <!-- highlights:end -->
 
 The **primary comparison** crosses two sensor rules with two end-to-end models. Canonical Cayley–Dickson multiplication and a randomized rule use the same number of learned coefficients. A nonlinear sensor encoder feeds two geometric message-passing blocks and a symmetric readout. CIFAR-10 superpixels and raw CIFAR-10/ciFAIR-10 images provide independent transfer tests. The linear layer, convolution and graph classifier can also be used directly in PyTorch. [Layer definitions](src/trig32/algebra.py) · [Graph classifier](src/trig32/models.py) · [Python examples](docs/usage.md#using-the-pytorch-modules)
