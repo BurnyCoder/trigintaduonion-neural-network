@@ -1,0 +1,32 @@
+{
+  "config": {
+    "task": "scene",
+    "model": "frozen",
+    "rule": "cd32",
+    "seed": 7,
+    "families": 1024,
+    "epochs": 80,
+    "batch": 128,
+    "lr": 0.003,
+    "tag": ""
+  },
+  "name": "scene-frozen-cd32-s7-n1024",
+  "time": "2026-11-26T13:33:40+00:00",
+  "hardware": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "torch": "2.15.0+cu132",
+    "cuda": "13.2",
+    "python": "3.12.13",
+    "commit": "df26e3ff08034bc4795c2e9a315bb47b790a913c"
+  },
+  "trainable": 2113,
+  "parameters": 3801,
+  "best_epoch": 11,
+  "val_accuracy": 0.53515625,
+  "train_examples": 2048,
+  "val_examples": 512,
+  "seconds": 13.057106499993097,
+  "training_examples_per_second": 12547.956164720463,
+  "peak_gpu_bytes": 37708800
+}
