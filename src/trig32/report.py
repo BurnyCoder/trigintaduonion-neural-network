@@ -191,6 +191,8 @@ def documents(data):
     images=[i for i in images if "figures/example.png" not in i]
     if (DOCS/"figures"/"effects.png").exists():
         images.insert(0,"![Paired differences, seed-level points and 95% intervals](docs/figures/effects.png)")
+    if (DOCS/"figures"/"sample-size.png").exists():
+        images.append("![Seed-zero accuracy on a fixed test set as the training-family count changes](docs/figures/sample-size.png)")
     metrics_block(readme,"\n\n".join([*images,gtable] if groups else [brief]))
     metrics_block(DOCS/"model-card.md",brief+f" [All measured outcomes]({PAGES})")
     write(REPORTS/"summary.md","# Results\n\n"+brief+"\n\n"+gtable+"\n\n"+dtable+generalization+probe+

@@ -40,10 +40,37 @@ def architecture():
     save(fig,"architecture")
 
 
+def sample_size_figure(finished):
+    """Compare the preselected seed on nested training samples and one shared test population."""
+    series={"cd32":{}, "random":{}}
+    for run in finished:
+        c=run["config"]
+        if c["task"]=="scene" and c["rule"]=="cd32" and c["seed"]==0 and c["model"] in series:
+            series[c["model"]][c["families"]]=run["splits"]["test"]
+    sizes=sorted(series["cd32"].keys() & series["random"].keys())
+    if len(sizes)<2:
+        return False
+    fig,ax=plt.subplots(figsize=(7.1,3.2),layout="constrained")
+    for model,label,color in (("cd32","Canonical learner",TEAL),("random","Randomized learner",GOLD)):
+        acc=[100*series[model][n]["accuracy"] for n in sizes]
+        ax.plot(sizes,acc,color=color,marker="o",label=label)
+    test=series["cd32"][sizes[0]]
+    for metric,desc,style in (("constant_accuracy","Constant","dotted"),("oracle_accuracy","Known-filter oracle","dashed")):
+        ax.axhline(100*test[metric],color="#677482",linestyle=style,lw=1,label=desc)
+    ax.set_xscale("log",base=2)
+    ax.set_xticks(sizes,[f"{n:,}" for n in sizes])
+    ax.set(xlabel="Training families (log scale)",ylabel="Held-out scene accuracy (%)",ylim=(0,100))
+    ax.grid(axis="y",alpha=.18)
+    ax.legend(ncol=2,fontsize=8,frameon=False)
+    save(fig,"sample-size")
+    return True
+
+
 def figures(data):
     architecture()
     runs=data["runs"]
     finished=[r for r in runs if "test" in r["splits"]]
+    has_sample_sizes=sample_size_figure(finished)
     if finished:
         group={}
         for r in finished:
@@ -58,7 +85,14 @@ def figures(data):
             offset=np.linspace(-.11,.11,len(vals)) if len(vals)>1 else np.zeros(1)
             ax.scatter(np.array(vals)*100,i+offset,c=BLUE,s=15,alpha=.7)
             ax.scatter(np.mean(vals)*100,i,marker="|",s=135,c=INK)
-        ax.set_yticks(range(len(group)),[" / ".join(map(str,k)) for k in group],fontsize=8)
+        labels=[]
+        for task,model,rule,size,stage in group:
+            if task=="scene":
+                name=f"{model} learner / {rule} sensor / {size:,} families"
+                labels.append(name+" (pilot)" if stage=="pilot" else name)
+            else:
+                labels.append(f"{'CIFAR-10 pixels' if task=='pixel' else 'CIFAR-10 superpixels'} / {model}")
+        ax.set_yticks(range(len(group)),labels,fontsize=8)
         ax.set(xlabel="Held-out accuracy (%)   ·   points are individual runs",xlim=(0,100))
         ax.grid(axis="x",alpha=.22)
         save(fig,"scores")
@@ -77,6 +111,7 @@ def figures(data):
         ax.set_xlabel("Paired accuracy difference (percentage points)   ·   × decision threshold")
         ax.grid(axis="x",alpha=.18)
         save(fig,"effects")
+    events=[]
     if runs:
         r=next((x for x in runs if x["config"]["seed"]==42),runs[0])
         events=r["curve"]
@@ -131,3 +166,12 @@ def figures(data):
                 ax.text(col,row,f"{s:.2f}",size=8,ha="center",va="center",color="black" if s>.55 else "white")
         fig.colorbar(pic,ax=ax,label="P(same) or binary decision",shrink=.8)
         save(fig,"predictions")
+    # Reproduction in a fresh output directory may supply fewer results than the released clone.
+    # Remove only named generator-owned images whose source observations are absent in this report.
+    active={"scores":finished,"effects":effects,"learning":events,"example":scene,"predictions":by_seed,
+            "sample-size":has_sample_sizes}
+    for task in ("graph","pixel"):
+        active["gallery-"+task]=any(r["config"]["task"]==task and "image_examples" in r for r in runs)
+    for name,present in active.items():
+        if not present:
+            (FIG/(name+".png")).unlink(missing_ok=True)
