@@ -6,7 +6,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | --- | --- | --- | --- | --- |
 | scene / budget / cd32 / 1024 families | 0 | 3961 | pending | — |
 | scene / cd16 / cd32 / 1024 families | 0 | 4057 | pending | — |
-| scene / cd32 / cd32 / 1024 families | 0 | 3801 | pending | — |
+| scene / cd32 / cd32 / 1024 families | 1 | 3801 | 90.62% | — |
 | scene / cd32 / cd32 / 1024 families (pilot) | 1 | 3801 | 89.16% | — |
 | scene / cd32 / random / 1024 families | 0 | 3801 | pending | — |
 | scene / frozen / cd32 / 1024 families | 0 | 2113 | pending | — |
@@ -18,13 +18,21 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 
 | Registered endpoint | Worlds | Estimate | 95% interval | Threshold | Decision |
 | --- | --- | --- | --- | --- | --- |
-| Matched canonical accuracy | 0 | pending | — | 60.00% | pending |
+| Matched canonical accuracy | 1 | 90.62% | — | 60.00% | pending |
 | Matched randomized accuracy | 0 | pending | — | 60.00% | pending |
 | Canonical minus randomized on canonical sensors | 0 | pending | — | 1.00 pp | pending |
 | Randomized minus canonical on randomized sensors | 0 | pending | — | 1.00 pp | pending |
 | Canonical minus frozen | 0 | pending | — | 0.00 pp | pending |
 | Canonical minus validation-selected shallow control | 0 | pending | — | 0.00 pp | pending |
 | Canonical minus randomized on ciFAIR-10 | 0 | pending | — | 1.00 pp | pending |
+
+## Counterfactual families and distribution shifts
+
+| Learner | Sensor | Worlds | Test | Both mates | Unseen channels | Crowded | Constant | Known-filter oracle |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| cd32 | cd32 | 1 | 90.62% | 84.96% | 90.14% | 89.36% | 50.00% | 93.95% |
+
+Each entry averages the saved world-level scores. Both mates counts families whose two opposite labels were both predicted correctly. The last two columns evaluate analytic controls on the original test scenes.
 
 ## Supplementary fixed-checkpoint interventions
 
