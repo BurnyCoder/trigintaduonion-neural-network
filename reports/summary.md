@@ -14,7 +14,7 @@ On the corrected natural-image test set, the paired difference for canonical min
 | --- | --- | --- | --- | --- |
 | graph / cd32 | 1 | 1694 | 34.80% | — |
 | graph / random | 1 | 1694 | 34.55% | — |
-| pixel / budget | 1 | 13115 | 78.23% | — |
+| pixel / budget | 2 | 13115 | 78.17% | 77.48% to 78.87% |
 | pixel / cd16 | 1 | 22570 | 82.01% | — |
 | pixel / cd32 | 8 | 13034 | 78.80% | 78.47% to 79.14% |
 | pixel / random | 8 | 13034 | 79.06% | 78.63% to 79.48% |
@@ -70,7 +70,7 @@ Each entry averages the saved world-level scores. Both mates counts families who
 | --- | --- | --- | --- | --- | --- | --- |
 | graph | cd32 | 1 | 1694 | 34.80% | — | — |
 | graph | random | 1 | 1694 | 34.55% | — | — |
-| pixel | budget | 1 | 13115 | 78.23% | 77.20% | — |
+| pixel | budget | 2 | 13115 | 78.17% | 77.16% | 76.58% to 77.73% |
 | pixel | cd16 | 1 | 22570 | 82.01% | 81.02% | — |
 | pixel | cd32 | 8 | 13034 | 78.80% | 77.73% | 77.43% to 78.02% |
 | pixel | random | 8 | 13034 | 79.06% | 78.01% | 77.60% to 78.42% |
