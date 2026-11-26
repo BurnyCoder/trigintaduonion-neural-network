@@ -1,11 +1,6 @@
 """Regenerate the public study from immutable evaluations, without importing a model."""
 from collections import defaultdict
-from datetime import date
-import json
-from pathlib import Path
-import re
 import shutil
-import subprocess
 
 from .analysis import collect, percent, table, row_metrics, HEADERS, interval
 from .figures import figures

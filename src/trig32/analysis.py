@@ -1,6 +1,5 @@
 """Reconstruct registered contrasts from completed run manifests and paired world scores."""
 import json
-from pathlib import Path
 
 import numpy as np
 

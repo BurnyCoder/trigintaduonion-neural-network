@@ -46,4 +46,6 @@ The optional maintainer flag `--publish` commits scoped results to the configure
 
 Run `uv run trig32 data-audit` to prepare all public benchmark inputs and verify exact pixel-group separation, RGB moments, graph offsets and class counts. It writes the resulting source revisions and counts to the results directory. A scene checkpoint audit also recomputes geometric interventions on CPU in float64, using identical trained weights, to quantify the effect of working precision.
 
+Run `uv run python scripts/verify_results.py --write` to independently recount released predictions, check the held-out label sequence across paired conditions, verify validation-selected epochs and compare the final registered checkpoint timestamp with the first registered scene evaluation. Partial runs are explicitly counted.
+
 Pixels and superpixels download on demand from the pinned upstream datasets. Pixel training uses reflected four-pixel padding, random crop and horizontal flip with normalization fitted only on its training partition. Count each exact pixel duplicate group once during split allocation. The fixed superpixel splits and ciFAIR test release are distinct evaluations. [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) · [Graph benchmark](https://www.jmlr.org/papers/v24/22-0567.html) · [ciFAIR](https://cvjena.github.io/cifair/)

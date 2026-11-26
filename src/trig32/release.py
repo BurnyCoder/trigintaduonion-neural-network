@@ -1,10 +1,9 @@
 """Release only explicitly scoped study artifacts; keep credentials and resumable local state private."""
-import json
 from pathlib import Path
 import subprocess
 
 from huggingface_hub import CommitOperationAdd,HfApi
-from .paths import ROOT,RESULTS,CHECKPOINTS
+from .paths import ROOT,CHECKPOINTS
 
 
 REPO="BurnyCoder/trigintaduonion-neural-network"
@@ -17,7 +16,6 @@ def git(*args):
 
 def publish(name=""):
     """Mirror tracked research content and finished portable weights in one model collection."""
-    out=RESULTS/name
     if name and Path(name).name!=name:
         raise ValueError("invalid run ID")
     scoped=["README.md","reports","docs","results","logs"]

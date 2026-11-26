@@ -5,7 +5,6 @@ import os
 import pickle
 import urllib.request
 import zipfile
-from pathlib import Path
 
 import numpy as np
 import pyarrow.parquet as pq
@@ -288,8 +287,9 @@ def image_examples(ds,predictions,path):
             rgb=np.uint8(np.clip(ds.data["x"][a:b]/ds.color_scale,0,1)*255)
             tile=Image.new("RGB",(96,96),"#f3f5f2")
             draw=ImageDraw.Draw(tile)
-            for (x,y),color in zip(loc,rgb):
-                u,v=float(x*95),float(y*95)
+            for (row,col),color in zip(loc,rgb):
+                # The published coordinates are [row, column] divided by the original image size.
+                u,v=float(col*96+1.5),float(row*96+1.5)
                 draw.ellipse((u-3,v-3,u+3,v+3),fill=tuple(map(int,color)))
         gallery.paste(tile,(96*i,0))
     gallery.save(path)
