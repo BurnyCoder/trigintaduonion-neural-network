@@ -53,6 +53,7 @@ The pilot classified 89.16% of 2,048 unseen scenes correctly and answered both m
 | [scene-random-random-s5-n1024](scene-random-random-s5-n1024/experiment.md) | 3801 | 92.38% | pending | pending | pending | pending |
 | [scene-random-random-s6-n1024](scene-random-random-s6-n1024/experiment.md) | 3801 | 91.21% | pending | pending | pending | pending |
 | [scene-random-random-s7-n1024](scene-random-random-s7-n1024/experiment.md) | 3801 | 92.19% | pending | pending | pending | pending |
+| [scene-shallow-cd32-s0-n1024](scene-shallow-cd32-s0-n1024/experiment.md) | 7713 | 50.39% | pending | pending | pending | pending |
 
 The scene objective is binary cross entropy. The pixel and superpixel objectives are ten-way cross entropy. Each optimizer follows a cosine schedule. The run matrix records the budgets and split choices. Both mates measures the fraction of scene families for which both binary decisions are correct. NMSE divides squared error by total target energy.
 
