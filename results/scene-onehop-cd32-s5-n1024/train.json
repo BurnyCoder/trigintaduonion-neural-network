@@ -1,0 +1,32 @@
+{
+  "config": {
+    "task": "scene",
+    "model": "onehop",
+    "rule": "cd32",
+    "seed": 5,
+    "families": 1024,
+    "epochs": 80,
+    "batch": 128,
+    "lr": 0.003,
+    "tag": ""
+  },
+  "name": "scene-onehop-cd32-s5-n1024",
+  "time": "2026-11-26T13:39:41+00:00",
+  "hardware": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "torch": "2.15.0+cu132",
+    "cuda": "13.2",
+    "python": "3.12.13",
+    "commit": "5c170b7b633b0d7ce5b592badd4d46907d9a101a"
+  },
+  "trainable": 3801,
+  "parameters": 3801,
+  "best_epoch": 1,
+  "val_accuracy": 0.5,
+  "train_examples": 2048,
+  "val_examples": 512,
+  "seconds": 16.129844799996135,
+  "training_examples_per_second": 10157.568286090345,
+  "peak_gpu_bytes": 38337536
+}
