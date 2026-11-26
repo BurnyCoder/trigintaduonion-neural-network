@@ -14,7 +14,7 @@ In the single-world data-size study, increasing training from 256 to 32,768 fami
 | graph / random | 1 | 1694 | 34.55% | — |
 | pixel / budget | 0 | 13115 | pending | — |
 | pixel / cd16 | 0 | 22570 | pending | — |
-| pixel / cd32 | 1 | 13034 | 79.21% | — |
+| pixel / cd32 | 2 | 13034 | 78.98% | 76.06% to 81.90% |
 | pixel / random | 1 | 13034 | 78.11% | — |
 | pixel / real | 0 | 308650 | pending | — |
 | scene / budget / cd32 / 1024 families | 3 | 3961 | 49.92% | 47.73% to 52.10% |
@@ -68,7 +68,7 @@ Each entry averages the saved world-level scores. Both mates counts families who
 | --- | --- | --- | --- | --- | --- | --- |
 | graph | cd32 | 1 | 1694 | 34.80% | — | — |
 | graph | random | 1 | 1694 | 34.55% | — | — |
-| pixel | cd32 | 1 | 13034 | 79.21% | 78.07% | — |
+| pixel | cd32 | 2 | 13034 | 78.98% | 77.86% | 75.19% to 80.53% |
 | pixel | random | 1 | 13034 | 78.11% | 77.12% | — |
 
 ## Supplementary fixed-checkpoint interventions
