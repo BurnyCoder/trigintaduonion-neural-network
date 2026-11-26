@@ -1,0 +1,12 @@
+{
+  "time": "2026-11-26T19:58:53+00:00",
+  "run": "pixel-budget-cd32-s0",
+  "event": "epoch",
+  "epoch": 60,
+  "epochs": 60,
+  "train_loss": 0.6503172743055555,
+  "train_accuracy": 0.7740888888888889,
+  "val_loss": 0.637787353515625,
+  "val_accuracy": 0.7822,
+  "epoch_seconds": 5.354016999997839
+}
