@@ -2,7 +2,7 @@
 
 pixel / cd16. Seed 0, 60 epochs, batch size 128, starting learning rate 0.1. Accuracy counts correctly classified held-out images or image graphs.
 
-The selected epoch was 58. Validation accuracy was 81.84% and test accuracy was 82.01%.
+The selected epoch was 58. Validation accuracy was 81.84% and test accuracy was 82.01%. On the corrected ciFAIR-10 test set, accuracy was 81.02%.
 
 | Run | Trainable | Validation | Test | Both mates | Held-out channels | Crowded / ciFAIR |
 | --- | --- | --- | --- | --- | --- | --- |

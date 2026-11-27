@@ -1,12 +1,12 @@
 {
-  "source": "fc55d7272ec3437df018f9ab8612e82ff16ecd3a",
+  "source": "3a9d83ac663592679c9bc3207d381d70e56f33cc",
   "command": "uv run --no-sync pytest -q --junitxml=.work/verification.xml",
-  "time": "2026-11-26T18:23:41.427876+01:00",
+  "time": "2026-11-27T02:14:43.969477+01:00",
   "passed": 21,
   "failed": 0,
   "errors": 0,
   "skipped": 0,
-  "seconds": 16.275,
+  "seconds": 17.627,
   "cases": [
     "test_scene_supervision_reaches_every_stage",
     "test_identify_pure_reading_exchange",
