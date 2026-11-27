@@ -78,7 +78,9 @@ The optional maintainer flag `--publish` commits scoped results to the configure
 
 Run `uv run trig32 data-audit` to prepare all public benchmark inputs and verify exact pixel-group separation, RGB moments, graph offsets and class counts. It writes the resulting source revisions and counts to the results directory. A scene checkpoint audit also recomputes geometric interventions on CPU in float64, using identical trained weights, to quantify the effect of working precision.
 
-Run `uv run python scripts/verify_results.py --write` to independently recount released predictions, check the held-out label sequence across paired conditions, verify validation-selected epochs and compare the final registered checkpoint timestamp with the first registered scene evaluation. Partial runs are explicitly counted.
+Run `uv run python scripts/verify_results.py --write` to independently recount released predictions, check the held-out label sequence across paired conditions and verify validation-selected epochs. The auditor compares the final checkpoint timestamp with the first evaluation separately for the registered scene and external image comparisons. Partial runs are explicitly counted.
+
+For the complete study, `uv run python scripts/verify_contrasts.py --write` reconstructs each registered estimate from the saved individual predictions. It checks each seed, recomputes the paired confidence intervals using SciPy and verifies the decisions against the public protocol and explorer.
 
 Run `uv run python scripts/verify_weights.py --run scene-cd32-cd32-s42-n1024` to compare the exported checkpoint's SHA-256 with the public Hub revision and check every signed layer against the independent basis oracle. A fresh clone downloads the checkpoint automatically. After the full matrix is available, `uv run python scripts/verify_weights.py --write` verifies every registered neural and bilinear checkpoint and records the hashes.
 

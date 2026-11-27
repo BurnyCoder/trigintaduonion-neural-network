@@ -299,6 +299,8 @@ def documents(data):
             outcome=f"The selected epoch was {r['best_epoch']}. Validation accuracy was {percent(r['val_accuracy'])} and test accuracy was {percent(s['accuracy'])}."
             if c["task"]=="scene":
                 outcome+=f" Both mates were correct in {percent(s['both_correct'])} of families. The oracle scored {percent(s['oracle_accuracy'])}."
+            elif "cifair" in r["splits"]:
+                outcome+=f" On the corrected ciFAIR-10 test set, accuracy was {percent(r['splits']['cifair']['accuracy'])}."
         else:
             outcome=f"The validation-selected epoch was {r['best_epoch']}. Test predictions are pending release."
         write(ex/name/"experiment.md",f"# {name}\n\n{info}\n\n{outcome}\n\n"+table([row_metrics(r)],HEADERS)+
@@ -345,17 +347,17 @@ def documents(data):
     else:
         status = "All checkpoints are frozen. Held-out evaluation and publication are in progress."
     write(REPORTS/"progress.md",f"# Study progress\n\nPublic preregistration at [4552d4d]({GH}/commit/4552d4d9bdd1465864d50c9e9bd429631ac2ae2c). "
-          f"The reproducible implementation, tests, paper source and explorer accompany the protocol. Completed training manifests: {len(runs)}. Completed neural evaluations: {sum(bool(r['splits']) for r in runs)}. Completed algebra worlds: {len(set(x['seed'] for x in data['algebra']))}.\n\n"+brief+
+          f"The reproducible implementation, tests, paper source and explorer accompany the protocol. Completed training manifests: {len(runs)}. Completed neural evaluations: {sum(bool(r['splits']) for r in runs)}. Completed algebra worlds: {len(set(x['seed'] for x in data['algebra']))}.\n\n"+overview+
           f"\n\n{finished} of {total} planned neural evaluations are complete ({percent(finished/total)} by count). "
           "Different datasets require different amounts of compute. Mean fit time covers epoch loops and validation. Data preparation, evaluation and both public releases add wall time.\n\n"+progress_table+
           "\n\n"+status+" [Planned runs](planned-runs.md) · [Experiments](experiments/experiments.md)")
-    return brief,groups,decisions,algebra
+    return brief,overview,groups,decisions,algebra
 
 
 def report():
     data=collect()
     figures(data)
-    brief,groups,decisions,algebra=documents(data)
+    brief,overview,groups,decisions,algebra=documents(data)
     from .paper import make_paper
-    make_paper(brief,groups,decisions,algebra,data)
+    make_paper(brief,overview,groups,decisions,algebra,data)
     print(f"Regenerated study artifacts for {len(data['runs'])} completed fits.",flush=True)
