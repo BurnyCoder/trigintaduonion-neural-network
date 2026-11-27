@@ -5,8 +5,8 @@
 <p>Two beacons each point, through a landmark, to an object. Can a neural network tell whether those objects share a hidden type?</p></div></header>
 <main><section id="live" hidden><h2 id="live-title">Training now</h2><p id="live-status" aria-live="polite"></p><progress id="epoch-progress" value="0" max="1"></progress><p id="live-values"></p></section>
 <section id="evidence"><div class="section-title"><h2>Registered comparisons</h2><a href="https://github.com/BurnyCoder/trigintaduonion-neural-network/blob/4552d4d/reports/preregistration.md">Read protocol ↗</a></div>
-<p class="hint">A match helps when canonical weights win on canonical sensors and randomized weights win on randomized sensors. Both gains must clear the registered threshold across independent worlds.</p>
-<div class="overflow"><table><thead><tr><th>Endpoint</th><th>Worlds</th><th>Estimate</th><th>95% interval</th><th>Decision</th></tr></thead><tbody id="contrasts"></tbody></table></div></section>
+<p class="hint">A match helps when canonical weights win on canonical sensors and randomized weights win on randomized sensors. Both gains must clear the registered threshold. Each scene seed samples a new world. Image seeds share a fixed test set.</p>
+<div class="overflow"><table><thead><tr><th>Endpoint</th><th>Seeds</th><th>Estimate</th><th>95% interval</th><th>Decision</th></tr></thead><tbody id="contrasts"></tbody></table></div></section>
 <section id="examples"><div class="section-title"><h2>Inspect a run</h2><label>Run <select id="run"></select></label></div><p id="empty" role="status">Loading published measurements…</p>
 <div id="detail" hidden><div id="metrics" class="metrics"></div>
 <div class="grid"><article><div class="section-title"><h3>Learning curve</h3><select aria-label="Curve metric" id="metric"><option value="accuracy">Accuracy</option><option value="loss">Loss</option></select></div><canvas id="curve" role="img" aria-label="Epoch-by-epoch training and validation curve"></canvas><p class="legend"><i></i>Training &nbsp; <i class="gold"></i>Validation</p></article>

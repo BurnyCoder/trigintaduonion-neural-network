@@ -51,7 +51,15 @@ function show() {
   current=study.runs[Number(el("run").value)]; if(!current) return;
   el("detail").hidden=false;el("empty").hidden=true;el("metrics").replaceChildren();
   const test=current.splits.test || {};
-  for(const [k,v] of [["Validation",pct(current.val_accuracy)],["Test",pct(test.accuracy)],["Both mates",pct(test.both_correct)],["Oracle",pct(test.oracle_accuracy)],["Trainable weights",current.trainable.toLocaleString()]]){
+  const testName=current.config.task==="scene" ? "Held-out scenes" : "CIFAR-10 test";
+  const metrics=[
+    ["Validation",pct(current.val_accuracy)], [testName,pct(test.accuracy)],
+    ["ciFAIR-10 test",pct(current.splits.cifair?.accuracy)],
+    ["Both mates",pct(test.both_correct)], ["Unseen channels",pct(current.splits.heldout?.accuracy)],
+    ["Crowded scenes",pct(current.splits.crowded?.accuracy)], ["Known-filter oracle",pct(test.oracle_accuracy)],
+    ["Trainable weights",current.trainable.toLocaleString()]
+  ];
+  for(const [k,v] of metrics){
     if(v==="—") continue;const box=document.createElement("span"), strong=document.createElement("strong");strong.textContent=v;box.append(strong,k);el("metrics").append(box);
   }
   el("scene-panel").hidden=!current.examples;curve();scene();
