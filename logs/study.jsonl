@@ -4,3 +4,4 @@
 {"time": "2026-11-26T12:53:44+00:00", "run": "study", "event": "stage_complete", "stage": "pilot"}
 {"time": "2026-11-26T14:24:14+00:00", "run": "study", "event": "stage_complete", "stage": "controls"}
 {"time": "2026-11-26T14:57:22+00:00", "run": "study", "event": "stage_complete", "stage": "sensitivity"}
+{"time": "2026-11-26T21:45:31+00:00", "run": "study", "event": "stage_complete", "stage": "images"}

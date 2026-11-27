@@ -46,7 +46,7 @@ def plot(file,caption):
             ".png}\n"+r"\par{\small "+esc(caption)+r"}\end{minipage}\end{center}"+"\n")
 
 
-def make_paper(brief,groups,decisions,algebra,data):
+def make_paper(brief,overview,groups,decisions,algebra,data):
     directory=ROOT/"reports"
     header=r"""\documentclass[10pt]{article}
 \usepackage[margin=0.8in]{geometry}
@@ -76,7 +76,7 @@ Draw two beacons, four landmarks and eight objects uniformly in the plane. Rejec
 
 The encoder mixes the excitation with four learned channel projections, reads each at the observed coordinate and supplies the projections, their products with $z$, and $z$ to a nonlinear MLP. A landmark pools object features and a beacon pools landmark features using a learned function of squared distance plus a learned negative distance slope. Signed linear residual updates transform the pooled features. A real MLP reads the sum and elementwise product of both beacon embeddings. Using distances and symmetric aggregates makes the full prediction invariant to a common planar isometry and within-role index permutations.
 """
-    text=header.replace("DATE",date.today().strftime("%d %B %Y")).replace("OUTCOME",esc(brief))
+    text=header.replace("DATE",date.today().strftime("%d %B %Y")).replace("OUTCOME",esc(overview))
     text+=plot("architecture","Figure 1. End-to-end classifier. Object types and selection indices are withheld from the learner.")
     text+=r"""
 \section{Experiment and falsification criteria}

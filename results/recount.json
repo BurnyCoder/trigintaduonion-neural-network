@@ -1,11 +1,13 @@
 {
   "planned": 99,
-  "completed_training": 72,
-  "completed_evaluation": 72,
-  "checked_splits": 216,
-  "recounted_decisions": 442368,
-  "distinct_label_streams": 27,
-  "full_epoch_journals_verified": 72,
+  "completed_training": 99,
+  "completed_evaluation": 99,
+  "checked_splits": 268,
+  "recounted_decisions": 962368,
+  "distinct_label_streams": 30,
+  "full_epoch_journals_verified": 99,
   "latest_registered_scene_fit": "2026-11-26T13:54:01+00:00",
-  "earliest_registered_scene_eval": "2026-11-26T13:54:24+00:00"
+  "earliest_registered_scene_eval": "2026-11-26T13:54:24+00:00",
+  "latest_registered_external_fit": "2026-11-26T21:32:28+00:00",
+  "earliest_registered_external_eval": "2026-11-26T21:32:57+00:00"
 }
